@@ -51,21 +51,6 @@ public class GameManager : MonoBehaviour
 
 	public int overallScore;
 
-    [Header("UI objects")]
-    public Button soundButton;
-    public Sprite sound;
-    public Sprite noSound;
-    public GameObject volume;
-
-    public Button controllerButton;
-    public Sprite controller;
-    public Sprite noController;
-
-    public Text moveTxt;
-    public Text camTxt;
-    public Text interactTxt;
-
-
 	[Header ("Booleans")]
 	public bool isNextDay = false;
 
@@ -332,23 +317,7 @@ public class GameManager : MonoBehaviour
 
 	public void toggleController ()
 	{
-		usingController = !usingController;
-        if (usingController)
-        {
-            controllerButton.GetComponent<Image>().sprite = controller;
-            moveTxt.text = "Right joystick to move robot";
-            camTxt.text = "Left joystick to rotate camera";
-            interactTxt.text = "A to open doors and interact with items";
-
-        }
-        else
-        {
-            controllerButton.GetComponent<Image>().sprite = noController;
-            moveTxt.text = "Arrows keys to move robot";
-            camTxt.text = "ASWD to rotate camera";
-            interactTxt.text = "E to open doors and interact with items";
-
-        }
+        usingController = !usingController;
 	}
 
 	public void testing ()
@@ -369,14 +338,6 @@ public class GameManager : MonoBehaviour
 	public void toggleMusic ()
 	{
         musicOn = !musicOn;
-        if(musicOn){
-            soundButton.GetComponent<Image>().sprite = sound;
-            volume.SetActive(true);
-        }
-        else{
-            soundButton.GetComponent<Image>().sprite = noSound;
-            volume.SetActive(false);
-        }
 	}
 
 	public void setMusicVolume (Slider slide)
