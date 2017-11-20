@@ -22,8 +22,8 @@ public class Bird : MonoBehaviour
 	{
 		setPos (1);
 		startSpot3 = spot3.position;
-		//tempPos = new Vector3 (startSpot3.x + 3.5f, spot3.position.y, spot3.position.z);
-		tempPos = startSpot3;
+		tempPos = new Vector3 (startSpot3.x + 2f, spot3.position.y, spot3.position.z);
+		//tempPos = startSpot3;
 	}
 
 	void Update ()
@@ -37,6 +37,7 @@ public class Bird : MonoBehaviour
 			
 			if (setPos3) {
 				transform.position = startSpot3;
+                transform.rotation = new Quaternion(0, 0, 0, 0);
 				setPos3 = false;
 			}
 				
@@ -66,7 +67,7 @@ public class Bird : MonoBehaviour
 			transform.rotation = spot2.rotation;
 		} else if (spotNum == 3) {
 			transform.position = spot3.position;
-			transform.rotation = spot3.rotation;
+            transform.rotation = new Quaternion(0, 0, 0, 0);
 		}
 	}
 		
