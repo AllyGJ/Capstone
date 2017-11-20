@@ -22,7 +22,7 @@ public class Bird : MonoBehaviour
 	{
 		setPos (1);
 		startSpot3 = spot3.position;
-		tempPos = new Vector3 (startSpot3.x + 2f, spot3.position.y, spot3.position.z);
+		tempPos = new Vector3 (0f, spot3.position.y, spot3.position.z);
 		//tempPos = startSpot3;
 	}
 
@@ -42,13 +42,13 @@ public class Bird : MonoBehaviour
 			}
 				
 			if (GameManager.instance.startRunning) {
-				
-				tempPos.x += Mathf.Sin (Time.fixedTime * Mathf.PI * speed) * amp;
+
+                tempPos.x = Mathf.Sin (Time.fixedTime * speed) * amp;
 				tempPos.y = spot3.position.y;
 				tempPos.z = spot3.position.z;
 				transform.position = tempPos;
 
-				if (transform.position.z >= 450f) {
+				if (transform.position.z >= 750f) {
 					GameManager.instance.endMiniGame (true);
 				}
 			}

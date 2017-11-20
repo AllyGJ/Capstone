@@ -55,6 +55,7 @@ public class Trajectory : MonoBehaviour
 			}
 
 		}
+        else showTrajBar(false);
 		
 	}
 
