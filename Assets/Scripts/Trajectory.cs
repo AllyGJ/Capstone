@@ -47,10 +47,11 @@ public class Trajectory : MonoBehaviour
 				//throwValue = traj.value;
 
 				int val = getCorrectScore (traj.value);
+                print("val = " + val);
 				score += val;
 
 				//animation of robot throwing pitchfork at bird
-				StartCoroutine (wait ());
+				StartCoroutine (wait (val));
 
 			}
 
@@ -59,16 +60,19 @@ public class Trajectory : MonoBehaviour
 		
 	}
 
-	IEnumerator wait ()
+	IEnumerator wait (int val)
 	{
 		if (curThrows == numThrows) {
-			yield return new WaitForSeconds (2f);
+            GameManager.instance.pitchfork.GetComponent<Pitchfork>().throwAtBird(val);
+			yield return new WaitForSeconds (3f);
 			showTrajBar (false);
 			GameManager.instance.addToScore (score);
 			GameManager.instance.endMiniGame (true);
 		} else {
+            GameManager.instance.pitchfork.GetComponent<Pitchfork>().throwAtBird(val);
 			yield return new WaitForSeconds (3f);
 			moveSlider = true;
+            GameManager.instance.pitchfork.GetComponent<Pitchfork>().resetPos();
 			//once animation over, start slider again
 		}
 	}

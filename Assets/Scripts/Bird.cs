@@ -12,6 +12,8 @@ public class Bird : MonoBehaviour
 	public float speed;
 	public float amp;
 
+    public bool pauseFlying = false;
+
 	private Vector3 startSpot3;
 	private Vector3 tempPos;
 
@@ -42,11 +44,17 @@ public class Bird : MonoBehaviour
 			}
 				
 			if (GameManager.instance.startRunning) {
-
-                tempPos.x = Mathf.Sin (Time.fixedTime * speed) * amp;
-				tempPos.y = spot3.position.y;
-				tempPos.z = spot3.position.z;
-				transform.position = tempPos;
+                if (pauseFlying)
+                {
+                    tempPos.x = transform.position.x;
+                }
+                else
+                {
+                    tempPos.x = Mathf.Sin(Time.fixedTime * speed) * amp;
+                }
+                tempPos.y = spot3.position.y;
+                tempPos.z = spot3.position.z;
+                transform.position = tempPos;
 
 				if (transform.position.z >= 750f) {
 					GameManager.instance.endMiniGame (true);
