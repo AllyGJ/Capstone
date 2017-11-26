@@ -19,11 +19,13 @@ public class Music : MonoBehaviour {
         {
             GetComponent<Image>().sprite = sound;
             volume.SetActive(true);
+            SoundManager.instance.muteAll(false);
         }
         else
         {
             GetComponent<Image>().sprite = noSound;
             volume.SetActive(false);
+            SoundManager.instance.muteAll(true);
         }
     }
 }

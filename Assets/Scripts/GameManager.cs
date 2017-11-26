@@ -347,6 +347,7 @@ public class GameManager : MonoBehaviour
 	public void setMusicVolume (Slider slide)
 	{
 		musicVolume = slide.value;
+        SoundManager.instance.setVolume(musicVolume);
 	}
 
 	public void addToScore (int val)
@@ -358,6 +359,7 @@ public class GameManager : MonoBehaviour
 	{
 		musicOn = true;
 		musicVolume = 0.5f;
+
 
 		currItemIndex = 4;
 		setCurrItem (currItemIndex);
@@ -388,6 +390,8 @@ public class GameManager : MonoBehaviour
 		//player.GetComponent<Player> ().resetSpot3 ();
 
 		videoCanvas.GetComponent<Video> ().canSkip = true;
+
+        SoundManager.instance.setVolume(musicVolume);
 	}
 
 	public void quit ()

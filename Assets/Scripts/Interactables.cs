@@ -118,8 +118,9 @@ public class Interactables : MonoBehaviour
 	private IEnumerator openAndCloseDoor (GameObject door)
 	{
 		if (door.GetComponent<Door> ().RotationPending == false) {
+            SoundManager.instance.playSingle(SoundManager.instance.doorOpenClose);
 			StartCoroutine (door.GetComponent<Door> ().Move ());
-			yield return new WaitForSeconds (5f);
+			yield return new WaitForSeconds (3f);
 			StartCoroutine (door.GetComponent<Door> ().Move ());
 		}
 	}
