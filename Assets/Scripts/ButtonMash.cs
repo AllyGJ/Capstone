@@ -160,6 +160,7 @@ public class ButtonMash : MonoBehaviour
 		curButton = 0;
 		correct = 0;
 		LoadingBar.fillAmount = 0f;
+        LoadingBar.color = Color.blue;
 		userInputMatches = false;
 	}
 }

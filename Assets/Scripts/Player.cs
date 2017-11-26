@@ -69,7 +69,8 @@ public class Player : MonoBehaviour
 	}
 
 	public void resetSpot3 ()
-	{
-		spot3.position = new Vector3 (0f, -1.15f, 20f);
+    {
+        spot3.position = new Vector3(0f, 0f, 0f);
+		spot3.position = new Vector3 (0f, -1.44f, 17f);
 	}
 }

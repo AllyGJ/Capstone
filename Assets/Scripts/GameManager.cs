@@ -30,8 +30,8 @@ public class GameManager : MonoBehaviour
 	public Camera miniGame2;
 	public Camera miniGame3;
 
-	[Header ("Game Objects")]
-	public GameObject player;
+    [Header("Game Objects")]
+    public GameObject player;
 	public GameObject bird;
 	public GameObject pitchfork;
 	public GameObject arrow;
@@ -180,6 +180,9 @@ public class GameManager : MonoBehaviour
 		game3 = true;
 		bird.SetActive (true);
 		settingsButton.SetActive (false);
+
+        //pitchfork.GetComponent<Pitchfork>().setPos3();
+
 		while (videoCanvas.GetComponent<Video> ().started == true) {
 			yield return new WaitForSeconds (0.1f);
 		}
@@ -187,6 +190,7 @@ public class GameManager : MonoBehaviour
 		startRunning = true;
 	
 		movePlayer (false);
+        player.GetComponent<Player>().resetSpot3();
 		player.GetComponent<Player> ().setPos (3);
 
 		gameItems.worldCamera = miniGame3;
@@ -364,24 +368,24 @@ public class GameManager : MonoBehaviour
 		gameItems.worldCamera = playerCam;
 
 		playerCam.transform.position = camPosRot.position;
-		playerCam.transform.rotation = new Quaternion (0, -90, 0, 0);
+        playerCam.transform.eulerAngles = new Vector3(0, -90f, 0);
 
 		settingsButton.SetActive (true);
 		bird.SetActive (false);
 
-		player.transform.position = startPoint.position;
-		player.transform.rotation = startPoint.rotation;
+        player.transform.position = startPoint.position;
+        player.transform.rotation = startPoint.rotation;
 		movePlayer (false);
 
-		playerCam.transform.position = new Vector3 (14f, 0.15f, 0.3f);
-		playerCam.transform.rotation = startPoint.rotation;
+        playerCam.transform.position = new Vector3(player.transform.position.x - 1, player.transform.position.y, player.transform.position.z);
+        playerCam.transform.eulerAngles = new Vector3(0,90,0);
 
 		pitchfork.transform.parent = null;
 		pitchfork.transform.position = pitchforkStart.position;
 		pitchfork.transform.rotation = pitchforkStart.rotation;
 
 		//player.GetComponent<Interactables> ().reset ();
-		player.GetComponent<Player> ().resetSpot3 ();
+		//player.GetComponent<Player> ().resetSpot3 ();
 
 		videoCanvas.GetComponent<Video> ().canSkip = true;
 	}

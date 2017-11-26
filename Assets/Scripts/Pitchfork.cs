@@ -8,27 +8,46 @@ public class Pitchfork : MonoBehaviour
     bool holding = false;
 
     public GameObject grabber;
+    public GameObject playerHand;
 
 
     private string interact;
 
+    public Transform game3Pos;
+
+    private bool throwing = false;
 
     // Update is called once per frame
     void Update()
     {
         checkController();
 
-        //		if (holding && !GameManager.instance.game1 && !GameManager.instance.game2 && !GameManager.instance.game3) {
-        //			if (Input.GetKeyDown (interact)) {
-        //				putDown ();
-        //			}
-        //		}
+        if(GameManager.instance.game3){
+            if (!throwing)
+            {
+                this.transform.position = game3Pos.position;
+                this.transform.rotation = game3Pos.rotation;
+            }
+            else{
+                //transform.position = Vector3.Lerp(game3Pos.position, new Vector3(GameManager.instance.bird.transform.position.x / 2f,
+                //                                                                 GameManager.instance.bird.transform.position.y * 2f,
+                //                                                                 GameManager.instance.bird.transform.position.z / 2f), 0.5f);
+                //transform.position = Vector3.Lerp(new Vector3(GameManager.instance.bird.transform.position.x / 2f,
+                                                  //                               GameManager.instance.bird.transform.position.y * 2f,
+                                                  //                               GameManager.instance.bird.transform.position.z / 2f),
+                                                  //GameManager.instance.bird.transform.position, 0.5f);
+                transform.position = Vector3.Lerp(game3Pos.position,
+                                                  GameManager.instance.bird.transform.position, 0.5f);
+            }
+        }
     }
 
     public void pickup()
     {
         holding = true;
-        this.transform.parent = grabber.transform;
+        this.transform.position = playerHand.transform.position;
+        this.transform.parent = playerHand.transform;
+
     }
 
     public void putDown()
@@ -38,17 +57,13 @@ public class Pitchfork : MonoBehaviour
     }
 
     public void throwAtBird(int value){
+        throwing = true;
         GameManager.instance.bird.GetComponent<Bird>().pauseFlying = true;
-        Vector3 dir = GameManager.instance.bird.transform.position;
 
-        while (transform.position != dir)
-        {
-            Vector3 diff = dir - transform.position;
-            transform.position += diff;
-        }
+
 
         //if(value == 5){
-        //    transform.position = transform.position + Vector3.forward * 2;
+
         //}else if(value == 4){
             
         //}else if(value == 3){
@@ -59,10 +74,18 @@ public class Pitchfork : MonoBehaviour
         //}
     }
     public void resetPos(){
+        throwing = false;
         GameManager.instance.bird.GetComponent<Bird>().pauseFlying = false;
-        transform.position = new Vector3(GameManager.instance.player.transform.position.x + 1f, 
-                                         GameManager.instance.player.transform.position.y, 
-                                         GameManager.instance.player.transform.position.z);    
+
+        transform.position = game3Pos.position;
+        transform.rotation = game3Pos.rotation;
+    }
+
+    public void setPos3()
+    {
+        this.transform.parent = null;
+        this.transform.position = game3Pos.position;
+        this.transform.rotation = game3Pos.rotation;
     }
 
 	private void checkController ()
