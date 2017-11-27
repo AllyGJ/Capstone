@@ -101,10 +101,17 @@ public class GameManager : MonoBehaviour
 
 	public void movePlayer (bool val)
 	{
-		player.GetComponent<vThirdPersonInput> ().enabled = val;
 
-		if (val)
-			player.GetComponent<Player> ().removeConstraints ();
+        if (val)
+        {
+            player.GetComponent<Player>().removeConstraints();
+            player.GetComponent<vThirdPersonInput>().moving = true;
+        }
+        else player.GetComponent<vThirdPersonInput>().moving = false;
+        
+		//player.GetComponent<vThirdPersonInput> ().enabled = val;
+
+		
 	}
 
     public void stopSounds()
@@ -116,15 +123,17 @@ public class GameManager : MonoBehaviour
 
 	public IEnumerator startMiniGame1 ()
 	{
-        stopSounds();
+        //stopSounds();
+
 		game1 = true;
+        movePlayer(false);
 		bird.SetActive (true);
 		settingsButton.SetActive (false);
 		while (videoCanvas.GetComponent<Video> ().started == true) {
 			yield return new WaitForSeconds (0.1f);
 		}
 
-		player.GetComponent<vThirdPersonInput> ().enabled = false;
+		
 		player.GetComponent<Player> ().setPos (1);
 
 		gameItems.worldCamera = miniGame1;
@@ -166,7 +175,7 @@ public class GameManager : MonoBehaviour
 
 	public IEnumerator startMiniGame2 ()
 	{
-        stopSounds();
+        //stopSounds();
 		game2 = true;
 		bird.SetActive (true);
 		settingsButton.SetActive (false);
@@ -186,7 +195,7 @@ public class GameManager : MonoBehaviour
 
 	public IEnumerator startMiniGame3 ()
 	{
-        stopSounds();
+        //stopSounds();
 		game3 = true;
 		bird.SetActive (true);
 		settingsButton.SetActive (false);
@@ -212,11 +221,11 @@ public class GameManager : MonoBehaviour
 
 	public IEnumerator waitForVideo (bool nDay)
 	{
-		//print ("wait 1");
+
+
 		while (videoCanvas.GetComponent<Video> ().started == true) {
 			yield return new WaitForSeconds (0.1f);
 		}
-		//print ("wait 2");
 
 
 		
@@ -398,7 +407,7 @@ public class GameManager : MonoBehaviour
 		pitchfork.transform.rotation = pitchforkStart.rotation;
 
 		//player.GetComponent<Interactables> ().reset ();
-		//player.GetComponent<Player> ().resetSpot3 ();
+		player.GetComponent<Player> ().resetSpot3 ();
 
 		videoCanvas.GetComponent<Video> ().canSkip = true;
 

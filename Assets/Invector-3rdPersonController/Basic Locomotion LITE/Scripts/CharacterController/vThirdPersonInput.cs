@@ -13,6 +13,8 @@ namespace Invector.CharacterController
 		[Header ("Default Inputs")]
 		public string horizontalInput;
 		public string verticallInput;
+
+        public bool moving = true;
 		//		public KeyCode jumpInput = KeyCode.Space;
 		//		public KeyCode strafeInput = KeyCode.Tab;
 		//		public KeyCode sprintInput = KeyCode.LeftShift;
@@ -122,11 +124,18 @@ namespace Invector.CharacterController
 		#region Basic Locomotion Inputs
 
 		protected virtual void MoveCharacter ()
-		{            
-			cc.input.x = Input.GetAxis (horizontalInput);
-			cc.input.y = Input.GetAxis (verticallInput);
+		{
+            if (moving)
+            {
+                cc.input.x = Input.GetAxis(horizontalInput);
+                cc.input.y = Input.GetAxis(verticallInput);
+            }else{
+                cc.input.x = 0f;
+                cc.input.y = 0f;
+            }
 
 		}
+
 
 		//		protected virtual void StrafeInput ()
 		//		{

@@ -8,6 +8,8 @@ public class SoundManager : MonoBehaviour {
 
     [Header("Sources")]
     public AudioSource robot;
+    public AudioSource bird;
+    public AudioSource critter;
     public AudioSource effects;
     public AudioSource music;
 
@@ -25,6 +27,12 @@ public class SoundManager : MonoBehaviour {
     public AudioClip pickupPitchfork;
     public AudioClip throwPitchfork;
 
+    public AudioClip wrong;
+
+    public AudioClip birdFlap;
+
+    public AudioClip rockingChair;
+
      
 
 	
@@ -40,6 +48,13 @@ public class SoundManager : MonoBehaviour {
         robot.clip = clip;
         robot.loop = loop;
         robot.Play();
+    }
+
+    public void playBird(AudioClip clip, bool loop)
+    {
+        bird.clip = clip;
+        bird.loop = loop;
+        bird.Play();
     }
 
     public void playSingle(AudioClip clip, bool loop){

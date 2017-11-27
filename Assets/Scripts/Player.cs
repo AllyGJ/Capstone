@@ -17,8 +17,7 @@ public class Player : MonoBehaviour
 	public Transform spot2;
 	public Transform spot3;
 
-
-
+    public Transform resetSpot;
 
 
 	void Start ()
@@ -70,7 +69,6 @@ public class Player : MonoBehaviour
 
 	public void resetSpot3 ()
     {
-        spot3.position = new Vector3(0f, 0f, 0f);
-		spot3.position = new Vector3 (0f, -1.44f, 17f);
+        spot3.position = resetSpot.position;
 	}
 }

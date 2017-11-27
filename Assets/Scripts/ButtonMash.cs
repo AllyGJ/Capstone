@@ -21,6 +21,7 @@ public class ButtonMash : MonoBehaviour
 	public string[] keyKeys;
 
 	public bool userInputMatches = false;
+    public bool userInputWrong = false;
 
 	private int numButtons = 8;
 	public int curButton = 0;
@@ -56,6 +57,9 @@ public class ButtonMash : MonoBehaviour
 
 				checkForUserInput ();
 
+                if(userInputWrong){
+                    StartCoroutine(pressedWrongButton());
+                }
 				if (userInputMatches && LoadingBar.fillAmount < 1) {
                     StartCoroutine(matchedButton ());
 				} 
@@ -121,10 +125,20 @@ public class ButtonMash : MonoBehaviour
 				btn2Press = keys [i];
 			}
 		}
-			
-		if (Input.GetKeyDown (btn2Press)) {
-			userInputMatches = true;
-		} 
+
+        if (Input.anyKeyDown)
+        {
+            if (Input.GetKeyDown(btn2Press))
+            {
+                userInputMatches = true;
+            }
+
+            else
+            {
+                userInputWrong = true;
+                LoadingBar.color = Color.red;
+            }
+        }
 	}
 
 
@@ -143,7 +157,22 @@ public class ButtonMash : MonoBehaviour
 		}
 
 	}
+    IEnumerator pressedWrongButton()
+    {
+        beginButtonMash = false;
+        LoadingBar.color = Color.blue;
+        correct--;
+        curButton++;
+        SoundManager.instance.playSingle(SoundManager.instance.wrong, false);
 
+        yield return new WaitForSeconds(2f);
+
+        LoadingBar.fillAmount = 0;
+        randomlyPickBtn();
+        userInputWrong = false;
+        beginButtonMash = true;
+
+    }
     IEnumerator matchedButton ()
 	{
         beginButtonMash = false;

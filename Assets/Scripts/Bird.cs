@@ -24,6 +24,7 @@ public class Bird : MonoBehaviour
 	{
 		setPos (1);
 		startSpot3 = spot3.position;
+        print("hi: "+startSpot3);
 		tempPos = new Vector3 (0f, spot3.position.y, spot3.position.z);
 		//tempPos = startSpot3;
 	}
@@ -31,12 +32,18 @@ public class Bird : MonoBehaviour
 	void Update ()
 	{
 		if (GameManager.instance.game1) {
-			setPos (1);
+            setPos(1);
+            transform.GetComponent<Float>().setPos(spot1.position);
+            transform.GetComponent<Float>().floating = true;
+
 		} else if (GameManager.instance.game2) {
 			setPos3 = true;
 			setPos (2);
+            transform.GetComponent<Float>().setPos(spot2.position);
+            transform.GetComponent<Float>().floating = true;
+
 		} else if (GameManager.instance.game3) {
-			
+            transform.GetComponent<Float>().floating = false;
 			if (setPos3) {
 				transform.position = startSpot3;
                 transform.rotation = new Quaternion(0, 0, 0, 0);
@@ -61,7 +68,9 @@ public class Bird : MonoBehaviour
 				}
 			}
 			
-		}
+        }else{
+            transform.GetComponent<Float>().floating = false;
+        }
 		
 	}
 
@@ -69,7 +78,7 @@ public class Bird : MonoBehaviour
 	{
 		if (spotNum == 1) {
 			transform.position = spot1.position;
-			transform.rotation = spot1.rotation;
+            transform.rotation = spot1.rotation;
 		} else if (spotNum == 2) {
 			transform.position = spot2.position;
 			transform.rotation = spot2.rotation;
