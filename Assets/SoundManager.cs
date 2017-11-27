@@ -7,6 +7,7 @@ public class SoundManager : MonoBehaviour {
     public static SoundManager instance = null;
 
     [Header("Sources")]
+    public AudioSource robot;
     public AudioSource effects;
     public AudioSource music;
 
@@ -21,19 +22,29 @@ public class SoundManager : MonoBehaviour {
 
     public AudioClip scratchAtDoor;
 
+    public AudioClip pickupPitchfork;
+    public AudioClip throwPitchfork;
+
      
 
 	
-	void Start () {
+	void Awake () {
         if(instance == null)
             instance = this;
         else if (instance != this)
             Destroy(gameObject);
-        
 	}
 
-    public void playSingle(AudioClip clip){
+    public void playRobot(AudioClip clip, bool loop)
+    {
+        robot.clip = clip;
+        robot.loop = loop;
+        robot.Play();
+    }
+
+    public void playSingle(AudioClip clip, bool loop){
         effects.clip = clip;
+        effects.loop = loop;
         effects.Play();
     }
 
@@ -46,12 +57,28 @@ public class SoundManager : MonoBehaviour {
     public void setVolume(float value){
         effects.volume = value;
         music.volume = value;
+        robot.volume = value;
     }
 
     public void muteAll(bool val)
     {
         effects.mute = val;
         music.mute = val;
+        robot.mute = val;
+    }
+
+    public void stopRobotSound(){
+        robot.Stop();
+    }
+
+    public void stopEffectSound()
+    {
+        effects.Stop();
+    }
+
+    public void stopMusic()
+    {
+        music.Stop();
     }
 	
 	

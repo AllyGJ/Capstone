@@ -107,8 +107,16 @@ public class GameManager : MonoBehaviour
 			player.GetComponent<Player> ().removeConstraints ();
 	}
 
+    public void stopSounds()
+    {
+        SoundManager.instance.stopMusic();
+        SoundManager.instance.stopRobotSound();
+        SoundManager.instance.stopEffectSound();
+    }
+
 	public IEnumerator startMiniGame1 ()
 	{
+        stopSounds();
 		game1 = true;
 		bird.SetActive (true);
 		settingsButton.SetActive (false);
@@ -158,6 +166,7 @@ public class GameManager : MonoBehaviour
 
 	public IEnumerator startMiniGame2 ()
 	{
+        stopSounds();
 		game2 = true;
 		bird.SetActive (true);
 		settingsButton.SetActive (false);
@@ -177,6 +186,7 @@ public class GameManager : MonoBehaviour
 
 	public IEnumerator startMiniGame3 ()
 	{
+        stopSounds();
 		game3 = true;
 		bird.SetActive (true);
 		settingsButton.SetActive (false);
@@ -238,6 +248,7 @@ public class GameManager : MonoBehaviour
 		playerCam.transform.rotation = startPoint.rotation;
 
 		isNextDay = true;
+        SoundManager.instance.playSingle(SoundManager.instance.scratchAtDoor,true);
 
 	}
 
@@ -360,8 +371,8 @@ public class GameManager : MonoBehaviour
 		musicOn = true;
 		musicVolume = 0.5f;
 
-
-		currItemIndex = 4;
+        currItemIndex = 0;
+		//currItemIndex = 4;
 		setCurrItem (currItemIndex);
 
 		overallScore = 0;

@@ -11,19 +11,19 @@ public class Interactables : MonoBehaviour
 	private string buttonTxt;
 	private string interact;
 
-    //private bool firstPitchfork = true;
-    //private bool firstGame1 = true;
-    //private bool firstDoor = true;
-    //private bool secondDoor = true;
-    //private bool firstGame2 = true;
-    //private bool firstGame3 = true;
-
-    private bool firstPitchfork = false;
-    private bool firstGame1 = false;
-    private bool firstDoor = false;
-    private bool secondDoor = false;
-    private bool firstGame2 = false;
+    private bool firstPitchfork = true;
+    private bool firstGame1 = true;
+    private bool firstDoor = true;
+    private bool secondDoor = true;
+    private bool firstGame2 = true;
     private bool firstGame3 = true;
+
+    //private bool firstPitchfork = false;
+    //private bool firstGame1 = false;
+    //private bool firstDoor = false;
+    //private bool secondDoor = false;
+    //private bool firstGame2 = false;
+    //private bool firstGame3 = true;
 
 	void Update ()
 	{
@@ -71,6 +71,7 @@ public class Interactables : MonoBehaviour
 		if (GameManager.instance.isNextDay && !firstDoor && secondDoor && other.tag == "miniGame2"
 		    && GameManager.instance.currItem.gameObject.name.ToString () == "Door2") {
 
+            SoundManager.instance.stopEffectSound();
 			GameManager.instance.setNextVideo ();
 			GameManager.instance.playVideo ("miniGame2");
 			StartCoroutine (GameManager.instance.startMiniGame2 ());
@@ -102,6 +103,7 @@ public class Interactables : MonoBehaviour
 
 		if (other.gameObject.name.ToString () == "Pitchfork") {
 			if (Input.GetKeyDown (interact)) {
+                SoundManager.instance.playSingle(SoundManager.instance.pickupPitchfork,false);
 				other.GetComponent<Pitchfork> ().pickup ();
 
 				if (firstPitchfork) {
@@ -118,7 +120,7 @@ public class Interactables : MonoBehaviour
 	private IEnumerator openAndCloseDoor (GameObject door)
 	{
 		if (door.GetComponent<Door> ().RotationPending == false) {
-            SoundManager.instance.playSingle(SoundManager.instance.doorOpenClose);
+            SoundManager.instance.playSingle(SoundManager.instance.doorOpenClose, false);
 			StartCoroutine (door.GetComponent<Door> ().Move ());
 			yield return new WaitForSeconds (3f);
 			StartCoroutine (door.GetComponent<Door> ().Move ());

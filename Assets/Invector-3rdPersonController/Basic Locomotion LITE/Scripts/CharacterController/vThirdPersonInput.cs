@@ -125,6 +125,7 @@ namespace Invector.CharacterController
 		{            
 			cc.input.x = Input.GetAxis (horizontalInput);
 			cc.input.y = Input.GetAxis (verticallInput);
+
 		}
 
 		//		protected virtual void StrafeInput ()

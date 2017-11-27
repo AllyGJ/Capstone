@@ -22,7 +22,7 @@ public class ButtonMash : MonoBehaviour
 
 	public bool userInputMatches = false;
 
-	private int numButtons = 15;
+	private int numButtons = 8;
 	public int curButton = 0;
 	public int correct = 0;
 
@@ -50,15 +50,14 @@ public class ButtonMash : MonoBehaviour
 
 		if (beginButtonMash) {
 			
-			showButton (true);
-
 			if (curButton <= numButtons) {
+                showButton(true);
 				fillBar ();
 
 				checkForUserInput ();
 
 				if (userInputMatches && LoadingBar.fillAmount < 1) {
-					matchedButton ();
+                    StartCoroutine(matchedButton ());
 				} 
 
 			} else {
@@ -70,7 +69,7 @@ public class ButtonMash : MonoBehaviour
 //					print ("percent correct = " + percent);
 //				}
 				print (correct);
-				GameManager.instance.addToScore (correct);
+				GameManager.instance.addToScore (correct - 1);
 				beginButtonMash = false;
 				GameManager.instance.endMiniGame (false);
 			}
@@ -131,7 +130,7 @@ public class ButtonMash : MonoBehaviour
 
 	void fillBar ()
 	{
-		LoadingBar.fillAmount += Time.deltaTime * 0.3f;
+		LoadingBar.fillAmount += Time.deltaTime * 0.5f;
 	
 		if (LoadingBar.fillAmount >= 0.75f)
 			LoadingBar.color = Color.red;
@@ -145,14 +144,20 @@ public class ButtonMash : MonoBehaviour
 
 	}
 
-	void matchedButton ()
+    IEnumerator matchedButton ()
 	{
+        beginButtonMash = false;
 		correct++;
 		curButton++;
+        SoundManager.instance.playSingle(SoundManager.instance.throwPitchfork, false);
 		//show animation of robot hitting bird
+
+        yield return new WaitForSeconds(2f);
+
 		LoadingBar.fillAmount = 0;
 		randomlyPickBtn ();
 		userInputMatches = false;
+        beginButtonMash = true;
 	}
 
 	public void reset ()

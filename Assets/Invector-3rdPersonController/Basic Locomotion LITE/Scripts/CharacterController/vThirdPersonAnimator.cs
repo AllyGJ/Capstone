@@ -24,6 +24,8 @@ namespace Invector.CharacterController
 
             // fre movement get the input 0 to 1
             animator.SetFloat("InputVertical", speed, 0.1f, Time.deltaTime);
+
+
         }
 
         public void OnAnimatorMove()
@@ -41,6 +43,7 @@ namespace Invector.CharacterController
                 // strafe extra speed
                 if (isStrafing)
                 {
+                    
                     if (strafeSpeed <= 0.5f)
                         ControlSpeed(strafeWalkSpeed);
                     else if (strafeSpeed > 0.5f && strafeSpeed <= 1f)
@@ -50,11 +53,18 @@ namespace Invector.CharacterController
                 }
                 else if (!isStrafing)
                 {
+
                     // free extra speed                
                     if (speed <= 0.5f)
+                    {
+                        if (speed > 0f) SoundManager.instance.playRobot(SoundManager.instance.roboWalkHouse, true);
+                        else SoundManager.instance.stopRobotSound();
                         ControlSpeed(freeWalkSpeed);
+                    }
                     else if (speed > 0.5 && speed <= 1f)
+                    {
                         ControlSpeed(freeRunningSpeed);
+                    }
                     else
                         ControlSpeed(freeSprintSpeed);
                 }
