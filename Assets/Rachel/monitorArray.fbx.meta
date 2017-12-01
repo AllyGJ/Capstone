@@ -1,0 +1,318 @@
+fileFormatVersion: 2
+guid: 327eb5a6ee4584a41be40e9b58db260e
+timeCreated: 1512100170
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: bolt1
+    100002: bolt10
+    100004: bolt11
+    100006: bolt12
+    100008: bolt13
+    100010: bolt14
+    100012: bolt15
+    100014: bolt16
+    100016: bolt17
+    100018: bolt18
+    100020: bolt19
+    100022: bolt2
+    100024: bolt20
+    100026: bolt21
+    100028: bolt22
+    100030: bolt23
+    100032: bolt24
+    100034: bolt25
+    100036: bolt26
+    100038: bolt27
+    100040: bolt28
+    100042: bolt29
+    100044: bolt3
+    100046: bolt4
+    100048: bolt5
+    100050: bolt6
+    100052: bolt7
+    100054: bolt8
+    100056: bolt9
+    100058: boltgroup1
+    100060: //RootNode
+    100062: mount
+    100064: pSphere1
+    100066: pSphere1 1
+    100068: pSphere23
+    100070: pSphere24
+    100072: pSphere25
+    100074: pSphere26
+    100076: pSphere27
+    100078: pSphere28
+    100080: pSphere29
+    100082: pSphere3
+    100084: pSphere3 1
+    100086: pSphere30
+    100088: pSphere4
+    100090: pSphere4 1
+    100092: screen2_3
+    100094: screen4_5
+    400000: bolt1
+    400002: bolt10
+    400004: bolt11
+    400006: bolt12
+    400008: bolt13
+    400010: bolt14
+    400012: bolt15
+    400014: bolt16
+    400016: bolt17
+    400018: bolt18
+    400020: bolt19
+    400022: bolt2
+    400024: bolt20
+    400026: bolt21
+    400028: bolt22
+    400030: bolt23
+    400032: bolt24
+    400034: bolt25
+    400036: bolt26
+    400038: bolt27
+    400040: bolt28
+    400042: bolt29
+    400044: bolt3
+    400046: bolt4
+    400048: bolt5
+    400050: bolt6
+    400052: bolt7
+    400054: bolt8
+    400056: bolt9
+    400058: boltgroup1
+    400060: //RootNode
+    400062: mount
+    400064: pSphere1
+    400066: pSphere1 1
+    400068: pSphere23
+    400070: pSphere24
+    400072: pSphere25
+    400074: pSphere26
+    400076: pSphere27
+    400078: pSphere28
+    400080: pSphere29
+    400082: pSphere3
+    400084: pSphere3 1
+    400086: pSphere30
+    400088: pSphere4
+    400090: pSphere4 1
+    400092: screen2_3
+    400094: screen4_5
+    2300000: bolt1
+    2300002: bolt10
+    2300004: bolt11
+    2300006: bolt12
+    2300008: bolt13
+    2300010: bolt14
+    2300012: bolt15
+    2300014: bolt16
+    2300016: bolt17
+    2300018: bolt18
+    2300020: bolt19
+    2300022: bolt2
+    2300024: bolt20
+    2300026: bolt21
+    2300028: bolt22
+    2300030: bolt23
+    2300032: bolt24
+    2300034: bolt25
+    2300036: bolt26
+    2300038: bolt27
+    2300040: bolt28
+    2300042: bolt29
+    2300044: bolt3
+    2300046: bolt4
+    2300048: bolt5
+    2300050: bolt6
+    2300052: bolt7
+    2300054: bolt8
+    2300056: bolt9
+    2300058: boltgroup1
+    2300060: //RootNode
+    2300062: mount
+    2300064: pSphere1
+    2300066: pSphere1 1
+    2300068: pSphere23
+    2300070: pSphere24
+    2300072: pSphere25
+    2300074: pSphere26
+    2300076: pSphere27
+    2300078: pSphere28
+    2300080: pSphere29
+    2300082: pSphere3
+    2300084: pSphere3 1
+    2300086: pSphere30
+    2300088: pSphere4
+    2300090: pSphere4 1
+    2300092: screen2_3
+    2300094: screen4_5
+    3300000: bolt1
+    3300002: bolt10
+    3300004: bolt11
+    3300006: bolt12
+    3300008: bolt13
+    3300010: bolt14
+    3300012: bolt15
+    3300014: bolt16
+    3300016: bolt17
+    3300018: bolt18
+    3300020: bolt19
+    3300022: bolt2
+    3300024: bolt20
+    3300026: bolt21
+    3300028: bolt22
+    3300030: bolt23
+    3300032: bolt24
+    3300034: bolt25
+    3300036: bolt26
+    3300038: bolt27
+    3300040: bolt28
+    3300042: bolt29
+    3300044: bolt3
+    3300046: bolt4
+    3300048: bolt5
+    3300050: bolt6
+    3300052: bolt7
+    3300054: bolt8
+    3300056: bolt9
+    3300058: boltgroup1
+    3300060: //RootNode
+    3300062: mount
+    3300064: pSphere1
+    3300066: pSphere1 1
+    3300068: pSphere23
+    3300070: pSphere24
+    3300072: pSphere25
+    3300074: pSphere26
+    3300076: pSphere27
+    3300078: pSphere28
+    3300080: pSphere29
+    3300082: pSphere3
+    3300084: pSphere3 1
+    3300086: pSphere30
+    3300088: pSphere4
+    3300090: pSphere4 1
+    3300092: screen2_3
+    3300094: screen4_5
+    4300000: screen1
+    4300002: boltgroup1
+    4300004: bolt1
+    4300006: bolt2
+    4300008: bolt3
+    4300010: bolt7
+    4300012: bolt6
+    4300014: bolt5
+    4300016: bolt4
+    4300018: bolt11
+    4300020: bolt10
+    4300022: bolt9
+    4300024: bolt8
+    4300026: screen4_5
+    4300028: bolt12
+    4300030: pSphere3
+    4300032: pSphere4
+    4300034: pSphere1
+    4300036: pSphere23
+    4300038: pSphere24
+    4300040: pSphere25
+    4300042: pSphere26
+    4300044: pSphere27
+    4300046: pSphere28
+    4300048: pSphere29
+    4300050: pSphere30
+    4300052: bolt13
+    4300054: pSphere3
+    4300056: pSphere4
+    4300058: pSphere1
+    4300060: screen2_3
+    4300062: bolt17
+    4300064: bolt16
+    4300066: bolt15
+    4300068: bolt14
+    4300070: bolt21
+    4300072: bolt20
+    4300074: bolt19
+    4300076: bolt18
+    4300078: bolt25
+    4300080: bolt24
+    4300082: bolt23
+    4300084: bolt22
+    4300086: bolt29
+    4300088: bolt28
+    4300090: bolt27
+    4300092: bolt26
+    4300094: mount
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

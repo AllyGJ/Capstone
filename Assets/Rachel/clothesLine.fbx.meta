@@ -1,15 +1,30 @@
 fileFormatVersion: 2
-guid: f12f0bde2da734fc688d4a0d727a9e77
-timeCreated: 1511055307
+guid: 11b5576c11dcd4e69894c89fafb45d9f
+timeCreated: 1512100169
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: post2
+    100004: wire1
+    100006: wire2
     400000: //RootNode
+    400002: post2
+    400004: wire1
+    400006: wire2
     2300000: //RootNode
+    2300002: post2
+    2300004: wire1
+    2300006: wire2
     3300000: //RootNode
-    4300000: pCube2
+    3300002: post2
+    3300004: wire1
+    3300006: wire2
+    4300000: post1
+    4300002: post2
+    4300004: wire1
+    4300006: wire2
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -37,7 +52,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.5
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
