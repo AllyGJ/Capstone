@@ -57,8 +57,9 @@ public class Pitchfork : MonoBehaviour
     }
 
     public void throwAtBird(int value){
-        throwing = true;
         GameManager.instance.bird.GetComponent<Bird>().pauseFlying = true;
+        throwing = true;
+       
 
 
 

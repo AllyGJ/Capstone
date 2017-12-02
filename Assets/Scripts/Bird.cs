@@ -84,7 +84,7 @@ public class Bird : MonoBehaviour
 			transform.rotation = spot2.rotation;
 		} else if (spotNum == 3) {
 			transform.position = spot3.position;
-            //transform.rotation = new Quaternion(0, 0, 0, 0);
+            transform.rotation = spot3.rotation;
 		}
 	}
 		
