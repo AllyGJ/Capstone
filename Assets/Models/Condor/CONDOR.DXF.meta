@@ -1,10 +1,17 @@
 fileFormatVersion: 2
-guid: 2a89ab2bc50a64e2382d5ebb5ac08ee6
-timeCreated: 1512179574
+guid: ccc21226140bd42b192735a9cda64504
+timeCreated: 1512195408
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: CONDOR$LWO
+    400000: //RootNode
+    400002: CONDOR$LWO
+    2300000: CONDOR$LWO
+    3300000: CONDOR$LWO
+    4300000: CONDOR$LWO
   materials:
     importMaterials: 1
     materialName: 0
@@ -69,7 +76,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

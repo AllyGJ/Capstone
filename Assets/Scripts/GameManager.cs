@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     [Header("Game Objects")]
     public GameObject player;
 	public GameObject bird;
+    public GameObject critter;
 	public GameObject pitchfork;
 	public GameObject arrow;
 
@@ -51,8 +52,8 @@ public class GameManager : MonoBehaviour
 
 	public int overallScore;
 
-	[Header ("Booleans")]
-	public bool isNextDay = false;
+    [Header("Booleans")]
+    public bool isNextDay = false;
 
 	public bool game1 = false;
 	public bool game2 = false;
@@ -198,6 +199,7 @@ public class GameManager : MonoBehaviour
         //stopSounds();
 		game3 = true;
 		bird.SetActive (true);
+        critter.SetActive(true);
 		settingsButton.SetActive (false);
 
         //pitchfork.GetComponent<Pitchfork>().setPos3();
@@ -394,6 +396,7 @@ public class GameManager : MonoBehaviour
 
 		settingsButton.SetActive (true);
 		bird.SetActive (false);
+        critter.SetActive(false);
 
         player.transform.position = startPoint.position;
         player.transform.rotation = startPoint.rotation;
