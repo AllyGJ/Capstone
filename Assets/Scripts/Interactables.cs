@@ -50,6 +50,11 @@ public class Interactables : MonoBehaviour
 			other.GetComponent<Door> ().Move ();
 		}
 
+        if (other.tag == "photos")
+        {
+            itemTxt.text = "Family photos. " + buttonTxt + " to view photos.";
+        }
+
 		if (firstGame1 && other.tag == "miniGame1" && GameManager.instance.currItem.gameObject.name.ToString () == "Door1") {
 			GameManager.instance.setNextVideo ();
 			//StartCoroutine (GameManager.instance.playVideo ("miniGame1"));
@@ -113,6 +118,12 @@ public class Interactables : MonoBehaviour
 				}
 			}
 		}
+
+        if(other.tag == "photos"){
+            if(Input.GetKeyDown(interact)){
+                GameManager.instance.useCamera("pics");
+            }
+        }
 
 
 	}

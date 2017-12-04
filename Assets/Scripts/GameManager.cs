@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
 
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
+//#if UNITY_EDITOR
+//using UnityEditor;
+//#endif
 using Invector.CharacterController;
 using System;
 
@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
 	public Camera miniGame1;
 	public Camera miniGame2;
 	public Camera miniGame3;
+    public Camera picViewingCam;
 
     [Header("Game Objects")]
     public GameObject player;
@@ -43,6 +44,10 @@ public class GameManager : MonoBehaviour
 	public GameObject settingsButton;
 	public Canvas gameItems;
 	public GameObject videoCanvas;
+
+    public GameObject upButton;
+    public GameObject downButton;
+    public GameObject picLights;
 
 	public GameObject[] storyItems;
 	public GameObject currItem;
@@ -68,29 +73,35 @@ public class GameManager : MonoBehaviour
 
 	private Transform camPosRot;
 
+    private Vector3 newPicCamPos;
+
 	void Awake ()
 	{
 		if (instance == null)
 			instance = this;
-		else if (instance != this)
-			Destroy (gameObject);
+		//else if (instance != this)
+			//Destroy (gameObject);
+        
 
 		//DontDestroyOnLoad (gameObject);
 
 		buttonMash = GetComponent<ButtonMash> ();
 		trajectory = GetComponent<Trajectory> ();
 
-		//default
-		//usingController = false;
+        //default
+        //usingController = false;
 
-//		if (DEBUG)
-//			useCamera ("player");
-//		else
+        //		if (DEBUG)
+        //			useCamera ("player");
+        //		else
 
 
-//		player.GetComponent<vThirdPersonController> ().enabled = false;
-//		player.GetComponent<vThirdPersonInput> ().enabled = false;
-//		playerCam.enabled = false;
+        //		player.GetComponent<vThirdPersonController> ().enabled = false;
+        //		player.GetComponent<vThirdPersonInput> ().enabled = false;
+        //		playerCam.enabled = false;
+
+        newPicCamPos = picViewingCam.transform.position;
+
 		camPosRot = playerCam.transform;
 
 		musicOn = true;
@@ -98,6 +109,28 @@ public class GameManager : MonoBehaviour
 		reset ();
 
 	}
+
+    void Update()
+    {
+        if(picViewingCam.enabled){
+            if(Input.GetKeyDown("joystick button 5") || Input.GetKeyDown("up")){
+                goUp(true);
+            }
+            else if(Input.GetKeyDown("joystick button 6") || Input.GetKeyDown("down")){
+                goUp(false);
+            }
+
+            if(Input.GetKeyDown("escape") || Input.GetKeyDown("joystick button 17")){
+                useCamera("player");
+            }
+        }
+
+        if (picViewingCam.transform.position != newPicCamPos)
+        {
+            picViewingCam.transform.position = Vector3.Lerp(picViewingCam.transform.position, newPicCamPos, Time.deltaTime * 2f);
+        }
+
+    }
 
 
 	public void movePlayer (bool val)
@@ -306,16 +339,19 @@ public class GameManager : MonoBehaviour
 
 	public void useCamera (string cam)
 	{
-		disableCams ();
+        picLights.SetActive(false);
+        disableCams ();
 		switch (cam) {
 		case "canvas":
 			canvasCam.enabled = true;
 			break;
 		case "player":
 			playerCam.enabled = true;
+                movePlayer(true);
 			break;
 		case "movie":
 			movieCam.enabled = true;
+                movePlayer(false);
 			break;
 		case "miniGame1":
 			miniGame1.enabled = true;
@@ -325,7 +361,12 @@ public class GameManager : MonoBehaviour
 			break;
 		case "miniGame3":
 			miniGame3.enabled = true;
-			break;
+			break;       
+        case "pics":
+            picViewingCam.enabled = true;
+            movePlayer(false);
+            picLights.SetActive(true);
+            break;
 		}
 
 		currentCam = cam;
@@ -339,6 +380,7 @@ public class GameManager : MonoBehaviour
 		miniGame1.enabled = false;
 		miniGame2.enabled = false;
 		miniGame3.enabled = false;
+        picViewingCam.enabled = false;
 	}
 
 	public void toggleController ()
@@ -377,6 +419,32 @@ public class GameManager : MonoBehaviour
 		overallScore += val;
 	}
 
+    public void goUp(bool val)
+    {
+        newPicCamPos = picViewingCam.transform.position;
+
+        if (val)
+        {
+            //move picViewingCam up if not up
+            newPicCamPos.y = 0.85f;
+            hideElement(upButton);
+            showElement(downButton);
+        }
+        else
+        {
+            //move picViewingCam down if not down
+            newPicCamPos.y = -0.08f;
+            hideElement(downButton);
+            showElement(upButton);
+
+        }
+
+    }
+
+
+
+    /**************************************************************************/
+
 	public void reset ()
 	{
 		musicOn = true;
@@ -388,6 +456,7 @@ public class GameManager : MonoBehaviour
 
 		overallScore = 0;
 
+        disableCams();
 		useCamera ("canvas");
 		gameItems.worldCamera = playerCam;
 
@@ -402,8 +471,8 @@ public class GameManager : MonoBehaviour
         player.transform.rotation = startPoint.rotation;
 		movePlayer (false);
 
-        playerCam.transform.position = new Vector3(player.transform.position.x - 1, player.transform.position.y, player.transform.position.z);
-        playerCam.transform.eulerAngles = new Vector3(0,90,0);
+        playerCam.transform.position = new Vector3(player.transform.position.x + 4f, player.transform.position.y, player.transform.position.z);
+        playerCam.transform.eulerAngles = new Vector3(0, 90, 0);
 
 		pitchfork.transform.parent = null;
 		pitchfork.transform.position = pitchforkStart.position;
@@ -414,7 +483,9 @@ public class GameManager : MonoBehaviour
 
 		videoCanvas.GetComponent<Video> ().canSkip = true;
 
-        SoundManager.instance.setVolume(musicVolume);
+        GetComponent<GameManager>().enabled = true;
+        //SoundManager.instance.setVolume(musicVolume);
+       
 	}
 
 	public void quit ()
