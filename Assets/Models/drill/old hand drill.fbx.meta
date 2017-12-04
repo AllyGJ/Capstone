@@ -1,0 +1,159 @@
+fileFormatVersion: 2
+guid: 3860f576d2f764289af077e27ac2957b
+timeCreated: 1512358402
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: axle
+    100002: axlehndl
+    100004: bit
+    100006: btm_gear
+    100008: bushing
+    100010: chcknd01
+    100012: chuck
+    100014: CINEMA_4D_Editor
+    100016: crank_rm
+    100018: crnkhndl
+    100020: frame
+    100022: hand_drill
+    100024: main_ger
+    100026: maingr01
+    100028: mainhndl
+    100030: //RootNode
+    100032: shaft
+    100034: top_gear
+    400000: axle
+    400002: axlehndl
+    400004: bit
+    400006: btm_gear
+    400008: bushing
+    400010: chcknd01
+    400012: chuck
+    400014: CINEMA_4D_Editor
+    400016: crank_rm
+    400018: crnkhndl
+    400020: frame
+    400022: hand_drill
+    400024: main_ger
+    400026: maingr01
+    400028: mainhndl
+    400030: //RootNode
+    400032: shaft
+    400034: top_gear
+    2300000: axle
+    2300002: axlehndl
+    2300004: bit
+    2300006: btm_gear
+    2300008: bushing
+    2300010: chcknd01
+    2300012: chuck
+    2300014: crank_rm
+    2300016: crnkhndl
+    2300018: frame
+    2300020: main_ger
+    2300022: maingr01
+    2300024: mainhndl
+    2300026: shaft
+    2300028: top_gear
+    3300000: axle
+    3300002: axlehndl
+    3300004: bit
+    3300006: btm_gear
+    3300008: bushing
+    3300010: chcknd01
+    3300012: chuck
+    3300014: crank_rm
+    3300016: crnkhndl
+    3300018: frame
+    3300020: main_ger
+    3300022: maingr01
+    3300024: mainhndl
+    3300026: shaft
+    3300028: top_gear
+    4300000: mainhndl
+    4300002: main_ger
+    4300004: top_gear
+    4300006: btm_gear
+    4300008: frame
+    4300010: axle
+    4300012: chuck
+    4300014: axlehndl
+    4300016: crank_rm
+    4300018: crnkhndl
+    4300020: bushing
+    4300022: shaft
+    4300024: bit
+    4300026: maingr01
+    4300028: chcknd01
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
