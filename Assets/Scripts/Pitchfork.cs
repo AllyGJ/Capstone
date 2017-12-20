@@ -10,12 +10,23 @@ public class Pitchfork : MonoBehaviour
     public GameObject grabber;
     public GameObject playerHand;
 
+    private Rigidbody rb;
+
 
     private string interact;
 
     public Transform game3Pos;
 
     private bool throwing = false;
+    private Vector3 velocity = Vector3.forward;
+
+
+
+    private void Awake()
+    {
+        rb = this.GetComponent<Rigidbody>();
+        reset();
+    }
 
     // Update is called once per frame
     void Update()
@@ -23,21 +34,28 @@ public class Pitchfork : MonoBehaviour
         checkController();
 
         if(GameManager.instance.game3){
+            //constraintsOn(false);
+
             if (!throwing)
             {
                 this.transform.position = game3Pos.position;
                 this.transform.rotation = game3Pos.rotation;
             }
             else{
-                //transform.position = Vector3.Lerp(game3Pos.position, new Vector3(GameManager.instance.bird.transform.position.x / 2f,
-                //                                                                 GameManager.instance.bird.transform.position.y * 2f,
-                //                                                                 GameManager.instance.bird.transform.position.z / 2f), 0.5f);
-                //transform.position = Vector3.Lerp(new Vector3(GameManager.instance.bird.transform.position.x / 2f,
-                                                  //                               GameManager.instance.bird.transform.position.y * 2f,
-                                                  //                               GameManager.instance.bird.transform.position.z / 2f),
-                                                  //GameManager.instance.bird.transform.position, 0.5f);
+
+                //Here's where the pitchfork needs to move forward and hit the bird /
+                // completely miss the bird if the value passed in to "throwAtBird" is low. 
+
+                var birdPos = GameManager.instance.bird.transform.position;
+                Vector3 distance = birdPos - transform.position;
+
+
                 transform.position = Vector3.Lerp(game3Pos.position,
-                                                  GameManager.instance.bird.transform.position, 0.5f);
+                                                  birdPos, 0.5f);
+
+                //rb.AddRelativeForce((distance + velocity) * 5f);
+                //rb.rotation = Quaternion.LookRotation(rb.velocity);
+
             }
         }
     }
@@ -57,22 +75,27 @@ public class Pitchfork : MonoBehaviour
     }
 
     public void throwAtBird(int value){
-        GameManager.instance.bird.GetComponent<Bird>().pauseFlying = true;
+        
         throwing = true;
-       
 
 
 
-        //if(value == 5){
+        if(value == 5){
+            GameManager.instance.bird.GetComponent<Bird>().pauseFlying = true;
+           // rb.velocity = velocity * 5f;
 
-        //}else if(value == 4){
+        }else if(value == 4){
+            GameManager.instance.bird.GetComponent<Bird>().pauseFlying = true;
+            //rb.velocity = velocity * 5f;
             
-        //}else if(value == 3){
+        }else if(value == 3){
+            GameManager.instance.bird.GetComponent<Bird>().pauseFlying = true;
+            //rb.velocity = velocity * 5f;
+        }
+        else{
+           // rb.velocity = velocity * 5f;
             
-        //}
-        //else{
-            
-        //}
+        }
     }
     public void resetPos(){
         throwing = false;
@@ -99,4 +122,20 @@ public class Pitchfork : MonoBehaviour
 		}
 
 	}
+
+    private void constraintsOn(bool val)
+    {
+        if (val)
+        {
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+        }
+        else{
+            rb.constraints = RigidbodyConstraints.None;
+        }  
+    }
+
+    public void reset()
+    {
+        constraintsOn(true);
+    }
 }

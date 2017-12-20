@@ -71,23 +71,21 @@ namespace Invector.CharacterController
 			if (cc == null)
 				return;             // returns if didn't find the controller		    
 			InputHandle ();                      // update input methods
-			UpdateCameraStates ();               // update camera states
+       
+                UpdateCameraStates ();               // update camera states
 		}
 
 		protected virtual void FixedUpdate ()
 		{
 			cc.AirControl ();
-			CameraInput ();
+           
+                CameraInput ();
 		}
 
 		protected virtual void Update ()
 		{
 			
-
-
 			checkController ();
-
-
 
 			cc.UpdateMotor ();                   // call ThirdPersonMotor methods               
 			cc.UpdateAnimator ();                // call ThirdPersonAnimator methods		               
@@ -111,7 +109,8 @@ namespace Invector.CharacterController
 		protected virtual void InputHandle ()
 		{
 			ExitGameInput ();
-			CameraInput ();
+
+                CameraInput ();
 
 			if (!cc.lockMovement) {
 				MoveCharacter ();
@@ -130,8 +129,10 @@ namespace Invector.CharacterController
                 cc.input.x = Input.GetAxis(horizontalInput);
                 cc.input.y = Input.GetAxis(verticallInput);
             }else{
-                cc.input.x = 0f;
-                cc.input.y = 0f;
+                
+                    cc.input.x = 0f;
+                    cc.input.y = 0f;
+               
             }
 
 		}
@@ -160,12 +161,12 @@ namespace Invector.CharacterController
 		protected virtual void ExitGameInput ()
 		{
 			// just a example to quit the application 
-			if (Input.GetKeyDown (KeyCode.Escape)) {
-				if (!Cursor.visible)
-					Cursor.visible = true;
-				else
-					Application.Quit ();
-			}
+			//if (Input.GetKeyDown (KeyCode.Escape)) {
+			//	if (!Cursor.visible)
+			//		Cursor.visible = true;
+			//	else
+			//		Application.Quit ();
+			//}
 		}
 
 		#endregion
@@ -204,9 +205,12 @@ namespace Invector.CharacterController
 
 		protected virtual void RotateWithCamera (Transform cameraTransform)
 		{
-			if (cc.isStrafing && !cc.lockMovement && !cc.lockMovement) {                
-				cc.RotateWithAnotherTransform (cameraTransform);                
-			}
+           
+                if (cc.isStrafing && !cc.lockMovement && !cc.lockMovement)
+                {
+                    cc.RotateWithAnotherTransform(cameraTransform);
+                }
+
 		}
 
 		#endregion

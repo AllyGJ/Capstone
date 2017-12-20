@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
 		if (GameManager.instance.game3 && GameManager.instance.startRunning) {
 
 			Vector3 movement = spot3.position;
-			movement.z += 0.3f;
+			movement.z += 0.2f;
 
 			spot3.position = movement;
 			transform.position = spot3.position;
@@ -41,12 +41,7 @@ public class Player : MonoBehaviour
 
 	public void setPos (int spotNum)
 	{
-		rbody.constraints = RigidbodyConstraints.FreezeRotationX |
-		RigidbodyConstraints.FreezeRotationY |
-		RigidbodyConstraints.FreezeRotationZ |
-		RigidbodyConstraints.FreezePositionX |
-		RigidbodyConstraints.FreezePositionY |
-		RigidbodyConstraints.FreezePositionZ;
+        rbody.constraints = RigidbodyConstraints.FreezeAll;
 		
 		if (spotNum == 1) {
 			transform.position = spot1.position;

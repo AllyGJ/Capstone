@@ -88,18 +88,6 @@ public class GameManager : MonoBehaviour
 		buttonMash = GetComponent<ButtonMash> ();
 		trajectory = GetComponent<Trajectory> ();
 
-        //default
-        //usingController = false;
-
-        //		if (DEBUG)
-        //			useCamera ("player");
-        //		else
-
-
-        //		player.GetComponent<vThirdPersonController> ().enabled = false;
-        //		player.GetComponent<vThirdPersonInput> ().enabled = false;
-        //		playerCam.enabled = false;
-
         newPicCamPos = picViewingCam.transform.position;
 
 		camPosRot = playerCam.transform;
@@ -121,6 +109,7 @@ public class GameManager : MonoBehaviour
             }
 
             if(Input.GetKeyDown("escape") || Input.GetKeyDown("joystick button 17")){
+                print("2");
                 useCamera("player");
             }
         }
@@ -158,7 +147,7 @@ public class GameManager : MonoBehaviour
 	public IEnumerator startMiniGame1 ()
 	{
         //stopSounds();
-
+        player.GetComponent<Interactables>().showText(false);
 		game1 = true;
         movePlayer(false);
 		bird.SetActive (true);
@@ -167,7 +156,8 @@ public class GameManager : MonoBehaviour
 			yield return new WaitForSeconds (0.1f);
 		}
 
-		
+        movePlayer(false);
+
 		player.GetComponent<Player> ().setPos (1);
 
 		gameItems.worldCamera = miniGame1;
@@ -180,6 +170,8 @@ public class GameManager : MonoBehaviour
 
 	public void endMiniGame (bool theEnd)
 	{
+        print("end mini game");
+        player.GetComponent<Interactables>().showText(true);
 		buttonMash.beginButtonMash = false;
 		trajectory.moveSlider = false;
 		game1 = false;
@@ -191,6 +183,7 @@ public class GameManager : MonoBehaviour
 
 		if (!theEnd) {
 			gameItems.worldCamera = playerCam;
+            print("1");
 			useCamera ("player");
 			movePlayer (true);
 			settingsButton.SetActive (true);
@@ -210,6 +203,7 @@ public class GameManager : MonoBehaviour
 	public IEnumerator startMiniGame2 ()
 	{
         //stopSounds();
+        player.GetComponent<Interactables>().showText(false);
 		game2 = true;
 		bird.SetActive (true);
 		settingsButton.SetActive (false);
@@ -230,10 +224,12 @@ public class GameManager : MonoBehaviour
 	public IEnumerator startMiniGame3 ()
 	{
         //stopSounds();
+        player.GetComponent<Interactables>().showText(false);
 		game3 = true;
 		bird.SetActive (true);
         critter.SetActive(true);
 		settingsButton.SetActive (false);
+
 
         //pitchfork.GetComponent<Pitchfork>().setPos3();
 
@@ -241,8 +237,8 @@ public class GameManager : MonoBehaviour
 			yield return new WaitForSeconds (0.1f);
 		}
 			
-		startRunning = true;
-	
+        startRunning = true;
+
 		movePlayer (false);
         player.GetComponent<Player>().resetSpot3();
 		player.GetComponent<Player> ().setPos (3);
@@ -339,28 +335,33 @@ public class GameManager : MonoBehaviour
 
 	public void useCamera (string cam)
 	{
-        picLights.SetActive(false);
+        print("changed camera");
         disableCams ();
 		switch (cam) {
 		case "canvas":
 			canvasCam.enabled = true;
+                //movePlayer(false);
 			break;
 		case "player":
 			playerCam.enabled = true;
-                movePlayer(true);
+            movePlayer(true);
+            picLights.SetActive(false);
 			break;
 		case "movie":
 			movieCam.enabled = true;
-                movePlayer(false);
+                //movePlayer(false);
 			break;
 		case "miniGame1":
 			miniGame1.enabled = true;
+               // movePlayer(false);
 			break;
 		case "miniGame2":
 			miniGame2.enabled = true;
+                //movePlayer(false);
 			break;
 		case "miniGame3":
 			miniGame3.enabled = true;
+                //movePlayer(false);
 			break;       
         case "pics":
             picViewingCam.enabled = true;
@@ -450,8 +451,8 @@ public class GameManager : MonoBehaviour
 		musicOn = true;
 		musicVolume = 0.5f;
 
-        currItemIndex = 0;
-		//currItemIndex = 4;
+        //currItemIndex = 0;
+		currItemIndex = 4;
 		setCurrItem (currItemIndex);
 
 		overallScore = 0;
@@ -459,6 +460,8 @@ public class GameManager : MonoBehaviour
         disableCams();
 		useCamera ("canvas");
 		gameItems.worldCamera = playerCam;
+
+        picLights.SetActive(false);
 
 		playerCam.transform.position = camPosRot.position;
         playerCam.transform.eulerAngles = new Vector3(0, -90f, 0);
@@ -477,8 +480,9 @@ public class GameManager : MonoBehaviour
 		pitchfork.transform.parent = null;
 		pitchfork.transform.position = pitchforkStart.position;
 		pitchfork.transform.rotation = pitchforkStart.rotation;
+        pitchfork.GetComponent<Pitchfork>().reset();
 
-		player.GetComponent<Interactables> ().reset ();
+		//player.GetComponent<Interactables> ().reset ();
 		player.GetComponent<Player> ().resetSpot3 ();
 
 		videoCanvas.GetComponent<Video> ().canSkip = true;

@@ -31,7 +31,9 @@ public class Video : MonoBehaviour
 			text.text = "";
 
 		if (started && !movie [curVideo].isPlaying) {
-           // SoundManager.instance.muteAll(false);
+            // SoundManager.instance.muteAll(false);
+
+            print("3");
 			movie [curVideo].Stop ();
 			GameManager.instance.useCamera (backCam);
 
@@ -49,6 +51,7 @@ public class Video : MonoBehaviour
 	public void playVideo (string backCam)
 	{
         //SoundManager.instance.muteAll(true);
+        print("4");
 		GameManager.instance.useCamera ("movie");
 		movie [curVideo].Play ();
 		started = true;
@@ -56,7 +59,7 @@ public class Video : MonoBehaviour
 	}
 
 	private void skip ()
-	{
+    {
 		if (started) {
 			if (GameManager.instance.usingController) {
 				text.text = "Press 'A' to skip";
@@ -69,6 +72,7 @@ public class Video : MonoBehaviour
 				text.text = "Press 'space' to skip";
 				if (Input.GetKeyDown ("space")) {
 					movie [curVideo].Stop ();
+                    print("5");
 					GameManager.instance.useCamera (backCam);
 					started = false;
 				}

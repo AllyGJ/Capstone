@@ -43,6 +43,7 @@ public class Trajectory : MonoBehaviour
 
 			if (Input.GetKeyDown (stopButton)) {
 				curThrows++;
+                print("pressed space");
 				moveSlider = false;
 				//throwValue = traj.value;
 

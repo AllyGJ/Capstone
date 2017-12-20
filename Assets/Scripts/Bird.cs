@@ -24,7 +24,7 @@ public class Bird : MonoBehaviour
 	{
 		setPos (1);
 		startSpot3 = spot3.position;
-        print("hi: "+startSpot3);
+       // print("hi: "+startSpot3);
 		tempPos = new Vector3 (0f, spot3.position.y, spot3.position.z);
 		//tempPos = startSpot3;
 	}

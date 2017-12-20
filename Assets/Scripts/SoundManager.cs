@@ -73,6 +73,8 @@ public class SoundManager : MonoBehaviour {
         effects.volume = value;
         music.volume = value;
         robot.volume = value;
+        bird.volume = value;
+        critter.volume = value;
     }
 
     public void muteAll(bool val)
@@ -80,6 +82,7 @@ public class SoundManager : MonoBehaviour {
         effects.mute = val;
         music.mute = val;
         robot.mute = val;
+
     }
 
     public void stopRobotSound(){
