@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 75765965eb6ba4863af98b09bab037bf
+timeCreated: 1513806693
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Another shabby
+  fontNames:
+  - Another shabby
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 16f4ca51b196e43e19781545ca4a897b, type: 3}
+  - {fileID: 12800000, guid: 34cee61af124a462c82b4416c9e6a341, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

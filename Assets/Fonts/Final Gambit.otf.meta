@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 4edc1fb6f5f024f0a9b905e2df933909
+timeCreated: 1513806721
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Final Gambit
+  fontNames:
+  - Final Gambit
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

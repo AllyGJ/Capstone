@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 0ebffbe7a8d564f5696a3b2d198d5fd9
+timeCreated: 1513806730
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Gunfighter Academy
+  fontNames:
+  - Gunfighter Academy
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 0ba62c3bd22d24ee09f39255cf462f7a, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

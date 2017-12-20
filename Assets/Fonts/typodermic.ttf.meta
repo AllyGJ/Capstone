@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: af467749edb7f49ba8a48953f9dd126b
+timeCreated: 1513806707
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Typodermic
+  fontNames:
+  - Typodermic
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
