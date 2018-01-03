@@ -8,30 +8,36 @@ public class SoundManager : MonoBehaviour {
 
     [Header("Sources")]
     public AudioSource robot;
-    public AudioSource bird;
-    public AudioSource critter;
-    public AudioSource effects;
-    public AudioSource music;
+    public AudioSource birdPeck;
+    public AudioSource birdFlap;
+    //public AudioSource critter;
+    public AudioSource critterAtDoor;
+    public AudioSource pickupFork;
+    public AudioSource backgroundMusic;
+    public AudioSource miniGameMusic;
+    public AudioSource wrong;
+    public AudioSource rockingChair;
+    public AudioSource pitchforkWhip;
 
-    [Header("Sound clips")]
-    public AudioClip roboWalkHouse;
-    public AudioClip roboRunHouse;
+    //[Header("Sound clips")]
+    //public AudioClip roboWalkHouse;
+    //public AudioClip roboRunHouse;
 
-    public AudioClip roboWalkDirt;
-    public AudioClip roboRunDirt;
+    //public AudioClip roboWalkDirt;
+    //public AudioClip roboRunDirt;
 
-    public AudioClip doorOpenClose;
+    //public AudioClip doorOpenClose;
 
-    public AudioClip scratchAtDoor;
+    //public AudioClip scratchAtDoor;
 
-    public AudioClip pickupPitchfork;
-    public AudioClip throwPitchfork;
+    //public AudioClip pickupPitchfork;
+    //public AudioClip throwPitchfork;
 
-    public AudioClip wrong;
+    //public AudioClip wrong;
 
-    public AudioClip birdFlap;
+    //public AudioClip birdFlap;
 
-    public AudioClip rockingChair;
+    //public AudioClip rockingChair;
 
      
 
@@ -43,60 +49,105 @@ public class SoundManager : MonoBehaviour {
             Destroy(gameObject);
 	}
 
-    public void playRobot(AudioClip clip, bool loop)
+    public void playRobot()
     {
-        robot.clip = clip;
-        robot.loop = loop;
         robot.Play();
     }
 
-    public void playBird(AudioClip clip, bool loop)
+    public void playPickup()
     {
-        bird.clip = clip;
-        bird.loop = loop;
-        bird.Play();
+        pickupFork.Play();
     }
 
-    public void playSingle(AudioClip clip, bool loop){
-        effects.clip = clip;
-        effects.loop = loop;
-        effects.Play();
+    public void playBirdFlap()
+    {
+        birdFlap.Play();
+    }
+    public void playBirdPeck()
+    {
+        birdPeck.Play();
+    }
+    public void playWrong()
+    {
+        wrong.Play();
+    }
+    public void playWhip()
+    {
+        pitchforkWhip.Play();
     }
 
-    public void playBackgroundMusic(AudioClip clip){
-        music.clip = clip;
-        music.loop = true;
-        music.Play();
+    public void playCritterAtDoor()
+    {
+        critterAtDoor.Play();
+    }
+    public void stopCritterAtDoor()
+    {
+        critterAtDoor.Stop();
+    }
+    public void playRockingChair()
+    {
+        rockingChair.Play();
+    }
+    public void stopRockingChair()
+    {
+        rockingChair.Stop();
+    }
+    public void stopBirdFlap()
+    {
+        birdFlap.Stop();
+    }
+    public void stopBirdPeck()
+    {
+        birdPeck.Stop();
     }
 
-    public void setVolume(float value){
-        effects.volume = value;
-        music.volume = value;
+    public void setVolume(float value)
+    {
+        backgroundMusic.volume = value;
         robot.volume = value;
-        bird.volume = value;
-        critter.volume = value;
+        birdFlap.volume = value;
+        birdPeck.volume = value;
+        pickupFork.volume = value;
+        critterAtDoor.volume = value;
+        rockingChair.volume = value;
+        wrong.volume = value;
+        pitchforkWhip.volume = value;
+        miniGameMusic.volume = value;
     }
 
     public void muteAll(bool val)
     {
-        effects.mute = val;
-        music.mute = val;
+        birdPeck.mute = val;
+        birdFlap.mute = val;
+        backgroundMusic.mute = val;
         robot.mute = val;
-
+        critterAtDoor.mute = val;
+        rockingChair.mute = val;
+        wrong.mute = val;
+        pitchforkWhip.mute = val;
+        miniGameMusic.mute = val;
     }
 
-    public void stopRobotSound(){
-        robot.Stop();
-    }
-
-    public void stopEffectSound()
+    public void switchTo(string musicString)
     {
-        effects.Stop();
+        if(musicString == "norm")
+        {
+            miniGameMusic.Stop();
+            backgroundMusic.Play();
+        }
+        else if(musicString == "game"){
+            backgroundMusic.Stop();
+            miniGameMusic.Play();
+        }
+    }
+
+    public void stopRobot(){
+        robot.Stop();
     }
 
     public void stopMusic()
     {
-        music.Stop();
+        backgroundMusic.Stop();
     }
 	
 	

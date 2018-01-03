@@ -115,7 +115,12 @@ public class Pitchfork : MonoBehaviour
 	private void checkController ()
 	{
 		if (GameManager.instance.usingController) {
-			interact = "joystick button 17"; //B
+            if (GameManager.instance.macBuild)
+            {
+                interact = "joystick button 17"; //B
+            }else{
+                interact = "joystick button 1";
+            }
 
 		} else {
 			interact = "r";

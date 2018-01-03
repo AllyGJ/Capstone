@@ -31,7 +31,7 @@ public class Video : MonoBehaviour
 			text.text = "";
 
 		if (started && !movie [curVideo].isPlaying) {
-            // SoundManager.instance.muteAll(false);
+            SoundManager.instance.muteAll(false);
 
             print("3");
 			movie [curVideo].Stop ();
@@ -50,7 +50,7 @@ public class Video : MonoBehaviour
 
 	public void playVideo (string backCam)
 	{
-        //SoundManager.instance.muteAll(true);
+        SoundManager.instance.muteAll(true);
         print("4");
 		GameManager.instance.useCamera ("movie");
 		movie [curVideo].Play ();

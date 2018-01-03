@@ -17,10 +17,13 @@ public class Float : MonoBehaviour
 	{
         count++;
         if (floating) {
-            if(count % 100 == 0) SoundManager.instance.playBird(SoundManager.instance.birdFlap, false);
+            if (count % 100 == 0) SoundManager.instance.playBirdFlap();                                                                 
 			tempPos.y += Mathf.Sin (Time.fixedTime * Mathf.PI * 1f) * 0.3f;
 			transform.position = tempPos;
 		}
+        else {
+            SoundManager.instance.stopBirdFlap();
+        }
 		
 	}
 

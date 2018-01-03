@@ -172,7 +172,7 @@ public class ButtonMash : MonoBehaviour
         LoadingBar.color = Color.blue;
         correct--;
         curButton++;
-        SoundManager.instance.playSingle(SoundManager.instance.wrong, false);
+        SoundManager.instance.playWrong();
 
         yield return new WaitForSeconds(2f);
 
@@ -187,7 +187,7 @@ public class ButtonMash : MonoBehaviour
         beginButtonMash = false;
 		correct++;
 		curButton++;
-        SoundManager.instance.playSingle(SoundManager.instance.throwPitchfork, false);
+        SoundManager.instance.playWhip();
 		//show animation of robot hitting bird
 
         yield return new WaitForSeconds(2f);

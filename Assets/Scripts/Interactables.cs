@@ -57,16 +57,15 @@ public class Interactables : MonoBehaviour
 
 		if (firstGame1 && other.tag == "miniGame1" && GameManager.instance.currItem.gameObject.name.ToString () == "Door1") {
 			GameManager.instance.setNextVideo ();
-			//StartCoroutine (GameManager.instance.playVideo ("miniGame1"));
 			GameManager.instance.playVideo ("miniGame1");
 			StartCoroutine (GameManager.instance.startMiniGame1 ());
+            SoundManager.instance.switchTo("game");
 			firstGame1 = false;
 		}
 
 		if (firstDoor && other.tag == "cutscene" && GameManager.instance.currItem.gameObject.name.ToString () == "Door2") {
 			
 			GameManager.instance.setNextVideo ();
-			//StartCoroutine (GameManager.instance.playVideo ("player"));
 			GameManager.instance.playVideo ("player");
 			StartCoroutine (GameManager.instance.waitForVideo (true));
 
@@ -75,8 +74,7 @@ public class Interactables : MonoBehaviour
 
 		if (GameManager.instance.isNextDay && !firstDoor && secondDoor && other.tag == "miniGame2"
 		    && GameManager.instance.currItem.gameObject.name.ToString () == "Door2") {
-
-            SoundManager.instance.stopEffectSound();
+            SoundManager.instance.switchTo("game");
 			GameManager.instance.setNextVideo ();
 			GameManager.instance.playVideo ("miniGame2");
 			StartCoroutine (GameManager.instance.startMiniGame2 ());
@@ -87,9 +85,9 @@ public class Interactables : MonoBehaviour
 		if (firstGame3 && !firstGame1 && !firstDoor && !secondDoor && other.tag == "miniGame1"
 		    && GameManager.instance.currItem.gameObject.name.ToString () == "Door1") {
 			GameManager.instance.setNextVideo ();
-			//StartCoroutine (GameManager.instance.playVideo ("miniGame1"));
 			GameManager.instance.playVideo ("miniGame3");
 			StartCoroutine (GameManager.instance.startMiniGame3 ());
+            SoundManager.instance.switchTo("game");
 			firstGame3 = false;
 		}
 
@@ -108,7 +106,7 @@ public class Interactables : MonoBehaviour
 
 		if (other.gameObject.name.ToString () == "Pitchfork") {
 			if (Input.GetKeyDown (interact)) {
-                SoundManager.instance.playSingle(SoundManager.instance.pickupPitchfork,false);
+                SoundManager.instance.playPickup();
 				other.GetComponent<Pitchfork> ().pickup ();
 
 				if (firstPitchfork) {
@@ -131,7 +129,7 @@ public class Interactables : MonoBehaviour
 	private IEnumerator openAndCloseDoor (GameObject door)
 	{
 		if (door.GetComponent<Door> ().RotationPending == false) {
-            SoundManager.instance.playSingle(SoundManager.instance.doorOpenClose, false);
+            door.GetComponent<AudioSource>().Play();
 			StartCoroutine (door.GetComponent<Door> ().Move ());
 			yield return new WaitForSeconds (3f);
 			StartCoroutine (door.GetComponent<Door> ().Move ());

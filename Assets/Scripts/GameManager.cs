@@ -57,6 +57,9 @@ public class GameManager : MonoBehaviour
 
 	public int overallScore;
 
+    [Header("Door sounds")]
+    public AudioSource[] doorSounds;
+
     [Header("Booleans")]
     public bool isNextDay = false;
 
@@ -121,6 +124,14 @@ public class GameManager : MonoBehaviour
 
     }
 
+    void stopDoorSounds()
+    {
+        foreach (AudioSource source in doorSounds)
+        {
+            source.Stop();
+        }
+    }
+
 
 	public void movePlayer (bool val)
 	{
@@ -137,16 +148,10 @@ public class GameManager : MonoBehaviour
 		
 	}
 
-    public void stopSounds()
-    {
-        SoundManager.instance.stopMusic();
-        SoundManager.instance.stopRobotSound();
-        SoundManager.instance.stopEffectSound();
-    }
 
 	public IEnumerator startMiniGame1 ()
 	{
-        //stopSounds();
+        stopDoorSounds();
         player.GetComponent<Interactables>().showText(false);
 		game1 = true;
         movePlayer(false);
@@ -171,6 +176,7 @@ public class GameManager : MonoBehaviour
 	public void endMiniGame (bool theEnd)
 	{
         print("end mini game");
+        SoundManager.instance.switchTo("norm");
         player.GetComponent<Interactables>().showText(true);
 		buttonMash.beginButtonMash = false;
 		trajectory.moveSlider = false;
@@ -202,7 +208,7 @@ public class GameManager : MonoBehaviour
 
 	public IEnumerator startMiniGame2 ()
 	{
-        //stopSounds();
+        stopDoorSounds();
         player.GetComponent<Interactables>().showText(false);
 		game2 = true;
 		bird.SetActive (true);
@@ -223,7 +229,7 @@ public class GameManager : MonoBehaviour
 
 	public IEnumerator startMiniGame3 ()
 	{
-        //stopSounds();
+        stopDoorSounds();
         player.GetComponent<Interactables>().showText(false);
 		game3 = true;
 		bird.SetActive (true);
@@ -288,7 +294,7 @@ public class GameManager : MonoBehaviour
 		playerCam.transform.rotation = startPoint.rotation;
 
 		isNextDay = true;
-        SoundManager.instance.playSingle(SoundManager.instance.scratchAtDoor,true);
+//        SoundManager.instance.playSingle(SoundManager.instance.scratchAtDoor,true);
 
 	}
 
@@ -488,7 +494,7 @@ public class GameManager : MonoBehaviour
 		videoCanvas.GetComponent<Video> ().canSkip = true;
 
         GetComponent<GameManager>().enabled = true;
-        //SoundManager.instance.setVolume(musicVolume);
+        SoundManager.instance.setVolume(musicVolume);
        
 	}
 
