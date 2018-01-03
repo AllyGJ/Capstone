@@ -63,7 +63,7 @@ public class Video : MonoBehaviour
 		if (started) {
 			if (GameManager.instance.usingController) {
 				text.text = "Press 'A' to skip";
-				if (Input.GetKeyDown ("joystick button 16")) {
+                if (Input.GetKeyDown ("joystick button 16") || Input.GetKeyDown("joystick button 0")) {
 					movie [curVideo].Stop ();
 					GameManager.instance.useCamera (backCam);
 					started = false;

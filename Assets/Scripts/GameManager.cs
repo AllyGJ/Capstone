@@ -15,8 +15,8 @@ public class GameManager : MonoBehaviour
 
 	public static GameManager instance = null;
 
-	[Header ("Settings")]
-	public bool DEBUG;
+    [Header("Settings")]
+    public bool macBuild;
 	public bool usingController;
 	public bool musicOn;
 	public float musicVolume;
@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
                 goUp(false);
             }
 
-            if(Input.GetKeyDown("escape") || Input.GetKeyDown("joystick button 17")){
+            if(Input.GetKeyDown("escape") || Input.GetKeyDown("joystick button 17") || Input.GetKeyDown("joystick button 1")){
                 print("2");
                 useCamera("player");
             }

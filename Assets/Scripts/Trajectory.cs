@@ -81,7 +81,12 @@ public class Trajectory : MonoBehaviour
 	void checkController ()
 	{
 		if (GameManager.instance.usingController) {
-			stopButton = "joystick button 16";
+            if (GameManager.instance.macBuild)
+            {
+                stopButton = "joystick button 16";
+            }else{
+                stopButton = "joystick button 0";
+            }
 			trajText.text = "HIT 'A' TO STOP";
 		} else {
 			stopButton = "space";

@@ -17,8 +17,11 @@ public class ButtonMash : MonoBehaviour
 	private Sprite[] btns;
 	private string[] keys;
 
-	public string[] xboxKeys;
+
+	public string[] xboxKeys; //Mac
 	public string[] keyKeys;
+
+    public string[] xboxKeysWin;//Windows
 
 	public bool userInputMatches = false;
     public bool userInputWrong = false;
@@ -90,7 +93,13 @@ public class ButtonMash : MonoBehaviour
 	void checkController ()
 	{
 		if (GameManager.instance.usingController) {
-			UseArray (xboxBtns, xboxKeys);
+            if (GameManager.instance.macBuild)
+            {
+                UseArray(xboxBtns, xboxKeys);
+            }
+            else{
+                UseArray(xboxBtns, xboxKeysWin);
+            }
 		} else {
 			UseArray (keyBtns, keyKeys);
 		}

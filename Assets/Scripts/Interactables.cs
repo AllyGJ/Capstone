@@ -164,7 +164,12 @@ public class Interactables : MonoBehaviour
 	private void checkController ()
 	{
 		if (GameManager.instance.usingController) {
-			interact = "joystick button 16";
+            if (GameManager.instance.macBuild)
+            {
+                interact = "joystick button 16";
+            }else{
+                interact = "joystick button 0";
+            }
 			buttonTxt = "Press A";
 		} else {
 			interact = "e";

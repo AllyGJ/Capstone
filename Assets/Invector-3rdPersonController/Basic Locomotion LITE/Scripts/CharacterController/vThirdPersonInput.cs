@@ -94,10 +94,18 @@ namespace Invector.CharacterController
 		private void checkController ()
 		{
 			if (GameManager.instance.usingController) {
-				horizontalInput = "HorizontalJ";
-				verticallInput = "VerticalJ";
-				rotateCameraXInput = "RotateCamXJ";
-				rotateCameraYInput = "RotateCamYJ";
+                horizontalInput = "HorizontalJ";
+                verticallInput = "VerticalJ";
+
+                if (GameManager.instance.macBuild)
+                {
+                    rotateCameraXInput = "RotateCamXJ";
+                    rotateCameraYInput = "RotateCamYJ";
+                }
+                else{
+                    rotateCameraXInput = "RotateCamXJW";
+                    rotateCameraYInput = "RotateCamYJW";
+                }
 			} else {
 				horizontalInput = "Horizontal";
 				verticallInput = "Vertical";
