@@ -18,17 +18,17 @@ public class Controller : MonoBehaviour {
         if (GameManager.instance.usingController)
         {
             GetComponent<Image>().sprite = controller;
-            moveTxt.text = "Right joystick to move robot";
-            camTxt.text = "Left joystick to rotate camera";
-            interactTxt.text = "A to open doors and interact with items";
+            moveTxt.text = "Right joystick - move robot";
+            camTxt.text = "Left joystick - rotate camera";
+            interactTxt.text = "A - open doors and interact with items";
 
         }
         else
         {
             GetComponent<Image>().sprite = noController;
-            moveTxt.text = "Arrows keys to move robot";
-            camTxt.text = "ASWD to rotate camera";
-            interactTxt.text = "E to open doors and interact with items";
+            moveTxt.text = "Arrows keys - move robot";
+            camTxt.text = "ASWD - rotate camera";
+            interactTxt.text = "E - open doors and interact with items";
 
         }
     }

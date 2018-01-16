@@ -130,6 +130,7 @@ public class GameManager : MonoBehaviour
         {
             source.Stop();
         }
+        SoundManager.instance.stopRockingChair();
     }
 
 
@@ -177,6 +178,7 @@ public class GameManager : MonoBehaviour
 	{
         print("end mini game");
         SoundManager.instance.switchTo("norm");
+        SoundManager.instance.playRockingChair();
         player.GetComponent<Interactables>().showText(true);
 		buttonMash.beginButtonMash = false;
 		trajectory.moveSlider = false;
@@ -294,7 +296,7 @@ public class GameManager : MonoBehaviour
 		playerCam.transform.rotation = startPoint.rotation;
 
 		isNextDay = true;
-//        SoundManager.instance.playSingle(SoundManager.instance.scratchAtDoor,true);
+        SoundManager.instance.playCritterAtDoor();
 
 	}
 
@@ -342,7 +344,8 @@ public class GameManager : MonoBehaviour
 	public void useCamera (string cam)
 	{
         print("changed camera");
-        disableCams ();
+        disableCams();
+
 		switch (cam) {
 		case "canvas":
 			canvasCam.enabled = true;
@@ -352,6 +355,7 @@ public class GameManager : MonoBehaviour
 			playerCam.enabled = true;
             movePlayer(true);
             picLights.SetActive(false);
+                SoundManager.instance.playRockingChair();
 			break;
 		case "movie":
 			movieCam.enabled = true;
@@ -457,8 +461,8 @@ public class GameManager : MonoBehaviour
 		musicOn = true;
 		musicVolume = 0.5f;
 
-        //currItemIndex = 0;
-		currItemIndex = 4;
+        currItemIndex = 0;
+		//currItemIndex = 4;
 		setCurrItem (currItemIndex);
 
 		overallScore = 0;
