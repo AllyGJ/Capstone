@@ -498,7 +498,7 @@ public class GameManager : MonoBehaviour
 		videoCanvas.GetComponent<Video> ().canSkip = true;
 
         GetComponent<GameManager>().enabled = true;
-        SoundManager.instance.setVolume(musicVolume);
+       // SoundManager.instance.setVolume(musicVolume);
        
 	}
 
