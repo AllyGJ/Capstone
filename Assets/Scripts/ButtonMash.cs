@@ -193,6 +193,7 @@ public class ButtonMash : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
 		LoadingBar.fillAmount = 0;
+        LoadingBar.color = Color.blue;
 		randomlyPickBtn ();
 		userInputMatches = false;
         beginButtonMash = true;

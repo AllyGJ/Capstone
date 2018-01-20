@@ -55,6 +55,7 @@ public class Interactables : MonoBehaviour
             itemTxt.text = "Family photos. " + buttonTxt + " to view photos.";
         }
 
+        //MINIGAME1
 		if (firstGame1 && other.tag == "miniGame1" && GameManager.instance.currItem.gameObject.name.ToString () == "Door1") {
 			GameManager.instance.setNextVideo ();
 			GameManager.instance.playVideo ("miniGame1");
@@ -63,6 +64,7 @@ public class Interactables : MonoBehaviour
 			firstGame1 = false;
 		}
 
+        //CUTSCENE TO NEXT DAY
 		if (firstDoor && other.tag == "cutscene" && GameManager.instance.currItem.gameObject.name.ToString () == "Door2") {
 			
 			GameManager.instance.setNextVideo ();
@@ -72,6 +74,7 @@ public class Interactables : MonoBehaviour
 			firstDoor = false;
 		}
 
+        //MINIGAME2
 		if (GameManager.instance.isNextDay && !firstDoor && secondDoor && other.tag == "miniGame2"
 		    && GameManager.instance.currItem.gameObject.name.ToString () == "Door2") {
             SoundManager.instance.stopCritterAtDoor();
@@ -83,6 +86,7 @@ public class Interactables : MonoBehaviour
 			secondDoor = false;
 		}
 
+        //MINIGAME3
 		if (firstGame3 && !firstGame1 && !firstDoor && !secondDoor && other.tag == "miniGame1"
 		    && GameManager.instance.currItem.gameObject.name.ToString () == "Door1") {
 			GameManager.instance.setNextVideo ();

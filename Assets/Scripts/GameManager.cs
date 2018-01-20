@@ -40,8 +40,10 @@ public class GameManager : MonoBehaviour
 
 	public Transform pitchforkStart;
 	public Transform startPoint;
+    public Transform camResetPos;
 
 	public GameObject settingsButton;
+    public GameObject gearFrame;
 	public Canvas gameItems;
 	public GameObject videoCanvas;
 
@@ -157,7 +159,7 @@ public class GameManager : MonoBehaviour
 		game1 = true;
         movePlayer(false);
 		bird.SetActive (true);
-		settingsButton.SetActive (false);
+        showHideUIElements(false);
 		while (videoCanvas.GetComponent<Video> ().started == true) {
 			yield return new WaitForSeconds (0.1f);
 		}
@@ -194,7 +196,7 @@ public class GameManager : MonoBehaviour
             print("1");
 			useCamera ("player");
 			movePlayer (true);
-			settingsButton.SetActive (true);
+            showHideUIElements(true);
 
 			if (currItemIndex != storyItems.Length - 1)
 				nextItem ();
@@ -214,7 +216,7 @@ public class GameManager : MonoBehaviour
         player.GetComponent<Interactables>().showText(false);
 		game2 = true;
 		bird.SetActive (true);
-		settingsButton.SetActive (false);
+        showHideUIElements(false);
 		while (videoCanvas.GetComponent<Video> ().started == true) {
 			yield return new WaitForSeconds (0.1f);
 		}
@@ -236,7 +238,7 @@ public class GameManager : MonoBehaviour
 		game3 = true;
 		bird.SetActive (true);
         critter.SetActive(true);
-		settingsButton.SetActive (false);
+        showHideUIElements(false);
 
 
         //pitchfork.GetComponent<Pitchfork>().setPos3();
@@ -257,6 +259,12 @@ public class GameManager : MonoBehaviour
 		yield return new WaitForSeconds (1f);
 		trajectory.moveSlider = true;
 	}
+
+    private void showHideUIElements(bool val)
+    {
+        settingsButton.SetActive(val);
+        gearFrame.SetActive(val);
+    }
 
 	public IEnumerator waitForVideo (bool nDay)
 	{
@@ -292,8 +300,8 @@ public class GameManager : MonoBehaviour
 		player.transform.position = startPoint.position;
 		player.transform.rotation = startPoint.rotation;
 
-		playerCam.transform.position = new Vector3 (14f, 0.15f, 0.3f);
-		playerCam.transform.rotation = startPoint.rotation;
+        playerCam.transform.position = camResetPos.position;
+        playerCam.transform.rotation = camResetPos.rotation;
 
 		isNextDay = true;
         SoundManager.instance.playCritterAtDoor();
@@ -473,10 +481,10 @@ public class GameManager : MonoBehaviour
 
         picLights.SetActive(false);
 
-		playerCam.transform.position = camPosRot.position;
-        playerCam.transform.eulerAngles = new Vector3(0, -90f, 0);
+        playerCam.transform.position = camResetPos.position;
+        playerCam.transform.rotation = camResetPos.rotation;
 
-		settingsButton.SetActive (true);
+        showHideUIElements(true);
 		bird.SetActive (false);
         critter.SetActive(false);
 

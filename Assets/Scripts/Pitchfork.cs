@@ -9,27 +9,32 @@ public class Pitchfork : MonoBehaviour
 
     public GameObject grabber;
     public GameObject playerHand;
-
-    private Rigidbody rb;
+    public Transform game3Pos;
 
 
     private string interact;
 
-    public Transform game3Pos;
-
     private bool throwing = false;
-    private Vector3 velocity = Vector3.forward;
+
+    private Vector3 p0;     //start position
+    private Vector3 p1;
+    private Vector3 p2;
+    private Vector3 p3;     //end position
 
 
 
     private void Awake()
     {
-        rb = this.GetComponent<Rigidbody>();
+        p0 = game3Pos.position;
+        p1 = new Vector3(0, 0, 0);
+        p2 = new Vector3(0, 0, 0);
+        p3 = new Vector3(0, 0, 0);
+
         reset();
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         checkController();
 
@@ -43,18 +48,17 @@ public class Pitchfork : MonoBehaviour
             }
             else{
 
-                //Here's where the pitchfork needs to move forward and hit the bird /
-                // completely miss the bird if the value passed in to "throwAtBird" is low. 
+               
 
-                var birdPos = GameManager.instance.bird.transform.position;
-                Vector3 distance = birdPos - transform.position;
+                Vector3 bezCurve = p0 + (Time.deltaTime * 0.3f)*(p3 - p0);
+
+                transform.position += bezCurve;
 
 
-                transform.position = Vector3.Lerp(game3Pos.position,
-                                                  birdPos, 0.5f);
 
-                //rb.AddRelativeForce((distance + velocity) * 5f);
-                //rb.rotation = Quaternion.LookRotation(rb.velocity);
+
+
+
 
             }
         }
@@ -75,27 +79,11 @@ public class Pitchfork : MonoBehaviour
     }
 
     public void throwAtBird(int value){
-        
+        GameManager.instance.bird.GetComponent<Bird>().pauseFlying = true;
+        p3 = GameManager.instance.bird.transform.position;
         throwing = true;
 
-
-
-        if(value == 5){
-            GameManager.instance.bird.GetComponent<Bird>().pauseFlying = true;
-           // rb.velocity = velocity * 5f;
-
-        }else if(value == 4){
-            GameManager.instance.bird.GetComponent<Bird>().pauseFlying = true;
-            //rb.velocity = velocity * 5f;
-            
-        }else if(value == 3){
-            GameManager.instance.bird.GetComponent<Bird>().pauseFlying = true;
-            //rb.velocity = velocity * 5f;
-        }
-        else{
-           // rb.velocity = velocity * 5f;
-            
-        }
+        //Do different things for different values
     }
     public void resetPos(){
         throwing = false;
@@ -128,19 +116,19 @@ public class Pitchfork : MonoBehaviour
 
 	}
 
-    private void constraintsOn(bool val)
-    {
-        if (val)
-        {
-            rb.constraints = RigidbodyConstraints.FreezeAll;
-        }
-        else{
-            rb.constraints = RigidbodyConstraints.None;
-        }  
-    }
+    //private void constraintsOn(bool val)
+    //{
+    //    if (val)
+    //    {
+    //        rb.constraints = RigidbodyConstraints.FreezeAll;
+    //    }
+    //    else{
+    //        rb.constraints = RigidbodyConstraints.None;
+    //    }  
+    //}
 
     public void reset()
     {
-        constraintsOn(true);
+       // constraintsOn(true);
     }
 }
