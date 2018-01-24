@@ -30,6 +30,7 @@ public class ButtonMash : MonoBehaviour
 	public int curButton = 0;
 	public int correct = 0;
 
+    private bool pressedButton = false;
 
 
 	void Start ()
@@ -60,14 +61,18 @@ public class ButtonMash : MonoBehaviour
 
 				checkForUserInput ();
 
-                if(userInputWrong){
+
+                if (userInputMatches && LoadingBar.fillAmount < 1)
+                {
+                    StartCoroutine(matchedButton());
+                }
+                else if (userInputWrong || !pressedButton)
+                {
                     StartCoroutine(pressedWrongButton());
                 }
-				if (userInputMatches && LoadingBar.fillAmount < 1) {
-                    StartCoroutine(matchedButton ());
-				} 
 
-			} else {
+
+            } else {
 				//shown all buttons, check how many correct
 //				if (correct == numButtons) {
 //					print ("perfect score!");
@@ -125,7 +130,7 @@ public class ButtonMash : MonoBehaviour
 	}
 
 	void checkForUserInput ()
-	{
+    {
 		Sprite curBtn = CenterBtn.sprite;
 		string btn2Press = "";
 
@@ -135,8 +140,10 @@ public class ButtonMash : MonoBehaviour
 			}
 		}
 
+        pressedButton = false;
         if (Input.anyKeyDown)
         {
+            pressedButton = true;
             if (Input.GetKeyDown(btn2Press))
             {
                 userInputMatches = true;
@@ -147,6 +154,9 @@ public class ButtonMash : MonoBehaviour
                 userInputWrong = true;
                 LoadingBar.color = Color.red;
             }
+        }
+        else{
+            print("didn't touch any key");
         }
 	}
 
@@ -169,7 +179,6 @@ public class ButtonMash : MonoBehaviour
     IEnumerator pressedWrongButton()
     {
         beginButtonMash = false;
-        LoadingBar.color = Color.blue;
         correct--;
         curButton++;
         SoundManager.instance.playWrong();
@@ -177,6 +186,7 @@ public class ButtonMash : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         LoadingBar.fillAmount = 0;
+        LoadingBar.color = Color.blue;
         randomlyPickBtn();
         userInputWrong = false;
         beginButtonMash = true;
