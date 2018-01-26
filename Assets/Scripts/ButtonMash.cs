@@ -66,10 +66,12 @@ public class ButtonMash : MonoBehaviour
                 {
                     StartCoroutine(matchedButton());
                 }
-                else if (userInputWrong || !pressedButton)
+                else if (userInputWrong)
                 {
                     StartCoroutine(pressedWrongButton());
                 }
+
+                //need to add case when user doesn't press anything
 
 
             } else {
