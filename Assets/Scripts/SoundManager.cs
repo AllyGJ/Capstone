@@ -103,7 +103,9 @@ public class SoundManager : MonoBehaviour {
 
     public void setVolume(float value)
     {
-        backgroundMusic.volume = value;
+        backgroundMusic.volume = Mathf.Clamp(value, 0, 0.8f);
+        miniGameMusic.volume = Mathf.Clamp(value, 0, 0.9f);
+
         robot.volume = value;
         birdFlap.volume = value;
         birdPeck.volume = value;
@@ -112,7 +114,7 @@ public class SoundManager : MonoBehaviour {
         rockingChair.volume = value;
         wrong.volume = value;
         pitchforkWhip.volume = value;
-        miniGameMusic.volume = value;
+       
     }
 
     public void muteAll(bool val)

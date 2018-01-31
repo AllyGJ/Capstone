@@ -11,6 +11,16 @@ public class Controller : MonoBehaviour {
     public Text camTxt;
     public Text interactTxt;
 
+    void Update()
+    {
+        if (GameManager.instance.usingController)
+        {
+            GetComponent<Image>().sprite = controller;
+        }else{
+            GetComponent<Image>().sprite = noController;
+
+        }
+    }
 
     public void toggleController()
     {
