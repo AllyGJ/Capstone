@@ -26,7 +26,7 @@ public class Pitchfork : MonoBehaviour
     private void Awake()
     {
         p0 = game3Pos.position;
-        p1 = new Vector3(p0.x, p0.y + 1f, p0.z + 1f);
+        p1 = new Vector3(0,0,0);
         //p1 = new Vector3(0, 0, 0);
         //p2 = new Vector3(0, 0, 0);
         p3 = new Vector3(0, 0, 0);
@@ -54,11 +54,14 @@ public class Pitchfork : MonoBehaviour
                 //Vector3 bezCurve = (p0 + t * (p3 - p0)) * 0.001f;
 
                 //quadratic
-                Vector3 bezCurve = ((1 - t)*(1 - t) * p0 + 2*(1 - t)*t*p1+t*t*p3) * 0.001f;
+                Vector3 bezCurve = ((1 - t)*(1 - t) * p0 + 2*(1 - t) * (t * p1) + (t * t * p3)) * 0.001f;
                 bezCurve.z += 0.2f;
 
-                transform.localPosition += bezCurve;
+                Quaternion rot = new Quaternion(transform.rotation.w, Mathf.Tan(bezCurve.x), transform.rotation.y, transform.rotation.z);
 
+                transform.localPosition += bezCurve;
+               
+                //transform.rotation = rot;
 
 
             }
@@ -80,8 +83,13 @@ public class Pitchfork : MonoBehaviour
     }
 
     public void throwAtBird(int value){
+        
         GameManager.instance.bird.GetComponent<Bird>().pauseFlying = true;
         p3 = GameManager.instance.bird.transform.localPosition;
+        Debug.Log("bird pos: " + p3);
+
+        p1 = new Vector3((p3.x - p0.x)/2, p0.y + 4f, (p3.z - p0.z)/2 );
+        Debug.Log("middle pos: " + p1);
         throwing = true;
 
         //Do different things for different values
