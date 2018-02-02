@@ -71,7 +71,7 @@ public class Trajectory : MonoBehaviour
 			GameManager.instance.endMiniGame (true);
 		} else {
             GameManager.instance.pitchfork.GetComponent<Pitchfork>().throwAtBird(val);
-			yield return new WaitForSeconds (3f);
+			yield return new WaitForSeconds (2f);
 			moveSlider = true;
             GameManager.instance.pitchfork.GetComponent<Pitchfork>().resetPos();
 			//once animation over, start slider again

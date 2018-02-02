@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+
 public class Pitchfork : MonoBehaviour
 {
     bool holding = false;
@@ -22,6 +23,9 @@ public class Pitchfork : MonoBehaviour
     private Vector3 p3;     //end position
 
     private float t = 0;
+
+    private bool hitBird = false;
+    private bool changeBirdPos = true;
 
     private void Awake()
     {
@@ -50,19 +54,28 @@ public class Pitchfork : MonoBehaviour
             else{
 
                 t = Mathf.Clamp(t + Time.deltaTime, 0, 1);
-                //linear
-                //Vector3 bezCurve = (p0 + t * (p3 - p0)) * 0.001f;
+         
 
-                //quadratic
-                Vector3 bezCurve = ((1 - t)*(1 - t) * p0 + 2*(1 - t) * (t * p1) + (t * t * p3)) * 0.001f;
-                bezCurve.z += 0.2f;
+                //math for curve
+                Vector3 bezCurve = ((1 - t) * (1 - t) * p0 + 2 * (1 - t) * (t * p1) + (t * t * p3));
+                p0.z += 0.2f;
+                p1.z += 0.2f;
+                p3.z += 0.2f;
 
                 Quaternion rot = new Quaternion(transform.rotation.w, Mathf.Tan(bezCurve.x), transform.rotation.y, transform.rotation.z);
 
-                transform.localPosition += bezCurve;
-               
-                //transform.rotation = rot;
+                transform.position = bezCurve;
+               // transform.rotation = rot;
 
+                //pitchfork reaches "end point" and bird goes up or down
+                if (t == 1f && changeBirdPos){
+                    if(hitBird) GameManager.instance.bird.GetComponent<Bird>().wasHit(true);
+                    else GameManager.instance.bird.GetComponent<Bird>().wasHit(false);
+
+                    transform.position = GameManager.instance.bird.transform.position;
+
+                    changeBirdPos = false;
+                }
 
             }
         }
@@ -83,18 +96,43 @@ public class Pitchfork : MonoBehaviour
     }
 
     public void throwAtBird(int value){
-        
-        GameManager.instance.bird.GetComponent<Bird>().pauseFlying = true;
-        p3 = GameManager.instance.bird.transform.localPosition;
-        Debug.Log("bird pos: " + p3);
+        float rand = UnityEngine.Random.Range(3, 6);
 
-        p1 = new Vector3((p3.x - p0.x)/2, p0.y + 4f, (p3.z - p0.z)/2 );
-        Debug.Log("middle pos: " + p1);
+        t = 0;
+        p0 = transform.position;
+
+        GameManager.instance.bird.GetComponent<Bird>().pauseFlying = true;
+
+        p3 = GameManager.instance.bird.transform.position;
+
+
+        //missed bird
+        if (value < 4)
+        {
+            hitBird = false;
+
+            if (p3.x > 0)
+            {
+                p3.x += rand;
+            }else{
+                p3.x -= rand;
+            }
+
+            p3.y = -10;
+                   
+        }
+        else{
+            hitBird = true;
+        }
+ 
+        p1 = new Vector3((p3.x + p0.x)/2, p0.y + 6f, (p3.z + p0.z)/2 );
+
         throwing = true;
 
         //Do different things for different values
     }
     public void resetPos(){
+        changeBirdPos = true;
         throwing = false;
         GameManager.instance.bird.GetComponent<Bird>().pauseFlying = false;
 

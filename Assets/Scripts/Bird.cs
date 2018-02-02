@@ -19,6 +19,9 @@ public class Bird : MonoBehaviour
 
 	private bool setPos3 = true;
 
+    private bool beginGame1 = true;
+    private bool beginGame2 = true;
+
 
 	void Start ()
 	{
@@ -31,16 +34,18 @@ public class Bird : MonoBehaviour
 
 	void Update ()
 	{
-		if (GameManager.instance.game1) {
+        if (GameManager.instance.game1 && beginGame1) {
             setPos(1);
             transform.GetComponent<Float>().setPos(spot1.position);
             transform.GetComponent<Float>().floating = true;
+            beginGame1 = false;
 
-		} else if (GameManager.instance.game2) {
+        } else if (GameManager.instance.game2 && beginGame2) {
 			setPos3 = true;
 			setPos (2);
             transform.GetComponent<Float>().setPos(spot2.position);
             transform.GetComponent<Float>().floating = true;
+            beginGame2 = false;
 
 		} else if (GameManager.instance.game3) {
             transform.GetComponent<Float>().floating = false;
@@ -59,7 +64,7 @@ public class Bird : MonoBehaviour
                 {
                     tempPos.x = Mathf.Sin(Time.fixedTime * speed) * amp;
                 }
-                tempPos.y = spot3.position.y;
+                //tempPos.y = spot3.position.y;
                 tempPos.z = spot3.position.z;
                 transform.position = tempPos;
 
@@ -87,6 +92,26 @@ public class Bird : MonoBehaviour
             transform.rotation = spot3.rotation;
 		}
 	}
+
+    public void wasHit(bool val)
+    {
+        //if hit and still above the ground
+        if (val){
+            //print("was hit");
+            tempPos.y = Mathf.Lerp(tempPos.y, tempPos.y - 0.3f, 1f);
+        }
+        else{
+           // print("missed");
+            tempPos.y = Mathf.Lerp(tempPos.y, tempPos.y + 0.3f, 1f);
+        }
+    }
+
+    public void reset()
+    {
+        beginGame1 = true;
+        beginGame2 = true;
+
+    }
 		
 
 }

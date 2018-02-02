@@ -488,6 +488,8 @@ public class GameManager : MonoBehaviour
 		bird.SetActive (false);
         critter.SetActive(false);
 
+        bird.GetComponent<Bird>().reset();
+
         player.transform.position = startPoint.position;
         player.transform.rotation = startPoint.rotation;
 		movePlayer (false);
