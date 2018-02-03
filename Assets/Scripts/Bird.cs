@@ -34,18 +34,25 @@ public class Bird : MonoBehaviour
 
 	void Update ()
 	{
-        if (GameManager.instance.game1 && beginGame1) {
-            setPos(1);
-            transform.GetComponent<Float>().setPos(spot1.position);
+        if (GameManager.instance.game1) {
+            if (beginGame1)
+            {
+                setPos(1);
+                transform.GetComponent<Float>().setPos(spot1.position);
+                beginGame1 = false;
+            }
             transform.GetComponent<Float>().floating = true;
-            beginGame1 = false;
+           
 
-        } else if (GameManager.instance.game2 && beginGame2) {
-			setPos3 = true;
-			setPos (2);
-            transform.GetComponent<Float>().setPos(spot2.position);
+        } else if (GameManager.instance.game2) {
+            if (beginGame2)
+            {
+                setPos3 = true;
+                setPos(2);
+                transform.GetComponent<Float>().setPos(spot2.position);
+                beginGame2 = false;
+            }
             transform.GetComponent<Float>().floating = true;
-            beginGame2 = false;
 
 		} else if (GameManager.instance.game3) {
             transform.GetComponent<Float>().floating = false;

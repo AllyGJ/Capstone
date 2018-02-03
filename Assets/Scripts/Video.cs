@@ -51,7 +51,7 @@ public class Video : MonoBehaviour
 	public void playVideo (string backCam)
 	{
         //SoundManager.instance.muteAll(true);
-        print("4");
+       // print("4");
 		GameManager.instance.useCamera ("movie");
 		movie [curVideo].Play ();
 		started = true;

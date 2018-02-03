@@ -176,6 +176,8 @@ public class Pitchfork : MonoBehaviour
 
     public void reset()
     {
-       // constraintsOn(true);
+        hitBird = false;
+        throwing = false;
+        changeBirdPos = true;
     }
 }

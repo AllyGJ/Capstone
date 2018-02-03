@@ -469,8 +469,8 @@ public class GameManager : MonoBehaviour
 		musicOn = true;
 		musicVolume = 0.5f;
 
-        //currItemIndex = 0;
-		currItemIndex = 4;
+        currItemIndex = 0;
+		//currItemIndex = 4;
 		setCurrItem (currItemIndex);
 
 		overallScore = 0;

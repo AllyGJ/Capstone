@@ -25,8 +25,8 @@ public class Float : MonoBehaviour
         count++;
         if (floating) {
             if (count % 300 == 0) SoundManager.instance.playBirdFlap();                                                                 
-			tempPos.y = Mathf.Sin (Time.fixedTime * Mathf.PI * speed) * amp;
-            print(tempPos);
+			tempPos.y = Mathf.Cos (Time.fixedTime * Mathf.PI * speed) * amp;
+            //print(tempPos);
 			this.transform.position = tempPos;
 		}
         else {
