@@ -27,8 +27,12 @@ public class Pitchfork : MonoBehaviour
     private bool hitBird = false;
     private bool changeBirdPos = true;
 
+    private Vector3 finalRot;
+
     private void Awake()
     {
+        finalRot = new Vector3(160f, game3Pos.rotation.y, game3Pos.rotation.z);
+
         p0 = game3Pos.position;
         p1 = new Vector3(0,0,0);
         //p1 = new Vector3(0, 0, 0);
@@ -62,10 +66,10 @@ public class Pitchfork : MonoBehaviour
                 p1.z += 0.2f;
                 p3.z += 0.2f;
 
-                Quaternion rot = new Quaternion(transform.rotation.w, Mathf.Tan(bezCurve.x), transform.rotation.y, transform.rotation.z);
+                //Quaternion rot = new Quaternion(transform.rotation.w, Mathf.Tan(bezCurve.x), transform.rotation.y, transform.rotation.z);
 
                 transform.position = bezCurve;
-               // transform.rotation = rot;
+                transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, finalRot, Time.deltaTime);
 
                 //pitchfork reaches "end point" and bird goes up or down
                 if (t == 1f && changeBirdPos){

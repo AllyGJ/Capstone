@@ -23,6 +23,7 @@ public class Bird : MonoBehaviour
     private bool beginGame2 = true;
 
 
+
 	void Start ()
 	{
 		setPos (1);
@@ -66,11 +67,14 @@ public class Bird : MonoBehaviour
                 if (pauseFlying)
                 {
                     tempPos.x = transform.position.x;
+
                 }
                 else
                 {
                     tempPos.x = Mathf.Sin(Time.fixedTime * speed) * amp;
+
                 }
+
                 //tempPos.y = spot3.position.y;
                 tempPos.z = spot3.position.z;
                 transform.position = tempPos;
@@ -107,10 +111,10 @@ public class Bird : MonoBehaviour
             //print("was hit");
             tempPos.y = Mathf.Lerp(tempPos.y, tempPos.y - 0.3f, 1f);
         }
-        else{
-           // print("missed");
-            tempPos.y = Mathf.Lerp(tempPos.y, tempPos.y + 0.3f, 1f);
-        }
+        //else{
+        //   // print("missed");
+        //    tempPos.y = Mathf.Lerp(tempPos.y, tempPos.y + 0.3f, 3f);
+        //}
     }
 
     public void reset()

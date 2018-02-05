@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
 
     public Transform resetSpot;
 
+    public GameObject dirtParticle1;
+    public GameObject dirtParticle2;
+
 
 	void Start ()
 	{
@@ -36,6 +39,8 @@ public class Player : MonoBehaviour
 
 			spot3.position = movement;
 			transform.position = spot3.position;
+            dirtParticle1.transform.position = new Vector3(spot3.position.x - 0.2f, spot3.position.y, spot3.position.z + 0.5f);
+            dirtParticle2.transform.position = new Vector3(spot3.position.x + 0.2f, spot3.position.y, spot3.position.z + 0.5f);
 		}
 	}
 
