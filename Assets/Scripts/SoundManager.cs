@@ -103,8 +103,8 @@ public class SoundManager : MonoBehaviour {
 
     public void setVolume(float value)
     {
-        backgroundMusic.volume = Mathf.Clamp(value, 0, 0.8f);
-        miniGameMusic.volume = Mathf.Clamp(value, 0, 0.9f);
+        backgroundMusic.volume = Mathf.Clamp(value, 0, 0.7f);
+        miniGameMusic.volume = Mathf.Clamp(value, 0, 0.8f);
 
         robot.volume = value;
         birdFlap.volume = value;

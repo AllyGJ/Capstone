@@ -62,14 +62,14 @@ public class Video : MonoBehaviour
     {
 		if (started) {
 			if (GameManager.instance.usingController) {
-				text.text = "Press 'A' to skip";
+                text.text = "Press <color=#00F448FF>A</color> to skip";
                 if (Input.GetKeyDown ("joystick button 16") || Input.GetKeyDown("joystick button 0")) {
 					movie [curVideo].Stop ();
 					GameManager.instance.useCamera (backCam);
 					started = false;
 				}
 			} else {
-				text.text = "Press 'space' to skip";
+                text.text = "Press <color=#00F448FF>space</color> to skip";
 				if (Input.GetKeyDown ("space")) {
 					movie [curVideo].Stop ();
                     print("5");
