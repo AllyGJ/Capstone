@@ -28,8 +28,8 @@ public class Controller : MonoBehaviour {
         if (GameManager.instance.usingController)
         {
             GetComponent<Image>().sprite = controller;
-            moveTxt.text = "Right joystick - move robot";
-            camTxt.text = "Left joystick - rotate camera";
+            moveTxt.text = "Left joystick - move robot";
+            camTxt.text = "Right joystick - rotate camera";
             interactTxt.text = "A - open doors and interact with items";
 
         }
