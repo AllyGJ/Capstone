@@ -55,6 +55,21 @@ public class Interactables : MonoBehaviour
             itemTxt.text = "Family photos. " + buttonTxt + " to view photos.";
         }
 
+        if(other.tag == "poster")
+        {
+            itemTxt.text = "AIRRaT Poster. Master used to work there.";
+        }
+
+        if(other.tag == "bed")
+        {
+            itemTxt.text = "Master sleeps here.";
+        }
+
+        if (other.tag == "dinnerTable")
+        {
+            itemTxt.text = "Master and family eat here";
+        }
+
         //MINIGAME1
 		if (firstGame1 && other.tag == "miniGame1" && GameManager.instance.currItem.gameObject.name.ToString () == "Door1") {
 			GameManager.instance.setNextVideo ();

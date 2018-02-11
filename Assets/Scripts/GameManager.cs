@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
     public Transform camResetPos;
 
 	public GameObject settingsButton;
+    public GameObject settingsMain;
     public GameObject gearFrame;
 	public Canvas gameItems;
 	public GameObject videoCanvas;
@@ -79,6 +80,8 @@ public class GameManager : MonoBehaviour
 	private Transform camPosRot;
 
     private Vector3 newPicCamPos;
+
+    private bool settingsOpen = false;
 
 	void Awake ()
 	{
@@ -124,8 +127,38 @@ public class GameManager : MonoBehaviour
             picViewingCam.transform.position = Vector3.Lerp(picViewingCam.transform.position, newPicCamPos, Time.deltaTime * 2f);
         }
 
+        if(currentCam == "player"){
+            if(!usingController && Input.GetKeyDown("z")){
+                if (settingsOpen) closeSettings();
+                else openSettings();
+            }else if(usingController){
+                if((macBuild && Input.GetKeyDown("joystick button 9")) || (!macBuild && Input.GetKeyDown("joystick button 7"))){
+                    if (settingsOpen) closeSettings();
+                    else openSettings();
+                }
+            }
+        }
+
+        if(usingController){
+            settingsButton.GetComponent<Button>().GetComponentInChildren<Text>().text = "start";
+        }else{
+            settingsButton.GetComponent<Button>().GetComponentInChildren<Text>().text = "z";
+        }
+
     }
 
+    public void openSettings()
+    {
+        settingsOpen = true;
+        showElement(settingsMain);
+        movePlayer(false);
+    }
+    public void closeSettings()
+    {
+        settingsOpen = false;
+        hideElement(settingsMain);
+        movePlayer(true);
+    }
     void stopDoorSounds()
     {
         foreach (AudioSource source in doorSounds)
@@ -427,6 +460,14 @@ public class GameManager : MonoBehaviour
         musicOn = !musicOn;
 	}
 
+    public void toggleColorSelected(Text txt)
+    {
+        txt.color = new Color(0, 0.95f, 0.3f);
+    }
+    public void toggleColorDeselected(Text txt)
+    {
+        txt.color = Color.white;
+    }
 	public void setMusicVolume (Slider slide)
 	{
 		musicVolume = slide.value;
@@ -509,6 +550,8 @@ public class GameManager : MonoBehaviour
 
         GetComponent<GameManager>().enabled = true;
        // SoundManager.instance.setVolume(musicVolume);
+
+        settingsOpen = false;
        
 	}
 
