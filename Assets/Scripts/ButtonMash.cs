@@ -55,7 +55,7 @@ public class ButtonMash : MonoBehaviour
 
 		if (beginButtonMash) {
 			
-			if (curButton <= numButtons) {
+			if (curButton < numButtons) {
                 showButton(true);
 				fillBar ();
 
@@ -157,9 +157,9 @@ public class ButtonMash : MonoBehaviour
                 LoadingBar.color = Color.red;
             }
         }
-        else{
-            print("didn't touch any key");
-        }
+        //else{
+        //    print("didn't touch any key");
+        //}
 	}
 
 
@@ -169,12 +169,10 @@ public class ButtonMash : MonoBehaviour
 	
 		if (LoadingBar.fillAmount >= 0.75f)
 			LoadingBar.color = Color.red;
-		if (LoadingBar.fillAmount == 1f) {
-			if (!userInputMatches)
-				curButton++;
-			LoadingBar.fillAmount = 0f;
-			LoadingBar.color = Color.blue;
-			randomlyPickBtn ();
+		
+        if (LoadingBar.fillAmount == 1f) {
+            if (!pressedButton)
+                userInputWrong = true;
 		}
 
 	}
