@@ -11,6 +11,12 @@ public class Controller : MonoBehaviour {
     public Text camTxt;
     public Text interactTxt;
 
+    void Start(){
+        moveTxt.text = "<color=#00F448FF>Arrows keys</color> - move robot";
+        camTxt.text = "<color=#00F448FF>ASWD</color> - rotate camera";
+        interactTxt.text = "<color=#00F448FF>E</color> - open doors and interact with items";
+    }
+
     void Update()
     {
         if (GameManager.instance.usingController)
@@ -28,17 +34,17 @@ public class Controller : MonoBehaviour {
         if (GameManager.instance.usingController)
         {
             GetComponent<Image>().sprite = controller;
-            moveTxt.text = "Left joystick - move robot";
-            camTxt.text = "Right joystick - rotate camera";
-            interactTxt.text = "A - open doors and interact with items";
+            moveTxt.text = "<color=#00F448FF>Left joystick</color> - move robot";
+            camTxt.text = "<color=#00F448FF>Right joystick</color> - rotate camera";
+            interactTxt.text = "<color=#00F448FF>A</color> - open doors and interact with items";
 
         }
         else
         {
             GetComponent<Image>().sprite = noController;
-            moveTxt.text = "Arrows keys - move robot";
-            camTxt.text = "ASWD - rotate camera";
-            interactTxt.text = "E - open doors and interact with items";
+            moveTxt.text = "<color=#00F448FF>Arrows keys</color> - move robot";
+            camTxt.text = "<color=#00F448FF>ASWD</color> - rotate camera";
+            interactTxt.text = "<color=#00F448FF>E</color> - open doors and interact with items";
 
         }
     }
