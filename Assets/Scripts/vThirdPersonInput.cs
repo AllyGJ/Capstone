@@ -213,11 +213,13 @@ namespace Invector.CharacterController
 
 		protected virtual void RotateWithCamera (Transform cameraTransform)
 		{
-           
+            if (GameManager.instance.currentCam == "outside")
+            {
                 if (cc.isStrafing && !cc.lockMovement && !cc.lockMovement)
                 {
                     cc.RotateWithAnotherTransform(cameraTransform);
                 }
+            }
 
 		}
 

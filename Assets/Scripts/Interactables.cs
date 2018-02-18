@@ -25,7 +25,8 @@ public class Interactables : MonoBehaviour
     //private bool firstGame2 = false;
     //private bool firstGame3 = true;
 
-	void Update ()
+
+    void Update ()
 	{
 		
 		checkController ();

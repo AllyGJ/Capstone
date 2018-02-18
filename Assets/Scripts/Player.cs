@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
     public GameObject dirtParticle1;
     public GameObject dirtParticle2;
 
+  
+
 
 	void Start ()
 	{
@@ -43,6 +45,30 @@ public class Player : MonoBehaviour
             dirtParticle2.transform.position = new Vector3(spot3.position.x + 0.2f, spot3.position.y, spot3.position.z + 0.5f);
 		}
 	}
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!GameManager.instance.showingCanvas && !GameManager.instance.game1 && !GameManager.instance.game2 && !GameManager.instance.game3)
+        {
+            if (other.tag == "houseCam")
+            {
+                GameManager.instance.currentHouseCam = other.gameObject.GetComponent<Camera>();
+                GameManager.instance.useCamera("lastCam");
+            }
+        }
+    }
+
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (!GameManager.instance.game3)
+        {
+            if (other.tag == "House")
+            {
+                GameManager.instance.useCamera("outside");
+            }
+        }
+    }
 
 	public void setPos (int spotNum)
 	{

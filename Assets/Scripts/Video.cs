@@ -14,7 +14,7 @@ public class Video : MonoBehaviour
 
 	public bool started = false;
 	public bool canSkip = true;
-	private string backCam = "player";
+	private string backCam = "lastCam";
 
 	// Use this for initialization
 	void Start ()
@@ -35,7 +35,7 @@ public class Video : MonoBehaviour
 
             print("3");
 			movie [curVideo].Stop ();
-			GameManager.instance.useCamera (backCam);
+            GameManager.instance.useCamera (backCam);
 
 			started = false;
 		}
@@ -51,8 +51,8 @@ public class Video : MonoBehaviour
 	public void playVideo (string backCam)
 	{
         //SoundManager.instance.muteAll(true);
-       // print("4");
-		GameManager.instance.useCamera ("movie");
+        print("4");
+        GameManager.instance.useCamera ("movie");
 		movie [curVideo].Play ();
 		started = true;
 		this.backCam = backCam;
@@ -65,7 +65,7 @@ public class Video : MonoBehaviour
                 text.text = "Press <color=#00F448FF>A</color> to skip";
                 if (Input.GetKeyDown ("joystick button 16") || Input.GetKeyDown("joystick button 0")) {
 					movie [curVideo].Stop ();
-					GameManager.instance.useCamera (backCam);
+                    GameManager.instance.useCamera (backCam);
 					started = false;
 				}
 			} else {
@@ -73,7 +73,7 @@ public class Video : MonoBehaviour
 				if (Input.GetKeyDown ("space")) {
 					movie [curVideo].Stop ();
                     print("5");
-					GameManager.instance.useCamera (backCam);
+                    GameManager.instance.useCamera (backCam);
 					started = false;
 				}
 			}

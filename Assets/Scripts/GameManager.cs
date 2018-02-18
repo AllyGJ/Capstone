@@ -21,14 +21,20 @@ public class GameManager : MonoBehaviour
 	public bool musicOn;
 	public float musicVolume;
 
-	[Header ("Cameras")]
-	public string currentCam;
-	public Camera canvasCam;
-	public Camera playerCam;
-	public Camera movieCam;
-	public Camera miniGame1;
-	public Camera miniGame2;
-	public Camera miniGame3;
+    [Header("House Cameras")]
+    public Camera currentHouseCam;
+    public GameObject[] houseCams;
+
+    [Header("Cameras")]
+    public string currentCam;
+
+    public Camera initialCam;
+    public Camera canvasCam;
+    public Camera playerCam;
+    public Camera movieCam;
+    public Camera miniGame1;
+    public Camera miniGame2;
+    public Camera miniGame3;
     public Camera picViewingCam;
 
     [Header("Game Objects")]
@@ -58,6 +64,8 @@ public class GameManager : MonoBehaviour
 	public Material[] regularMats;
 	public Material[] glowMats;
 
+    public Slider canvasVolume;
+
 	public int overallScore;
 
     [Header("Door sounds")]
@@ -72,6 +80,8 @@ public class GameManager : MonoBehaviour
 
 	public bool startRunning = false;
 
+    public bool showingCanvas = true;
+
 	private int currItemIndex = 0;
 
 	private ButtonMash buttonMash;
@@ -83,8 +93,13 @@ public class GameManager : MonoBehaviour
 
     private bool settingsOpen = false;
 
+
+
+
+
 	void Awake ()
 	{
+
 		if (instance == null)
 			instance = this;
 		//else if (instance != this)
@@ -98,7 +113,7 @@ public class GameManager : MonoBehaviour
 
         newPicCamPos = picViewingCam.transform.position;
 
-		camPosRot = playerCam.transform;
+		//camPosRot = playerCam.transform;
 
 		musicOn = true;
 		musicVolume = 0.5f;
@@ -118,7 +133,7 @@ public class GameManager : MonoBehaviour
 
             if(Input.GetKeyDown("escape") || Input.GetKeyDown("joystick button 17") || Input.GetKeyDown("joystick button 1")){
                 print("2");
-                useCamera("player");
+                useCamera("lastCam");
             }
         }
 
@@ -127,7 +142,7 @@ public class GameManager : MonoBehaviour
             picViewingCam.transform.position = Vector3.Lerp(picViewingCam.transform.position, newPicCamPos, Time.deltaTime * 2f);
         }
 
-        if(currentCam == "player"){
+        if(currentCam == "lastCam"){
             if(!usingController && Input.GetKeyDown("z")){
                 if (settingsOpen) closeSettings();
                 else openSettings();
@@ -145,6 +160,12 @@ public class GameManager : MonoBehaviour
             settingsButton.GetComponent<Button>().GetComponentInChildren<Text>().text = "z";
         }
 
+    }
+
+    public void stopShowingCanvas()
+    {
+        showingCanvas = false;
+        canvasVolume.interactable = false;
     }
 
     public void openSettings()
@@ -222,12 +243,10 @@ public class GameManager : MonoBehaviour
 		game3 = false;
 		startRunning = false;
 		bird.SetActive (false);
-		gameItems.worldCamera = playerCam;
+        gameItems.worldCamera = currentHouseCam;
 
 		if (!theEnd) {
-			gameItems.worldCamera = playerCam;
-            print("1");
-			useCamera ("player");
+			useCamera ("lastCam");
 			movePlayer (true);
             showHideUIElements(true);
 
@@ -333,8 +352,8 @@ public class GameManager : MonoBehaviour
 		player.transform.position = startPoint.position;
 		player.transform.rotation = startPoint.rotation;
 
-        playerCam.transform.position = camResetPos.position;
-        playerCam.transform.rotation = camResetPos.rotation;
+        //playerCam.transform.position = camResetPos.position;
+        //playerCam.transform.rotation = camResetPos.rotation;
 
 		isNextDay = true;
         SoundManager.instance.playCritterAtDoor();
@@ -370,6 +389,62 @@ public class GameManager : MonoBehaviour
 
 	}
 
+    public void useCamera(string cam)
+    {
+        disableCams();
+
+        switch (cam)
+        {
+            case "canvas":
+                canvasCam.enabled = true;
+                break;
+            case "outside":
+                playerCam.enabled = true;
+                break;
+            case "movie":
+                movieCam.enabled = true;
+                break;
+            case "miniGame1":
+                miniGame1.enabled = true;
+                break;
+            case "miniGame2":
+                miniGame2.enabled = true;
+                break;
+            case "miniGame3":
+                miniGame3.enabled = true;
+                break;
+            case "pics":
+                picViewingCam.enabled = true;
+                movePlayer(false);
+                picLights.SetActive(true);
+                break;
+            case "lastCam":
+                movePlayer(true);
+                currentHouseCam.enabled = true;
+                gameItems.worldCamera = currentHouseCam;
+                SoundManager.instance.playRockingChair();
+                break;
+        }
+
+        currentCam = cam;
+    }
+
+    private void disableCams()
+    {
+        canvasCam.enabled = false;
+        playerCam.enabled = false;
+        movieCam.enabled = false;
+        miniGame1.enabled = false;
+        miniGame2.enabled = false;
+        miniGame3.enabled = false;
+        picViewingCam.enabled = false;
+
+        foreach (GameObject ob in houseCams)
+        {
+            ob.GetComponent<Camera>().enabled = false;
+        }
+    }
+
 
 	public void showArrow (bool val)
 	{
@@ -382,58 +457,7 @@ public class GameManager : MonoBehaviour
 		setCurrItem (currItemIndex);
 	}
 
-	public void useCamera (string cam)
-	{
-        print("changed camera");
-        disableCams();
-
-		switch (cam) {
-		case "canvas":
-			canvasCam.enabled = true;
-                //movePlayer(false);
-			break;
-		case "player":
-			playerCam.enabled = true;
-            movePlayer(true);
-            picLights.SetActive(false);
-                SoundManager.instance.playRockingChair();
-			break;
-		case "movie":
-			movieCam.enabled = true;
-                //movePlayer(false);
-			break;
-		case "miniGame1":
-			miniGame1.enabled = true;
-               // movePlayer(false);
-			break;
-		case "miniGame2":
-			miniGame2.enabled = true;
-                //movePlayer(false);
-			break;
-		case "miniGame3":
-			miniGame3.enabled = true;
-                //movePlayer(false);
-			break;       
-        case "pics":
-            picViewingCam.enabled = true;
-            movePlayer(false);
-            picLights.SetActive(true);
-            break;
-		}
-
-		currentCam = cam;
-	}
-
-	private void disableCams ()
-	{
-		canvasCam.enabled = false;
-		playerCam.enabled = false;
-		movieCam.enabled = false;
-		miniGame1.enabled = false;
-		miniGame2.enabled = false;
-		miniGame3.enabled = false;
-        picViewingCam.enabled = false;
-	}
+	
 
 	public void toggleController ()
 	{
@@ -514,16 +538,19 @@ public class GameManager : MonoBehaviour
 		//currItemIndex = 4;
 		setCurrItem (currItemIndex);
 
+        currentHouseCam = initialCam;
+
 		overallScore = 0;
 
-        disableCams();
+        showingCanvas = true;
+        canvasVolume.interactable = true;
 		useCamera ("canvas");
-		gameItems.worldCamera = playerCam;
+		
 
         picLights.SetActive(false);
 
-        playerCam.transform.position = camResetPos.position;
-        playerCam.transform.rotation = camResetPos.rotation;
+        //playerCam.transform.position = camResetPos.position;
+        //playerCam.transform.rotation = camResetPos.rotation;
 
         showHideUIElements(true);
 		bird.SetActive (false);
@@ -535,8 +562,8 @@ public class GameManager : MonoBehaviour
         player.transform.rotation = startPoint.rotation;
 		movePlayer (false);
 
-        playerCam.transform.position = new Vector3(player.transform.position.x + 4f, player.transform.position.y, player.transform.position.z);
-        playerCam.transform.eulerAngles = new Vector3(0, 90, 0);
+        //playerCam.transform.position = new Vector3(player.transform.position.x + 4f, player.transform.position.y, player.transform.position.z);
+        //playerCam.transform.eulerAngles = new Vector3(0, 90, 0);
 
 		pitchfork.transform.parent = null;
 		pitchfork.transform.position = pitchforkStart.position;
