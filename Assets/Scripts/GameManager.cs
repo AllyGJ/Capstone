@@ -401,6 +401,7 @@ public class GameManager : MonoBehaviour
             case "outside":
                 playerCam.enabled = true;
                 player.GetComponent<vThirdPersonInput>().setCamera(playerCam);
+                gameItems.worldCamera = playerCam;
                 break;
             case "movie":
                 movieCam.enabled = true;
