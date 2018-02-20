@@ -44,6 +44,11 @@ public class Player : MonoBehaviour
             dirtParticle1.transform.position = new Vector3(spot3.position.x - 0.2f, spot3.position.y, spot3.position.z + 0.5f);
             dirtParticle2.transform.position = new Vector3(spot3.position.x + 0.2f, spot3.position.y, spot3.position.z + 0.5f);
 		}
+
+        //if(GameManager.instance.currentCam == "lastCam"){
+        //    transform.position += (GameManager.instance.currentHouseCam.transform.right * Input.GetAxis("Horizontal") +
+        //                           GameManager.instance.currentHouseCam.transform.forward * Input.GetAxis("Vertical")) * 0.5f;
+        //}
 	}
 
     private void OnTriggerEnter(Collider other)
@@ -52,8 +57,9 @@ public class Player : MonoBehaviour
         {
             if (other.tag == "houseCam")
             {
-                GameManager.instance.currentHouseCam = other.gameObject.GetComponent<Camera>();
+                GameManager.instance.currentHouseCam = other.GetComponentInParent<Camera>();//other.gameObject.GetComponent<Camera>();
                 GameManager.instance.useCamera("lastCam");
+
             }
         }
     }

@@ -511,8 +511,8 @@ namespace Invector.CharacterController
                 // determine the direction the player will face based on input and the referenceTransform's right and forward directions
                 targetDirection = input.x * right + input.y * forward;
             }
-            else
-                targetDirection = keepDirection ? targetDirection : new Vector3(input.x, 0, input.y);
+            //else
+                //targetDirection = keepDirection ? targetDirection : new Vector3(input.x, 0, input.y);
         }
 
         #endregion

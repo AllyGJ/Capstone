@@ -400,6 +400,7 @@ public class GameManager : MonoBehaviour
                 break;
             case "outside":
                 playerCam.enabled = true;
+                player.GetComponent<vThirdPersonInput>().setCamera(playerCam);
                 break;
             case "movie":
                 movieCam.enabled = true;
@@ -423,10 +424,13 @@ public class GameManager : MonoBehaviour
                 currentHouseCam.enabled = true;
                 gameItems.worldCamera = currentHouseCam;
                 SoundManager.instance.playRockingChair();
+                player.GetComponent<vThirdPersonInput>().setCamera(currentHouseCam);
                 break;
         }
 
         currentCam = cam;
+
+
     }
 
     private void disableCams()
@@ -548,6 +552,8 @@ public class GameManager : MonoBehaviour
 		
 
         picLights.SetActive(false);
+
+        player.GetComponent<vThirdPersonInput>().setCamera(initialCam);
 
         //playerCam.transform.position = camResetPos.position;
         //playerCam.transform.rotation = camResetPos.rotation;

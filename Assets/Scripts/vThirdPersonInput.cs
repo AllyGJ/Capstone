@@ -23,7 +23,7 @@ namespace Invector.CharacterController
 		public string rotateCameraXInput;
 		public string rotateCameraYInput;
 
-		protected vThirdPersonCamera tpCamera;
+        public vThirdPersonCamera tpCamera;
 		// acess camera info
 		[HideInInspector]
 		public string customCameraState;
@@ -58,7 +58,7 @@ namespace Invector.CharacterController
 			if (cc != null)
 				cc.Init ();
 
-			tpCamera = FindObjectOfType<vThirdPersonCamera> ();
+			//tpCamera = FindObjectOfType<vThirdPersonCamera> ();
 			if (tpCamera)
 				tpCamera.SetMainTarget (this.transform);
 
@@ -213,16 +213,21 @@ namespace Invector.CharacterController
 
 		protected virtual void RotateWithCamera (Transform cameraTransform)
 		{
-            if (GameManager.instance.currentCam == "outside")
-            {
+            
                 if (cc.isStrafing && !cc.lockMovement && !cc.lockMovement)
                 {
                     cc.RotateWithAnotherTransform(cameraTransform);
                 }
-            }
+
 
 		}
 
 		#endregion
+
+        public void setCamera(Camera cam)
+        {
+            tpCamera = cam.GetComponent<vThirdPersonCamera>();
+        }
+
 	}
 }

@@ -106,7 +106,8 @@ public class vThirdPersonCamera : MonoBehaviour
     {
         if (target == null || targetLookAt == null) return;
 
-        CameraMovement();
+        if(this.tag == "MainCamera")
+            CameraMovement();
     }
 
 
