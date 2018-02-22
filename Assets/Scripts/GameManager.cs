@@ -223,6 +223,8 @@ public class GameManager : MonoBehaviour
         movePlayer(false);
 
 		player.GetComponent<Player> ().setPos (1);
+        //pitchfork.transform.eulerAngles = new Vector3(0, 0, -100);
+        //pitchfork.transform.rotation = new Quaternion(0, 0, -100, 0);
 
 		gameItems.worldCamera = miniGame1;
 		buttonMash.reset ();
@@ -245,6 +247,7 @@ public class GameManager : MonoBehaviour
 		game3 = false;
 		startRunning = false;
 		bird.SetActive (false);
+        //pitchfork.transform.localRotation = new Quaternion(0, 0, 0, 0);
         gameItems.worldCamera = currentHouseCam;
 
 		if (!theEnd) {
@@ -293,9 +296,9 @@ public class GameManager : MonoBehaviour
 		bird.SetActive (true);
         critter.SetActive(true);
         showHideUIElements(false);
+        //pitchfork.GetComponent<Pitchfork>().putDown();
 
-
-        //pitchfork.GetComponent<Pitchfork>().setPos3();
+        pitchfork.GetComponent<Pitchfork>().setPos3();
 
 		while (videoCanvas.GetComponent<Video> ().started == true) {
 			yield return new WaitForSeconds (0.1f);
@@ -541,8 +544,8 @@ public class GameManager : MonoBehaviour
 		musicOn = true;
 		musicVolume = 0.5f;
 
-        currItemIndex = 0;
-		//currItemIndex = 4;
+        //currItemIndex = 0;
+		currItemIndex = 4;
 		setCurrItem (currItemIndex);
 
         currentHouseCam = initialCam;
@@ -579,7 +582,7 @@ public class GameManager : MonoBehaviour
 		pitchfork.transform.rotation = pitchforkStart.rotation;
         pitchfork.GetComponent<Pitchfork>().reset();
 
-		player.GetComponent<Interactables> ().reset ();
+		//player.GetComponent<Interactables> ().reset ();
 		player.GetComponent<Player> ().resetSpot3 ();
 
 		videoCanvas.GetComponent<Video> ().canSkip = true;

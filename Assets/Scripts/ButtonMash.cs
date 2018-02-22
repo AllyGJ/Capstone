@@ -183,6 +183,10 @@ public class ButtonMash : MonoBehaviour
         curButton++;
         SoundManager.instance.playWrong();
 
+        float r = UnityEngine.Random.Range(0f, 1f);
+        if(r == 1) GameManager.instance.playerAnim.SetTrigger("BigD");
+        else GameManager.instance.playerAnim.SetTrigger("LittleD");
+
         yield return new WaitForSeconds(2f);
 
         LoadingBar.fillAmount = 0;
@@ -198,7 +202,9 @@ public class ButtonMash : MonoBehaviour
 		correct++;
 		curButton++;
         SoundManager.instance.playWhip();
-		//show animation of robot hitting bird
+
+        //show animation of robot hitting bird
+        GameManager.instance.playerAnim.SetTrigger("Stab");
 
         yield return new WaitForSeconds(2f);
 

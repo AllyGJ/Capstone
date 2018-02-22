@@ -16,7 +16,7 @@ public class Trajectory : MonoBehaviour
 	private float throwValue;
 
 	//Chances to hit bird
-	private int numThrows = 5;
+	private int numThrows = 8;
 
 	private int curThrows = 0;
 
@@ -64,12 +64,14 @@ public class Trajectory : MonoBehaviour
 	IEnumerator wait (int val)
 	{
 		if (curThrows == numThrows) {
+            GameManager.instance.playerAnim.SetTrigger("Throw");
             GameManager.instance.pitchfork.GetComponent<Pitchfork>().throwAtBird(val);
 			yield return new WaitForSeconds (3f);
 			showTrajBar (false);
 			GameManager.instance.addToScore (score);
 			GameManager.instance.endMiniGame (true);
 		} else {
+            GameManager.instance.playerAnim.SetTrigger("Throw");
             GameManager.instance.pitchfork.GetComponent<Pitchfork>().throwAtBird(val);
 			yield return new WaitForSeconds (2f);
 			moveSlider = true;
