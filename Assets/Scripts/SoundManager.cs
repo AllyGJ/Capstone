@@ -79,6 +79,9 @@ public class SoundManager : MonoBehaviour {
     public void playCritterAtDoor()
     {
         critterAtDoor.Play();
+        backgroundMusic.volume = 0.3f;
+        critterAtDoor.volume = 1f;
+
     }
     public void stopCritterAtDoor()
     {
@@ -103,8 +106,8 @@ public class SoundManager : MonoBehaviour {
 
     public void setVolume(float value)
     {
-        backgroundMusic.volume = Mathf.Clamp(value, 0, 0.7f);
-        miniGameMusic.volume = Mathf.Clamp(value, 0, 0.8f);
+        backgroundMusic.volume = Mathf.Clamp(value, 0, 0.6f);
+        miniGameMusic.volume = Mathf.Clamp(value, 0, 0.9f);
 
         robot.volume = value;
         birdFlap.volume = value;

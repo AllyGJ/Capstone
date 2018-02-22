@@ -397,6 +397,8 @@ public class GameManager : MonoBehaviour
     public void useCamera(string cam)
     {
         disableCams();
+        player.GetComponent<Interactables>().itemTxt.enabled = true;
+        picLights.SetActive(false);
 
         switch (cam)
         {
@@ -413,14 +415,18 @@ public class GameManager : MonoBehaviour
                 break;
             case "miniGame1":
                 miniGame1.enabled = true;
+                player.GetComponent<Interactables>().itemTxt.enabled = false;
                 break;
             case "miniGame2":
                 miniGame2.enabled = true;
+                player.GetComponent<Interactables>().itemTxt.enabled = false;
                 break;
             case "miniGame3":
                 miniGame3.enabled = true;
+                player.GetComponent<Interactables>().itemTxt.enabled = false;
                 break;
             case "pics":
+                player.GetComponent<Interactables>().itemTxt.enabled = false;
                 picViewingCam.enabled = true;
                 movePlayer(false);
                 picLights.SetActive(true);
@@ -544,8 +550,8 @@ public class GameManager : MonoBehaviour
 		musicOn = true;
 		musicVolume = 0.5f;
 
-        //currItemIndex = 0;
-		currItemIndex = 4;
+        currItemIndex = 0;
+		//currItemIndex = 4;
 		setCurrItem (currItemIndex);
 
         currentHouseCam = initialCam;
@@ -582,7 +588,7 @@ public class GameManager : MonoBehaviour
 		pitchfork.transform.rotation = pitchforkStart.rotation;
         pitchfork.GetComponent<Pitchfork>().reset();
 
-		//player.GetComponent<Interactables> ().reset ();
+		player.GetComponent<Interactables> ().reset ();
 		player.GetComponent<Player> ().resetSpot3 ();
 
 		videoCanvas.GetComponent<Video> ().canSkip = true;
