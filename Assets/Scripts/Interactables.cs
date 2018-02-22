@@ -119,7 +119,6 @@ public class Interactables : MonoBehaviour
 		if (other.tag == "Door") {
 
 			if (Input.GetKeyDown (interact)) {
-
 				StartCoroutine (openAndCloseDoor (other.gameObject));
 				
 			}
@@ -128,7 +127,8 @@ public class Interactables : MonoBehaviour
 		if (other.gameObject.name.ToString () == "Pitchfork") {
 			if (Input.GetKeyDown (interact)) {
                 SoundManager.instance.playPickup();
-				other.GetComponent<Pitchfork> ().pickup ();
+                StartCoroutine(other.GetComponent<Pitchfork>().Pickup());
+                GameManager.instance.playerAnim.SetTrigger("PickUp");
 
 				if (firstPitchfork) {
 					GameManager.instance.resetMats ();

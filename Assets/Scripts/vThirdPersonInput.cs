@@ -132,10 +132,14 @@ namespace Invector.CharacterController
 
 		protected virtual void MoveCharacter ()
 		{
+            print("in moveCharacter");
             if (moving)
             {
                 cc.input.x = Input.GetAxis(horizontalInput);
                 cc.input.y = Input.GetAxis(verticallInput);
+                print(cc.input.x);
+                print(cc.input.y); 
+
             }else{
                 
                     cc.input.x = 0f;

@@ -85,11 +85,15 @@ public class Pitchfork : MonoBehaviour
         }
     }
 
-    public void pickup()
+    public IEnumerator Pickup()
     {
+        yield return new WaitForSeconds(0.8f);
         holding = true;
-        this.transform.position = playerHand.transform.position;
         this.transform.parent = playerHand.transform;
+        this.transform.position = playerHand.transform.position;//new Vector3(playerHand.transform.position.x,playerHand.transform.position.y - 0.3f, playerHand.transform.position.z);
+        this.transform.eulerAngles = new Vector3(0,0,0);
+        this.transform.localRotation = new Quaternion(0, 0, 0, 0);
+
 
     }
 

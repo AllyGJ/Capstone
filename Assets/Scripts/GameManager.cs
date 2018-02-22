@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Game Objects")]
     public GameObject player;
+    public Animator playerAnim;
 	public GameObject bird;
     public GameObject critter;
 	public GameObject pitchfork;
@@ -102,12 +103,13 @@ public class GameManager : MonoBehaviour
 
 		if (instance == null)
 			instance = this;
-		//else if (instance != this)
-			//Destroy (gameObject);
-        
+        //else if (instance != this)
+        //Destroy (gameObject);
 
-		//DontDestroyOnLoad (gameObject);
 
+        //DontDestroyOnLoad (gameObject);
+
+        playerAnim = player.GetComponent<Animator>();
 		buttonMash = GetComponent<ButtonMash> ();
 		trajectory = GetComponent<Trajectory> ();
 
