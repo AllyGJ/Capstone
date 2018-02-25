@@ -1,0 +1,298 @@
+fileFormatVersion: 2
+guid: 1b5e87842d1024fc59653891ba1053d5
+timeCreated: 1519593624
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: bolt49
+    100002: bolt50
+    100004: bolt51
+    100006: bolt52
+    100008: bolt53
+    100010: bolt54
+    100012: bolt55
+    100014: bolt56
+    100016: bolt57
+    100018: bolt58
+    100020: bolt59
+    100022: bolt60
+    100024: bolt61
+    100026: bolt62
+    100028: bolt63
+    100030: bolt64
+    100032: hinge1
+    100034: hinge2
+    100036: hinge3
+    100038: hinges
+    100040: //RootNode
+    100042: pSphere1
+    100044: pSphere1 1
+    100046: pSphere1 2
+    100048: pSphere2
+    100050: pSphere2 1
+    100052: shutter1
+    100054: shutter10
+    100056: shutter11
+    100058: shutter12
+    100060: shutter13
+    100062: shutter14
+    100064: shutter15
+    100066: shutter16
+    100068: shutter17
+    100070: shutter2
+    100072: shutter3
+    100074: shutter4
+    100076: shutter5
+    100078: shutter6
+    100080: shutter7
+    100082: shutter8
+    100084: shutter9
+    100086: shutters
+    400000: bolt49
+    400002: bolt50
+    400004: bolt51
+    400006: bolt52
+    400008: bolt53
+    400010: bolt54
+    400012: bolt55
+    400014: bolt56
+    400016: bolt57
+    400018: bolt58
+    400020: bolt59
+    400022: bolt60
+    400024: bolt61
+    400026: bolt62
+    400028: bolt63
+    400030: bolt64
+    400032: hinge1
+    400034: hinge2
+    400036: hinge3
+    400038: hinges
+    400040: //RootNode
+    400042: pSphere1
+    400044: pSphere1 1
+    400046: pSphere1 2
+    400048: pSphere2
+    400050: pSphere2 1
+    400052: shutter1
+    400054: shutter10
+    400056: shutter11
+    400058: shutter12
+    400060: shutter13
+    400062: shutter14
+    400064: shutter15
+    400066: shutter16
+    400068: shutter17
+    400070: shutter2
+    400072: shutter3
+    400074: shutter4
+    400076: shutter5
+    400078: shutter6
+    400080: shutter7
+    400082: shutter8
+    400084: shutter9
+    400086: shutters
+    2300000: bolt49
+    2300002: bolt50
+    2300004: bolt51
+    2300006: bolt52
+    2300008: bolt53
+    2300010: bolt54
+    2300012: bolt55
+    2300014: bolt56
+    2300016: bolt57
+    2300018: bolt58
+    2300020: bolt59
+    2300022: bolt60
+    2300024: bolt61
+    2300026: bolt62
+    2300028: bolt63
+    2300030: bolt64
+    2300032: hinge1
+    2300034: hinge2
+    2300036: hinge3
+    2300038: hinges
+    2300040: //RootNode
+    2300042: pSphere1
+    2300044: pSphere1 1
+    2300046: pSphere1 2
+    2300048: pSphere2
+    2300050: pSphere2 1
+    2300052: shutter1
+    2300054: shutter10
+    2300056: shutter11
+    2300058: shutter12
+    2300060: shutter13
+    2300062: shutter14
+    2300064: shutter15
+    2300066: shutter16
+    2300068: shutter17
+    2300070: shutter2
+    2300072: shutter3
+    2300074: shutter4
+    2300076: shutter5
+    2300078: shutter6
+    2300080: shutter7
+    2300082: shutter8
+    2300084: shutter9
+    2300086: shutters
+    3300000: bolt49
+    3300002: bolt50
+    3300004: bolt51
+    3300006: bolt52
+    3300008: bolt53
+    3300010: bolt54
+    3300012: bolt55
+    3300014: bolt56
+    3300016: bolt57
+    3300018: bolt58
+    3300020: bolt59
+    3300022: bolt60
+    3300024: bolt61
+    3300026: bolt62
+    3300028: bolt63
+    3300030: bolt64
+    3300032: hinge1
+    3300034: hinge2
+    3300036: hinge3
+    3300038: hinges
+    3300040: //RootNode
+    3300042: pSphere1
+    3300044: pSphere1 1
+    3300046: pSphere1 2
+    3300048: pSphere2
+    3300050: pSphere2 1
+    3300052: shutter1
+    3300054: shutter10
+    3300056: shutter11
+    3300058: shutter12
+    3300060: shutter13
+    3300062: shutter14
+    3300064: shutter15
+    3300066: shutter16
+    3300068: shutter17
+    3300070: shutter2
+    3300072: shutter3
+    3300074: shutter4
+    3300076: shutter5
+    3300078: shutter6
+    3300080: shutter7
+    3300082: shutter8
+    3300084: shutter9
+    3300086: shutters
+    4300000: door
+    4300002: shutters
+    4300004: shutter1
+    4300006: shutter2
+    4300008: shutter3
+    4300010: shutter4
+    4300012: shutter5
+    4300014: shutter6
+    4300016: shutter7
+    4300018: shutter8
+    4300020: shutter9
+    4300022: shutter10
+    4300024: shutter11
+    4300026: shutter12
+    4300028: shutter13
+    4300030: shutter14
+    4300032: shutter15
+    4300034: shutter16
+    4300036: shutter17
+    4300038: hinges
+    4300040: hinge1
+    4300042: pSphere1
+    4300044: hinge2
+    4300046: pSphere2
+    4300048: pSphere1
+    4300050: hinge3
+    4300052: pSphere2
+    4300054: pSphere1
+    4300056: bolt64
+    4300058: bolt63
+    4300060: bolt62
+    4300062: bolt61
+    4300064: bolt60
+    4300066: bolt59
+    4300068: bolt58
+    4300070: bolt57
+    4300072: bolt56
+    4300074: bolt55
+    4300076: bolt54
+    4300078: bolt53
+    4300080: bolt52
+    4300082: bolt51
+    4300084: bolt50
+    4300086: bolt49
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 18
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

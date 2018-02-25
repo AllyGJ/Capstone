@@ -184,7 +184,7 @@ public class ButtonMash : MonoBehaviour
         SoundManager.instance.playWrong();
 
         float r = UnityEngine.Random.Range(0f, 1f);
-        if(r == 1) GameManager.instance.playerAnim.SetTrigger("BigD");
+        if (r == 1f) GameManager.instance.playerAnim.SetTrigger("BigD");
         else GameManager.instance.playerAnim.SetTrigger("LittleD");
 
         yield return new WaitForSeconds(2f);

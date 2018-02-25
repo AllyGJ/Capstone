@@ -125,11 +125,13 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if(picViewingCam.enabled){
-            if(Input.GetKeyDown("joystick button 5") || Input.GetKeyDown("up")){
+        if (picViewingCam.enabled)
+        {
+            if (Input.GetKeyDown("joystick button 5") || Input.GetKeyDown("up") || Input.GetAxis("DPadY") > 0)
+            {
                 goUp(true);
             }
-            else if(Input.GetKeyDown("joystick button 6") || Input.GetKeyDown("down")){
+            else if (Input.GetKeyDown("joystick button 6") || Input.GetKeyDown("down") || Input.GetAxis("DPadY") < 0){
                 goUp(false);
             }
 

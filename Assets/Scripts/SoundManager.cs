@@ -51,6 +51,7 @@ public class SoundManager : MonoBehaviour {
 
     public void playRobot()
     {
+        print("paying robot sound");
         robot.Play();
     }
 

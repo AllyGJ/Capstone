@@ -53,12 +53,16 @@ namespace Invector.CharacterController
                 }
                 else if (!isStrafing)
                 {
-
+                    
                     // free extra speed                
                     if (speed <= 0.5f)
                     {
-                        if (speed > 0f) SoundManager.instance.playRobot();
-                        else SoundManager.instance.stopRobot();
+                        if (speed > 0f)
+                        {
+                            SoundManager.instance.playRobot();
+                        }
+                        else 
+                        SoundManager.instance.stopRobot();
                         ControlSpeed(freeWalkSpeed);
                     }
                     else if (speed > 0.5 && speed <= 1f)
