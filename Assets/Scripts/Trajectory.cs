@@ -65,6 +65,7 @@ public class Trajectory : MonoBehaviour
 	{
 		if (curThrows == numThrows) {
             GameManager.instance.playerAnim.SetTrigger("Throw");
+            SoundManager.instance.playWhip();
             GameManager.instance.pitchfork.GetComponent<Pitchfork>().throwAtBird(val);
 			yield return new WaitForSeconds (3f);
 			showTrajBar (false);
@@ -72,6 +73,7 @@ public class Trajectory : MonoBehaviour
 			GameManager.instance.endMiniGame (true);
 		} else {
             GameManager.instance.playerAnim.SetTrigger("Throw");
+            SoundManager.instance.playWhip();
             GameManager.instance.pitchfork.GetComponent<Pitchfork>().throwAtBird(val);
 			yield return new WaitForSeconds (2f);
 			moveSlider = true;

@@ -19,39 +19,18 @@ public class SoundManager : MonoBehaviour {
     public AudioSource rockingChair;
     public AudioSource pitchforkWhip;
 
-    //[Header("Sound clips")]
-    //public AudioClip roboWalkHouse;
-    //public AudioClip roboRunHouse;
-
-    //public AudioClip roboWalkDirt;
-    //public AudioClip roboRunDirt;
-
-    //public AudioClip doorOpenClose;
-
-    //public AudioClip scratchAtDoor;
-
-    //public AudioClip pickupPitchfork;
-    //public AudioClip throwPitchfork;
-
-    //public AudioClip wrong;
-
-    //public AudioClip birdFlap;
-
-    //public AudioClip rockingChair;
-
-     
-
 	
 	void Awake () {
         if(instance == null)
             instance = this;
         else if (instance != this)
             Destroy(gameObject);
+
+        setVolume(.5f);
 	}
 
     public void playRobot()
     {
-        print("paying robot sound");
         robot.Play();
     }
 
@@ -66,6 +45,7 @@ public class SoundManager : MonoBehaviour {
     }
     public void playBirdPeck()
     {
+        birdPeck.volume = 1;
         birdPeck.Play();
     }
     public void playWrong()
@@ -79,9 +59,9 @@ public class SoundManager : MonoBehaviour {
 
     public void playCritterAtDoor()
     {
-        critterAtDoor.Play();
         backgroundMusic.volume = 0.3f;
         critterAtDoor.volume = 1f;
+        critterAtDoor.Play();
 
     }
     public void stopCritterAtDoor()
@@ -107,7 +87,7 @@ public class SoundManager : MonoBehaviour {
 
     public void setVolume(float value)
     {
-        backgroundMusic.volume = Mathf.Clamp(value, 0, 0.6f);
+        backgroundMusic.volume = Mathf.Clamp(value, 0, 0.5f);
         miniGameMusic.volume = Mathf.Clamp(value, 0, 0.9f);
 
         robot.volume = value;

@@ -131,7 +131,10 @@ public class Interactables : MonoBehaviour
 
 				if (firstPitchfork) {
 					GameManager.instance.resetMats ();
-					GameManager.instance.nextItem ();
+                    if(GameManager.instance.spacedOutItems){
+                        StartCoroutine(GameManager.instance.waitAndSetNextItem(10f));
+                    }
+                    else GameManager.instance.nextItem ();
 					firstPitchfork = false;
 				}
 			}

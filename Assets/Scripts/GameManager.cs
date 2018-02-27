@@ -73,6 +73,8 @@ public class GameManager : MonoBehaviour
     public AudioSource[] doorSounds;
 
     [Header("Booleans")]
+    public bool spacedOutItems = false;
+
     public bool isNextDay = false;
 
 	public bool game1 = false;
@@ -82,6 +84,8 @@ public class GameManager : MonoBehaviour
 	public bool startRunning = false;
 
     public bool showingCanvas = true;
+
+   /******************************************/
 
 	private int currItemIndex = 0;
 
@@ -212,6 +216,7 @@ public class GameManager : MonoBehaviour
 
 	public IEnumerator startMiniGame1 ()
 	{
+        SoundManager.instance.stopBirdPeck();
         stopDoorSounds();
         player.GetComponent<Interactables>().showText(false);
 		game1 = true;
@@ -257,8 +262,11 @@ public class GameManager : MonoBehaviour
 			movePlayer (true);
             showHideUIElements(true);
 
-			if (currItemIndex != storyItems.Length - 1)
-				nextItem ();
+            if (currItemIndex != storyItems.Length - 1){
+                if (spacedOutItems) StartCoroutine(waitAndSetNextItem(10f));
+                else nextItem();
+            }
+				
 		} else {
 			print ("overall score = " + overallScore);
 			videoCanvas.GetComponent<Video> ().canSkip = false;
@@ -318,6 +326,12 @@ public class GameManager : MonoBehaviour
 		yield return new WaitForSeconds (1f);
 		trajectory.moveSlider = true;
 	}
+
+    public IEnumerator waitAndSetNextItem(float timeToWait){
+        resetMats();
+        yield return new WaitForSeconds(timeToWait);
+        nextItem();
+    }
 
     private void showHideUIElements(bool val)
     {
@@ -391,6 +405,11 @@ public class GameManager : MonoBehaviour
 	{
 		resetMats ();
 		currItem = storyItems [index];
+
+        if (index == 1)
+        {
+            SoundManager.instance.playBirdPeck();
+        }
 		currItem.GetComponent<MeshRenderer> ().material = glowMats [index];
 		//arrow.GetComponent<Float> ().setPos (new Vector3 (currItem.transform.position.x, currItem.transform.position.y + 2.5f, currItem.transform.position.z));
 
@@ -471,11 +490,11 @@ public class GameManager : MonoBehaviour
 
 	public void nextItem ()
 	{
+        print("next item");
 		currItemIndex++;
 		setCurrItem (currItemIndex);
 	}
 
-	
 
 	public void toggleController ()
 	{
