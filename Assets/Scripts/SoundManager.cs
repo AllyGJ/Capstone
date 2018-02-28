@@ -34,6 +34,11 @@ public class SoundManager : MonoBehaviour {
         robot.Play();
     }
 
+    public void muteWalk(bool val)
+    {
+        robot.mute = val;
+    }
+
     public void playPickup()
     {
         pickupFork.Play();

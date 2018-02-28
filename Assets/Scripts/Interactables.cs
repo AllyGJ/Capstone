@@ -116,7 +116,7 @@ public class Interactables : MonoBehaviour
 
 	void OnTriggerStay (Collider other)
 	{
-		if (other.tag == "Door") {
+		if (other.tag == "Door" && !GameManager.instance.game1 && !GameManager.instance.game2 && !GameManager.instance.game3) {
 
 			if (Input.GetKeyDown (interact)) {
 				StartCoroutine (openAndCloseDoor (other.gameObject));

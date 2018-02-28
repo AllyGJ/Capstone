@@ -14,12 +14,12 @@ public class ButtonMash : MonoBehaviour
 	public Image LoadingBar;
 	public Image CenterBtn;
 
-	private Sprite[] btns;
+	public Sprite[] btns;
 	private string[] keys;
 
 
 	public string[] xboxKeys; //Mac
-	public string[] keyKeys;
+	public string[] keyKeys; //keyboard
 
     public string[] xboxKeysWin;//Windows
 
@@ -32,6 +32,7 @@ public class ButtonMash : MonoBehaviour
 
     private bool pressedButton = false;
 
+    private bool canChooseBtn = true;
 
 	void Start ()
 	{
@@ -41,9 +42,9 @@ public class ButtonMash : MonoBehaviour
 		CenterBtn.GetComponent<Image> ();
 		LoadingBar.GetComponent<Image> ();
 
-		checkController ();
+		//checkController ();
 
-		randomlyPickBtn ();
+		//randomlyPickBtn ();
 		showButton (false);
 		
 	}
@@ -54,7 +55,13 @@ public class ButtonMash : MonoBehaviour
 		checkController ();
 
 		if (beginButtonMash) {
-			
+
+            if (canChooseBtn)
+            {
+                randomlyPickBtn();
+                canChooseBtn = false;
+            }
+
 			if (curButton < numButtons) {
                 showButton(true);
 				fillBar ();
@@ -127,7 +134,8 @@ public class ButtonMash : MonoBehaviour
 
 	void randomlyPickBtn ()
 	{
-		int rand = UnityEngine.Random.Range (0, 3);
+		int rand = UnityEngine.Random.Range (0,3);
+        print("rand: "+rand);
 		CenterBtn.sprite = btns [rand];
 	}
 
@@ -191,10 +199,10 @@ public class ButtonMash : MonoBehaviour
 
         LoadingBar.fillAmount = 0;
         LoadingBar.color = Color.blue;
-        randomlyPickBtn();
+       // randomlyPickBtn();
         userInputWrong = false;
         beginButtonMash = true;
-
+        canChooseBtn = true;
     }
     IEnumerator matchedButton ()
 	{
@@ -210,9 +218,10 @@ public class ButtonMash : MonoBehaviour
 
 		LoadingBar.fillAmount = 0;
         LoadingBar.color = Color.blue;
-		randomlyPickBtn ();
+		//randomlyPickBtn ();
 		userInputMatches = false;
         beginButtonMash = true;
+        canChooseBtn = true;
 	}
 
 	public void reset ()
@@ -222,5 +231,6 @@ public class ButtonMash : MonoBehaviour
 		LoadingBar.fillAmount = 0f;
         LoadingBar.color = Color.blue;
 		userInputMatches = false;
+        canChooseBtn = true;
 	}
 }

@@ -216,6 +216,8 @@ public class GameManager : MonoBehaviour
 
 	public IEnumerator startMiniGame1 ()
 	{
+        SoundManager.instance.muteWalk(true);
+        SoundManager.instance.stopRockingChair();
         SoundManager.instance.stopBirdPeck();
         stopDoorSounds();
         player.GetComponent<Interactables>().showText(false);
@@ -244,12 +246,15 @@ public class GameManager : MonoBehaviour
 	public void endMiniGame (bool theEnd)
 	{
         print("end mini game");
+        SoundManager.instance.muteWalk(false);
         SoundManager.instance.switchTo("norm");
-        SoundManager.instance.playRockingChair();
         player.GetComponent<Interactables>().showText(true);
 		buttonMash.beginButtonMash = false;
 		trajectory.moveSlider = false;
-		game1 = false;
+
+        if(game1 || game2) SoundManager.instance.playRockingChair();
+
+        game1 = false;
 		game2 = false;
 		game3 = false;
 		startRunning = false;
@@ -279,6 +284,8 @@ public class GameManager : MonoBehaviour
 
 	public IEnumerator startMiniGame2 ()
 	{
+        SoundManager.instance.muteWalk(true);
+        SoundManager.instance.stopRockingChair();
         stopDoorSounds();
         player.GetComponent<Interactables>().showText(false);
 		game2 = true;
@@ -300,6 +307,7 @@ public class GameManager : MonoBehaviour
 
 	public IEnumerator startMiniGame3 ()
 	{
+        SoundManager.instance.muteWalk(true);
         stopDoorSounds();
         player.GetComponent<Interactables>().showText(false);
 		game3 = true;
@@ -618,8 +626,10 @@ public class GameManager : MonoBehaviour
        // SoundManager.instance.setVolume(musicVolume);
 
         settingsOpen = false;
-       
-	}
+
+       // SoundManager.instance.playRockingChair();
+
+    }
 
 	public void quit ()
 	{

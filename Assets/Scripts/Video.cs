@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Video : MonoBehaviour
 {
-	public MovieTexture[] movie;
+	public UnityEngine.Video.VideoClip[] movie;
 	public int curVideo = 0;
 
 	public Text text;
@@ -16,10 +16,14 @@ public class Video : MonoBehaviour
 	public bool canSkip = true;
 	private string backCam = "lastCam";
 
+
+    private UnityEngine.Video.VideoPlayer vc;
+
 	// Use this for initialization
 	void Start ()
 	{
-		GetComponent<Renderer> ().material.mainTexture = movie [0];
+        vc = GetComponent<UnityEngine.Video.VideoPlayer>();
+		//GetComponent<Renderer> ().material.mainTexture = movie [0];
 	}
 	
 	// Update is called once per frame
@@ -30,11 +34,11 @@ public class Video : MonoBehaviour
 		else
 			text.text = "";
 
-		if (started && !movie [curVideo].isPlaying) {
+		if (started && !vc.isPlaying) {
             SoundManager.instance.muteAll(false);
 
             print("3");
-			movie [curVideo].Stop ();
+			vc.Stop ();
             GameManager.instance.useCamera (backCam);
 
 			started = false;
@@ -45,7 +49,8 @@ public class Video : MonoBehaviour
 	public void setNextVideo ()
 	{
 		curVideo++;
-		GetComponent<Renderer> ().material.mainTexture = movie [curVideo];
+        //GetComponent<Renderer> ().material.mainTexture = movie [curVideo];
+        vc.clip = movie[curVideo];
 	}
 
 	public void playVideo (string backCam)
@@ -53,7 +58,7 @@ public class Video : MonoBehaviour
         //SoundManager.instance.muteAll(true);
         print("4");
         GameManager.instance.useCamera ("movie");
-		movie [curVideo].Play ();
+		vc.Play ();
 		started = true;
 		this.backCam = backCam;
 	}
@@ -64,14 +69,14 @@ public class Video : MonoBehaviour
 			if (GameManager.instance.usingController) {
                 text.text = "Press <color=#00F448FF>A</color> to skip";
                 if (Input.GetKeyDown ("joystick button 16") || Input.GetKeyDown("joystick button 0")) {
-					movie [curVideo].Stop ();
+					vc.Stop ();
                     GameManager.instance.useCamera (backCam);
 					started = false;
 				}
 			} else {
                 text.text = "Press <color=#00F448FF>space</color> to skip";
 				if (Input.GetKeyDown ("space")) {
-					movie [curVideo].Stop ();
+					vc.Stop ();
                     print("5");
                     GameManager.instance.useCamera (backCam);
 					started = false;
@@ -84,6 +89,7 @@ public class Video : MonoBehaviour
 	public void reset ()
 	{
 		curVideo = 0;
-		GetComponent<Renderer> ().material.mainTexture = movie [curVideo];
+        //GetComponent<Renderer> ().material.mainTexture = movie [curVideo];
+        vc.clip = movie[curVideo];
 	}
 }
