@@ -17,7 +17,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Settings")]
     public bool macBuild;
-	public bool usingController;
+    public bool spacedOutItems = false;
+    public bool usingController;
 	public bool musicOn;
 	public float musicVolume;
 
@@ -73,7 +74,6 @@ public class GameManager : MonoBehaviour
     public AudioSource[] doorSounds;
 
     [Header("Booleans")]
-    public bool spacedOutItems = false;
 
     public bool isNextDay = false;
 
