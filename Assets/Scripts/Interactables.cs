@@ -73,8 +73,8 @@ public class Interactables : MonoBehaviour
 
         //MINIGAME1
 		if (firstGame1 && other.tag == "miniGame1" && GameManager.instance.currItem.gameObject.name.ToString () == "Door1") {
-			GameManager.instance.setNextVideo ();
-			GameManager.instance.playVideo ("miniGame1");
+			//GameManager.instance.setNextVideo ();
+			//GameManager.instance.playVideo ("miniGame1");
 			StartCoroutine (GameManager.instance.startMiniGame1 ());
             SoundManager.instance.switchTo("game");
 			firstGame1 = false;
@@ -84,7 +84,8 @@ public class Interactables : MonoBehaviour
 		if (firstDoor && other.tag == "cutscene" && GameManager.instance.currItem.gameObject.name.ToString () == "Door2") {
 			
 			GameManager.instance.setNextVideo ();
-			GameManager.instance.playVideo ("player");
+            GameManager.instance.currentHouseCam = GameManager.instance.initialCam;
+			GameManager.instance.playVideo ("lastCam");
 			StartCoroutine (GameManager.instance.waitForVideo (true));
 
 			firstDoor = false;
@@ -124,7 +125,7 @@ public class Interactables : MonoBehaviour
 			}
 		}
 
-		if (other.gameObject.name.ToString () == "Pitchfork") {
+        if (other.gameObject.name.ToString () == "Pitchfork" && !GameManager.instance.game1 && !GameManager.instance.game2 && !GameManager.instance.game3) {
 			if (Input.GetKeyDown (interact)) {
                 
                 StartCoroutine(other.GetComponent<Pitchfork>().Pickup());

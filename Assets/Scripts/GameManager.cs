@@ -150,7 +150,7 @@ public class GameManager : MonoBehaviour
             picViewingCam.transform.position = Vector3.Lerp(picViewingCam.transform.position, newPicCamPos, Time.deltaTime * 2f);
         }
 
-        if(currentCam == "lastCam"){
+        if(currentCam == "lastCam" || currentCam == "outside"){
             if(!usingController && Input.GetKeyDown("z")){
                 if (settingsOpen) closeSettings();
                 else openSettings();
@@ -216,6 +216,7 @@ public class GameManager : MonoBehaviour
 
 	public IEnumerator startMiniGame1 ()
 	{
+        useCamera("miniGame1");
         SoundManager.instance.muteWalk(true);
         SoundManager.instance.stopRockingChair();
         SoundManager.instance.stopBirdPeck();
@@ -275,7 +276,13 @@ public class GameManager : MonoBehaviour
 		} else {
 			print ("overall score = " + overallScore);
 			videoCanvas.GetComponent<Video> ().canSkip = false;
-			setNextVideo ();
+            //setNextVideo ();
+
+            if (overallScore >= 19f) {
+                videoCanvas.GetComponent<Video>().setGoodEnding(true);
+            }
+            else videoCanvas.GetComponent<Video>().setGoodEnding(false);
+
 			playVideo ("canvas");
 			StartCoroutine (waitToReset ());
 		}

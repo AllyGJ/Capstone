@@ -91,7 +91,7 @@ public class Trajectory : MonoBehaviour
             }else{
                 stopButton = "joystick button 0";
             }
-            trajText.text = "HIT <color=#00F448FF>A</color>' TO STOP";
+            trajText.text = "HIT <color=#00F448FF>A</color> TO STOP";
 		} else {
 			stopButton = "space";
             trajText.text = "HIT <color=#00F448FF>SPACEBAR</color> TO STOP";

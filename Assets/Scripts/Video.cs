@@ -8,6 +8,10 @@ using UnityEngine.UI;
 public class Video : MonoBehaviour
 {
 	public UnityEngine.Video.VideoClip[] movie;
+
+    public UnityEngine.Video.VideoClip goodEnding;
+    public UnityEngine.Video.VideoClip badEnding;
+
 	public int curVideo = 0;
 
 	public Text text;
@@ -34,8 +38,9 @@ public class Video : MonoBehaviour
 		else
 			text.text = "";
 
-		if (started && !vc.isPlaying) {
-            SoundManager.instance.muteAll(false);
+       // print(vc.time);
+        if (started && (vc.time >= vc.clip.length)) {
+           // SoundManager.instance.muteAll(false);
 
             print("3");
 			vc.Stop ();
@@ -53,10 +58,17 @@ public class Video : MonoBehaviour
         vc.clip = movie[curVideo];
 	}
 
+    public void setGoodEnding(bool val)
+    {
+        if (val) vc.clip = goodEnding;
+        else vc.clip = badEnding;
+    }
+
 	public void playVideo (string backCam)
 	{
         //SoundManager.instance.muteAll(true);
         print("4");
+       // print("video length: " + vc.clip.length);
         GameManager.instance.useCamera ("movie");
 		vc.Play ();
 		started = true;
