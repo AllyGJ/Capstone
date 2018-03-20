@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
     public GameObject critter;
 	public GameObject pitchfork;
 	public GameObject arrow;
+    public Animator rockingChairAnim;
 
 	public Transform pitchforkStart;
 	public Transform startPoint;
@@ -69,6 +70,8 @@ public class GameManager : MonoBehaviour
     public Slider canvasVolume;
 
 	public int overallScore;
+
+
 
     [Header("Door sounds")]
     public AudioSource[] doorSounds;
@@ -112,6 +115,7 @@ public class GameManager : MonoBehaviour
 
 
         //DontDestroyOnLoad (gameObject);
+
 
         playerAnim = player.GetComponent<Animator>();
 		buttonMash = GetComponent<ButtonMash> ();
@@ -219,6 +223,7 @@ public class GameManager : MonoBehaviour
         useCamera("miniGame1");
         SoundManager.instance.muteWalk(true);
         SoundManager.instance.stopRockingChair();
+        rockingChairAnim.SetBool("rock", false);
         SoundManager.instance.stopBirdPeck();
         stopDoorSounds();
         player.GetComponent<Interactables>().showText(false);
@@ -250,10 +255,15 @@ public class GameManager : MonoBehaviour
         SoundManager.instance.muteWalk(false);
         SoundManager.instance.switchTo("norm");
         player.GetComponent<Interactables>().showText(true);
+        player.transform.eulerAngles = new Vector3(0, 0, 0);
 		buttonMash.beginButtonMash = false;
 		trajectory.moveSlider = false;
 
-        if(game1 || game2) SoundManager.instance.playRockingChair();
+        if (game1 || game2)
+        {
+            rockingChairAnim.SetBool("rock",true);
+            SoundManager.instance.playRockingChair();
+        }
 
         game1 = false;
 		game2 = false;
@@ -293,6 +303,7 @@ public class GameManager : MonoBehaviour
 	{
         SoundManager.instance.muteWalk(true);
         SoundManager.instance.stopRockingChair();
+        rockingChairAnim.SetBool("rock", false);
         stopDoorSounds();
         player.GetComponent<Interactables>().showText(false);
 		game2 = true;
@@ -315,7 +326,9 @@ public class GameManager : MonoBehaviour
 	public IEnumerator startMiniGame3 ()
 	{
         SoundManager.instance.muteWalk(true);
+        SoundManager.instance.stopRockingChair();
         stopDoorSounds();
+        rockingChairAnim.SetBool("rock", false);
         player.GetComponent<Interactables>().showText(false);
 		game3 = true;
 		bird.SetActive (true);
@@ -352,6 +365,20 @@ public class GameManager : MonoBehaviour
     {
         settingsButton.SetActive(val);
         gearFrame.SetActive(val);
+    }
+
+    public IEnumerator waitForGameScene()
+    {
+        setNextVideo();
+        playVideo("miniGame2");
+
+        while (videoCanvas.GetComponent<Video>().started == true)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+        yield return new WaitForSeconds(0.1f);
+        endMiniGame(false);
+
     }
 
 	public IEnumerator waitForVideo (bool nDay)
@@ -404,7 +431,6 @@ public class GameManager : MonoBehaviour
 
 	public void playVideo (string backCam)
 	{
-		
 		videoCanvas.GetComponent<Video> ().playVideo (backCam);
 		//yield return new WaitForSeconds (1f);
 	}
@@ -442,11 +468,13 @@ public class GameManager : MonoBehaviour
                 canvasCam.enabled = true;
                 break;
             case "outside":
+                movePlayer(true);
                 playerCam.enabled = true;
                 player.GetComponent<vThirdPersonInput>().setCamera(playerCam);
                 gameItems.worldCamera = playerCam;
                 break;
             case "movie":
+                movePlayer(false);
                 movieCam.enabled = true;
                 break;
             case "miniGame1":
@@ -598,6 +626,7 @@ public class GameManager : MonoBehaviour
         canvasVolume.interactable = true;
 		useCamera ("canvas");
 		
+        rockingChairAnim.SetBool("rock",true);
 
         picLights.SetActive(false);
 
@@ -630,11 +659,9 @@ public class GameManager : MonoBehaviour
 		videoCanvas.GetComponent<Video> ().canSkip = true;
 
         GetComponent<GameManager>().enabled = true;
-       // SoundManager.instance.setVolume(musicVolume);
 
         settingsOpen = false;
 
-       // SoundManager.instance.playRockingChair();
 
     }
 

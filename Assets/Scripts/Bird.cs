@@ -108,19 +108,18 @@ public class Bird : MonoBehaviour
     {
         //if hit and still above the ground
         if (val){
-            //print("was hit");
             tempPos.y = Mathf.Lerp(tempPos.y, tempPos.y - 0.3f, 1f);
         }
-        //else{
-        //   // print("missed");
-        //    tempPos.y = Mathf.Lerp(tempPos.y, tempPos.y + 0.3f, 3f);
-        //}
+      
     }
 
     public void reset()
     {
         beginGame1 = true;
         beginGame2 = true;
+
+        startSpot3 = spot3.position;
+        tempPos = new Vector3(0f, spot3.position.y, spot3.position.z);
 
     }
 		

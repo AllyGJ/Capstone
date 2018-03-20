@@ -75,6 +75,7 @@ public class SoundManager : MonoBehaviour {
     }
     public void playRockingChair()
     {
+        rockingChair.volume = 1;
         rockingChair.Play();
     }
     public void stopRockingChair()

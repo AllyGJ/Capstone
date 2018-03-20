@@ -92,7 +92,15 @@ public class ButtonMash : MonoBehaviour
 				print (correct);
 				GameManager.instance.addToScore (correct - 1);
 				beginButtonMash = false;
-				GameManager.instance.endMiniGame (false);
+
+                if (GameManager.instance.game2)
+                {
+                    StartCoroutine(GameManager.instance.waitForGameScene());
+                }
+                else
+                {
+                    GameManager.instance.endMiniGame(false);
+                }
 			}
 				
 
