@@ -35,15 +35,26 @@ public class Interactables : MonoBehaviour
 	void OnTriggerEnter (Collider other)
 	{
 		if (other.tag == "Interactable") {
-			itemTxt.text = other.gameObject.name.ToString ().ToUpper () + ". . . ";
+			itemTxt.text = other.gameObject.name.ToUpper () + ". . . ";
 
-			if (other.gameObject.name.ToString () == "Pitchfork") {
+			if (other.gameObject.name == "Pitchfork") {
 				itemTxt.text += buttonTxt + " to pick up.";
 			}
 
-			if (other.gameObject.name.ToString () == "scrapheap") {
-				
-			}
+            if (other.gameObject.name.ToLower().Contains("news"))
+            {
+                itemTxt.text = "News clipping ... "+buttonTxt + " to look closer.";
+            }
+
+            if (other.gameObject.name.ToLower().Contains(("tea")))
+            {
+                itemTxt.text += "Master loves tea.";
+            }
+			
+            if (other.gameObject.name.ToLower().Contains(("portrait")))
+            {
+                itemTxt.text = "Master as a child ... "+buttonTxt+" to look closer.";
+            }
 		}
 
 		if (other.tag == "Door") {
@@ -72,7 +83,7 @@ public class Interactables : MonoBehaviour
         }
 
         //MINIGAME1
-		if (firstGame1 && other.tag == "miniGame1" && GameManager.instance.currItem.gameObject.name.ToString () == "Door1") {
+		if (firstGame1 && other.tag == "miniGame1" && GameManager.instance.currItem.gameObject.name == "Door1") {
 			//GameManager.instance.setNextVideo ();
 			//GameManager.instance.playVideo ("miniGame1");
 			StartCoroutine (GameManager.instance.startMiniGame1 ());
@@ -81,7 +92,7 @@ public class Interactables : MonoBehaviour
 		}
 
         //CUTSCENE TO NEXT DAY
-		if (firstDoor && other.tag == "cutscene" && GameManager.instance.currItem.gameObject.name.ToString () == "Door2") {
+		if (firstDoor && other.tag == "cutscene" && GameManager.instance.currItem.gameObject.name == "Door2") {
 			
 			GameManager.instance.setNextVideo ();
             GameManager.instance.currentHouseCam = GameManager.instance.initialCam;
@@ -93,7 +104,7 @@ public class Interactables : MonoBehaviour
 
         //MINIGAME2
 		if (GameManager.instance.isNextDay && !firstDoor && secondDoor && other.tag == "miniGame2"
-		    && GameManager.instance.currItem.gameObject.name.ToString () == "Door2") {
+		    && GameManager.instance.currItem.gameObject.name == "Door2") {
             SoundManager.instance.stopCritterAtDoor();
             SoundManager.instance.switchTo("game");
 			GameManager.instance.setNextVideo ();
@@ -105,7 +116,7 @@ public class Interactables : MonoBehaviour
 
         //MINIGAME3
 		if (firstGame3 && !firstGame1 && !firstDoor && !secondDoor && other.tag == "miniGame1"
-		    && GameManager.instance.currItem.gameObject.name.ToString () == "Door1") {
+		    && GameManager.instance.currItem.gameObject.name == "Door1") {
 			GameManager.instance.setNextVideo ();
 			GameManager.instance.playVideo ("miniGame3");
 			StartCoroutine (GameManager.instance.startMiniGame3 ());
@@ -125,7 +136,7 @@ public class Interactables : MonoBehaviour
 			}
 		}
 
-        if (other.gameObject.name.ToString () == "Pitchfork" && !GameManager.instance.game1 && !GameManager.instance.game2 && !GameManager.instance.game3) {
+        if (other.gameObject.name == "Pitchfork" && !GameManager.instance.game1 && !GameManager.instance.game2 && !GameManager.instance.game3) {
 			if (Input.GetKeyDown (interact)) {
                 
                 StartCoroutine(other.GetComponent<Pitchfork>().Pickup());
@@ -147,6 +158,21 @@ public class Interactables : MonoBehaviour
             }
         }
 
+        if (other.gameObject.name.ToLower().Contains("news"))
+        {
+            if (Input.GetKeyDown(interact))
+            { 
+                GameManager.instance.imgOverlay.ShowPaper();
+            }
+        }
+
+        if (other.gameObject.name.ToLower().Contains("portrait"))
+        {
+            if (Input.GetKeyDown(interact))
+            {
+                GameManager.instance.imgOverlay.ShowPortrait();
+            }
+        }
 
 	}
 

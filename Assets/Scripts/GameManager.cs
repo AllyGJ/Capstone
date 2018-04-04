@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
     public GameObject settingsMain;
     public GameObject gearFrame;
 	public Canvas gameItems;
+    [HideInInspector] public ImageOverlay imgOverlay;
 	public GameObject videoCanvas;
 
     public GameObject upButton;
@@ -123,7 +124,8 @@ public class GameManager : MonoBehaviour
 
         newPicCamPos = picViewingCam.transform.position;
 
-		//camPosRot = playerCam.transform;
+        //camPosRot = playerCam.transform;
+        imgOverlay = gameItems.GetComponentInChildren<ImageOverlay>();
 
 		musicOn = true;
 		musicVolume = 0.5f;
@@ -661,6 +663,8 @@ public class GameManager : MonoBehaviour
         GetComponent<GameManager>().enabled = true;
 
         settingsOpen = false;
+
+        imgOverlay.CloseImgOverlay();
 
 
     }
