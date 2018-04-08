@@ -102,6 +102,8 @@ public class Video : MonoBehaviour
 	{
 		curVideo = 0;
         //GetComponent<Renderer> ().material.mainTexture = movie [curVideo];
+
+        if(vc == null) vc = GetComponent<UnityEngine.Video.VideoPlayer>();
         vc.clip = movie[curVideo];
 	}
 }

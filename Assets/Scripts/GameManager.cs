@@ -174,6 +174,8 @@ public class GameManager : MonoBehaviour
             settingsButton.GetComponent<Button>().GetComponentInChildren<Text>().text = "z";
         }
 
+
+
     }
 
     public void stopShowingCanvas()
@@ -261,11 +263,17 @@ public class GameManager : MonoBehaviour
 		buttonMash.beginButtonMash = false;
 		trajectory.moveSlider = false;
 
-        if (game1 || game2)
+        if (game1)
         {
             rockingChairAnim.SetBool("rock",true);
             SoundManager.instance.playRockingChair();
         }
+        else if(game2){
+            rockingChairAnim.SetBool("rock", false);
+            SoundManager.instance.stopRockingChair();
+        }
+
+        if(game3) playerAnim.SetBool("Game3Pos", false);
 
         game1 = false;
 		game2 = false;
@@ -340,6 +348,7 @@ public class GameManager : MonoBehaviour
 
         pitchfork.GetComponent<Pitchfork>().setPos3();
 
+        playerAnim.SetBool("Game3Pos", true);
 		while (videoCanvas.GetComponent<Video> ().started == true) {
 			yield return new WaitForSeconds (0.1f);
 		}
@@ -634,9 +643,6 @@ public class GameManager : MonoBehaviour
 
         player.GetComponent<vThirdPersonInput>().setCamera(initialCam);
 
-        //playerCam.transform.position = camResetPos.position;
-        //playerCam.transform.rotation = camResetPos.rotation;
-
         showHideUIElements(true);
 		bird.SetActive (false);
         critter.SetActive(false);
@@ -647,9 +653,6 @@ public class GameManager : MonoBehaviour
         player.transform.rotation = startPoint.rotation;
 		movePlayer (false);
 
-        //playerCam.transform.position = new Vector3(player.transform.position.x + 4f, player.transform.position.y, player.transform.position.z);
-        //playerCam.transform.eulerAngles = new Vector3(0, 90, 0);
-
 		pitchfork.transform.parent = null;
 		pitchfork.transform.position = pitchforkStart.position;
 		pitchfork.transform.rotation = pitchforkStart.rotation;
@@ -659,6 +662,7 @@ public class GameManager : MonoBehaviour
 		player.GetComponent<Player> ().resetSpot3 ();
 
 		videoCanvas.GetComponent<Video> ().canSkip = true;
+        videoCanvas.GetComponent<Video>().reset();
 
         GetComponent<GameManager>().enabled = true;
 
