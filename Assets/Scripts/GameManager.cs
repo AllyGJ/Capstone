@@ -625,8 +625,8 @@ public class GameManager : MonoBehaviour
 		musicOn = true;
 		musicVolume = 0.5f;
 
-        currItemIndex = 0;
-		//currItemIndex = 4;
+       // currItemIndex = 0;
+		currItemIndex = 4;
 		setCurrItem (currItemIndex);
 
         currentHouseCam = initialCam;
@@ -658,7 +658,7 @@ public class GameManager : MonoBehaviour
 		pitchfork.transform.rotation = pitchforkStart.rotation;
         pitchfork.GetComponent<Pitchfork>().reset();
 
-		player.GetComponent<Interactables> ().reset ();
+		//player.GetComponent<Interactables> ().reset ();
 		player.GetComponent<Player> ().resetSpot3 ();
 
 		videoCanvas.GetComponent<Video> ().canSkip = true;

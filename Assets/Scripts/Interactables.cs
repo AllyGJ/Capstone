@@ -11,19 +11,19 @@ public class Interactables : MonoBehaviour
 	private string buttonTxt;
 	private string interact;
 
-    private bool firstPitchfork = true;
-    private bool firstGame1 = true;
-    private bool firstDoor = true;
-    private bool secondDoor = true;
-    private bool firstGame2 = true;
-    private bool firstGame3 = true;
-
-    //private bool firstPitchfork = false;
-    //private bool firstGame1 = false;
-    //private bool firstDoor = false;
-    //private bool secondDoor = false;
-    //private bool firstGame2 = false;
+    //private bool firstPitchfork = true;
+    //private bool firstGame1 = true;
+    //private bool firstDoor = true;
+    //private bool secondDoor = true;
+    //private bool firstGame2 = true;
     //private bool firstGame3 = true;
+
+    private bool firstPitchfork = false;
+    private bool firstGame1 = false;
+    private bool firstDoor = false;
+    private bool secondDoor = false;
+    private bool firstGame2 = false;
+    private bool firstGame3 = true;
 
 
     void Update ()
