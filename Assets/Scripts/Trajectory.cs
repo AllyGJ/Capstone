@@ -43,12 +43,12 @@ public class Trajectory : MonoBehaviour
 
 			if (Input.GetKeyDown (stopButton)) {
 				curThrows++;
-                print("pressed space");
+                //print("pressed space");
 				moveSlider = false;
 				//throwValue = traj.value;
 
 				int val = getCorrectScore (traj.value);
-                print("val = " + val);
+                //print("val = " + val);
 				score += val;
 
 				//animation of robot throwing pitchfork at bird

@@ -255,7 +255,7 @@ public class GameManager : MonoBehaviour
 
 	public void endMiniGame (bool theEnd)
 	{
-        print("end mini game");
+       // print("end mini game");
         SoundManager.instance.muteWalk(false);
         SoundManager.instance.switchTo("norm");
         player.GetComponent<Interactables>().showText(true);
@@ -273,7 +273,7 @@ public class GameManager : MonoBehaviour
             SoundManager.instance.stopRockingChair();
         }
 
-        if(game3) playerAnim.SetBool("Game3Pos", false);
+        if(game3) playerAnim.SetTrigger("Game3PosDone");
 
         game1 = false;
 		game2 = false;
@@ -348,7 +348,7 @@ public class GameManager : MonoBehaviour
 
         pitchfork.GetComponent<Pitchfork>().setPos3();
 
-        playerAnim.SetBool("Game3Pos", true);
+        playerAnim.SetTrigger("Game3Pos");
 		while (videoCanvas.GetComponent<Video> ().started == true) {
 			yield return new WaitForSeconds (0.1f);
 		}
@@ -544,7 +544,7 @@ public class GameManager : MonoBehaviour
 
 	public void nextItem ()
 	{
-        print("next item");
+      //  print("next item");
 		currItemIndex++;
 		setCurrItem (currItemIndex);
 	}
@@ -625,8 +625,8 @@ public class GameManager : MonoBehaviour
 		musicOn = true;
 		musicVolume = 0.5f;
 
-       // currItemIndex = 0;
-		currItemIndex = 4;
+        currItemIndex = 0;
+	//	currItemIndex = 4;
 		setCurrItem (currItemIndex);
 
         currentHouseCam = initialCam;
@@ -658,7 +658,7 @@ public class GameManager : MonoBehaviour
 		pitchfork.transform.rotation = pitchforkStart.rotation;
         pitchfork.GetComponent<Pitchfork>().reset();
 
-		//player.GetComponent<Interactables> ().reset ();
+		player.GetComponent<Interactables> ().reset ();
 		player.GetComponent<Player> ().resetSpot3 ();
 
 		videoCanvas.GetComponent<Video> ().canSkip = true;

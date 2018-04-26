@@ -42,7 +42,7 @@ public class Video : MonoBehaviour
         if (started && (vc.time >= vc.clip.length)) {
            // SoundManager.instance.muteAll(false);
 
-            print("3");
+           // print("3");
 			vc.Stop ();
             GameManager.instance.useCamera (backCam);
 
@@ -67,7 +67,7 @@ public class Video : MonoBehaviour
 	public void playVideo (string backCam)
 	{
         //SoundManager.instance.muteAll(true);
-        print("4");
+       // print("4");
        // print("video length: " + vc.clip.length);
         GameManager.instance.useCamera ("movie");
 		vc.Play ();
@@ -89,7 +89,7 @@ public class Video : MonoBehaviour
                 text.text = "Press <color=#00F448FF>space</color> to skip";
 				if (Input.GetKeyDown ("space")) {
 					vc.Stop ();
-                    print("5");
+                   // print("5");
                     GameManager.instance.useCamera (backCam);
 					started = false;
 				}

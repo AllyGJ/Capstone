@@ -143,7 +143,7 @@ public class ButtonMash : MonoBehaviour
 	void randomlyPickBtn ()
 	{
 		int rand = UnityEngine.Random.Range (0,3);
-        print("rand: "+rand);
+//        print("rand: "+rand);
 		CenterBtn.sprite = btns [rand];
 	}
 
