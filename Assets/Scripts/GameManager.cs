@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     public Camera currentHouseCam;
     public GameObject[] houseCams;
 
+    public GameObject[] afterGameCams;
+
     [Header("Cameras")]
     public string currentCam;
 
@@ -267,10 +269,12 @@ public class GameManager : MonoBehaviour
         {
             rockingChairAnim.SetBool("rock",true);
             SoundManager.instance.playRockingChair();
+            currentHouseCam = afterGameCams[0].GetComponent<Camera>();
         }
         else if(game2){
             rockingChairAnim.SetBool("rock", false);
             SoundManager.instance.stopRockingChair();
+            currentHouseCam = afterGameCams[1].GetComponent<Camera>();
         }
 
         if(game3) playerAnim.SetTrigger("Game3PosDone");

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 #if UNITY_5_3_OR_NEWER
 using UnityEngine.SceneManagement;
@@ -78,7 +79,7 @@ namespace Invector.CharacterController
 		{
 			cc.AirControl ();
            
-                CameraInput ();
+               // CameraInput ();
 		}
 
 		protected virtual void Update ()
@@ -117,7 +118,7 @@ namespace Invector.CharacterController
 		{
 			ExitGameInput ();
 
-                CameraInput ();
+            CameraInput ();
 
 			if (!cc.lockMovement) {
 				MoveCharacter ();
@@ -190,9 +191,14 @@ namespace Invector.CharacterController
 
 			tpCamera.RotateCamera (X, Y);
 
-			// tranform Character direction from camera if not KeepDirection
-			if (!keepDirection)
-				cc.UpdateTargetDirection (tpCamera != null ? tpCamera.transform : null);
+            // tranform Character direction from camera if not KeepDirection
+            //if (!keepDirection)
+
+            if (updateDirection)
+            {
+                cc.UpdateTargetDirection(tpCamera != null ? tpCamera.transform : null);
+            }
+            
 			// rotate the character with the camera while strafing        
 			RotateWithCamera (tpCamera != null ? tpCamera.transform : null);            
 		}
@@ -222,12 +228,20 @@ namespace Invector.CharacterController
 
 		}
 
-		#endregion
+        #endregion
 
+        public bool updateDirection = true;
         public void setCamera(Camera cam)
         {
             tpCamera = cam.GetComponent<vThirdPersonCamera>();
+            updateDirection = false;
+            StartCoroutine(WaitAndThenUpdate(0.5f));
         }
 
+        private IEnumerator WaitAndThenUpdate(float time)
+        {
+            yield return new WaitForSeconds(time);
+            updateDirection = true;
+        }
 	}
 }

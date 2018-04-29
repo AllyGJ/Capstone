@@ -34,53 +34,53 @@ public class Interactables : MonoBehaviour
 
 	void OnTriggerEnter (Collider other)
 	{
-		if (other.tag == "Interactable") {
-			itemTxt.text = other.gameObject.name.ToUpper () + ". . . ";
+		//if (other.tag == "Interactable") {
+		//	itemTxt.text = other.gameObject.name.ToUpper () + ". . . ";
 
-			if (other.gameObject.name == "Pitchfork") {
-				itemTxt.text += buttonTxt + " to pick up.";
-			}
+		//	if (other.gameObject.name == "Pitchfork") {
+		//		itemTxt.text += buttonTxt + " to pick up.";
+		//	}
 
-            if (other.gameObject.name.ToLower().Contains("news"))
-            {
-                itemTxt.text = "News clipping ... "+buttonTxt + " to look closer.";
-            }
+  //          if (other.gameObject.name.ToLower().Contains("news"))
+  //          {
+  //              itemTxt.text = "News clipping ... "+buttonTxt + " to look closer.";
+  //          }
 
-            if (other.gameObject.name.ToLower().Contains(("tea")))
-            {
-                itemTxt.text += "Master loves tea.";
-            }
+  //          if (other.gameObject.name.ToLower().Contains(("tea")))
+  //          {
+  //              itemTxt.text += "Master loves tea.";
+  //          }
 			
-            if (other.gameObject.name.ToLower().Contains(("portrait")))
-            {
-                itemTxt.text = "Master as a child ... "+buttonTxt+" to look closer.";
-            }
-		}
+  //          if (other.gameObject.name.ToLower().Contains(("portrait")))
+  //          {
+  //              itemTxt.text = "Master as a child ... "+buttonTxt+" to look closer.";
+  //          }
+		//}
 
-		if (other.tag == "Door") {
-			itemTxt.text = "Open door? " + buttonTxt;
-			other.GetComponent<Door> ().Move ();
-		}
+		//if (other.tag == "Door") {
+		//	itemTxt.text = "Open door? " + buttonTxt;
+		//	other.GetComponent<Door> ().Move ();
+		//}
 
-        if (other.tag == "photos")
-        {
-            itemTxt.text = "Family photos. " + buttonTxt + " to view photos.";
-        }
+        //if (other.tag == "photos")
+        //{
+        //    itemTxt.text = "Family photos. " + buttonTxt + " to view photos.";
+        //}
 
-        if(other.tag == "poster")
-        {
-            itemTxt.text = "AIRRaT Poster. Master used to work there.";
-        }
+        //if(other.tag == "poster")
+        //{
+        //    itemTxt.text = "AIRRaT Poster. Master used to work there.";
+        //}
 
-        if(other.tag == "bed")
-        {
-            itemTxt.text = "Master sleeps here.";
-        }
+        //if(other.tag == "bed")
+        //{
+        //    itemTxt.text = "Master sleeps here.";
+        //}
 
-        if (other.tag == "dinnerTable")
-        {
-            itemTxt.text = "Master and family eat here";
-        }
+        //if (other.tag == "dinnerTable")
+        //{
+        //    itemTxt.text = "Master and family eat here";
+        //}
 
         //MINIGAME1
 		if (firstGame1 && other.tag == "miniGame1" && GameManager.instance.currItem.gameObject.name == "Door1") {
@@ -128,6 +128,62 @@ public class Interactables : MonoBehaviour
 
 	void OnTriggerStay (Collider other)
 	{
+        if (other.tag == "Interactable")
+        {
+            itemTxt.text = other.gameObject.name.ToUpper() + ". . . ";
+
+            if (other.gameObject.name == "Pitchfork")
+            {
+                itemTxt.text += buttonTxt + " to pick up.";
+            }
+
+            if (other.gameObject.name.ToLower().Contains("news"))
+            {
+                itemTxt.text = "News clipping ... " + buttonTxt + " to look closer.";
+            }
+
+            if (other.gameObject.name == "Workbench")
+            {
+                itemTxt.text = "Master's blueprints ... " + buttonTxt + " to look closer.";
+            }
+
+            if (other.gameObject.name.ToLower().Contains(("tea")))
+            {
+                itemTxt.text += "Master loves tea.";
+            }
+
+            if (other.gameObject.name.ToLower().Contains(("portrait")))
+            {
+                itemTxt.text = "Master as a child ... " + buttonTxt + " to look closer.";
+            }
+        }
+
+        if (other.tag == "Door")
+        {
+            itemTxt.text = "Open door? " + buttonTxt;
+            other.GetComponent<Door>().Move();
+        }
+
+        if (other.tag == "photos")
+        {
+            itemTxt.text = "Family photos. " + buttonTxt + " to view photos.";
+        }
+
+        if (other.tag == "poster")
+        {
+            itemTxt.text = "AIRRaT Poster. Master used to work there.";
+        }
+
+        if (other.tag == "bed")
+        {
+            itemTxt.text = "Master sleeps here.";
+        }
+
+        if (other.tag == "dinnerTable")
+        {
+            itemTxt.text = "Master and family eat here";
+        }
+
 		if (other.tag == "Door" && !GameManager.instance.game1 && !GameManager.instance.game2 && !GameManager.instance.game3) {
 
 			if (Input.GetKeyDown (interact)) {
@@ -163,6 +219,14 @@ public class Interactables : MonoBehaviour
             if (Input.GetKeyDown(interact))
             { 
                 GameManager.instance.imgOverlay.ShowPaper();
+            }
+        }
+
+        if (other.gameObject.name =="Workbench")
+        {
+            if (Input.GetKeyDown(interact))
+            {
+                GameManager.instance.imgOverlay.ShowPrints();
             }
         }
 

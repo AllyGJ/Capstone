@@ -11,7 +11,8 @@ public class Pitchfork : MonoBehaviour
     public GameObject grabber;
     public GameObject playerHand;
     public Transform game3Pos;
-
+    public Collider bounds;
+    public Collider triggerCol;
 
     private string interact;
 
@@ -93,10 +94,18 @@ public class Pitchfork : MonoBehaviour
 
         holding = true;
         SoundManager.instance.playPickup();
-        this.transform.parent = playerHand.transform;
-        this.transform.position = playerHand.transform.position;
+        this.transform.SetParent(playerHand.transform);
+
+        this.transform.localPosition = new Vector3(-0.1f,0,0);
+
+        this.transform.rotation = new Quaternion(0, 0, 0, 0);
         this.transform.eulerAngles = new Vector3(0,0,0);
-        this.transform.localRotation = new Quaternion(0, 0, 0, 0);
+        this.transform.localRotation = new Quaternion(0,0,0,0);
+
+        //this.transform.localRotation = new Quaternion(0, 0, -30, 0);
+
+        bounds.enabled = false;
+        triggerCol.enabled = false;
 
     }
 
@@ -190,5 +199,8 @@ public class Pitchfork : MonoBehaviour
         hitBird = false;
         throwing = false;
         changeBirdPos = true;
+
+        bounds.enabled = true;
+        triggerCol.enabled = true;
     }
 }
