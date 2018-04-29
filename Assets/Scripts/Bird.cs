@@ -22,6 +22,8 @@ public class Bird : MonoBehaviour
     private bool beginGame1 = true;
     private bool beginGame2 = true;
 
+    public Animator birdAnim;
+
 
 
 	void Start ()
@@ -30,7 +32,9 @@ public class Bird : MonoBehaviour
 		startSpot3 = spot3.position;
        // print("hi: "+startSpot3);
 		tempPos = new Vector3 (0f, spot3.position.y, spot3.position.z);
-		//tempPos = startSpot3;
+        //tempPos = startSpot3;
+
+       
 	}
 
 	void Update ()
@@ -40,6 +44,7 @@ public class Bird : MonoBehaviour
             {
                 setPos(1);
                 transform.GetComponent<Float>().setPos(spot1.position);
+                birdAnim.SetTrigger("FlapWings");
                 beginGame1 = false;
             }
             transform.GetComponent<Float>().floating = true;
@@ -51,15 +56,18 @@ public class Bird : MonoBehaviour
                 setPos3 = true;
                 setPos(2);
                 transform.GetComponent<Float>().setPos(spot2.position);
+                birdAnim.SetTrigger("FlapWings");
                 beginGame2 = false;
             }
             transform.GetComponent<Float>().floating = true;
 
 		} else if (GameManager.instance.game3) {
             transform.GetComponent<Float>().floating = false;
+
 			if (setPos3) {
 				transform.position = startSpot3;
-                transform.rotation = new Quaternion(0, 0, 0, 0);
+                transform.rotation = spot3.rotation;
+                birdAnim.SetTrigger("FlapWings");
 				setPos3 = false;
 			}
 				
@@ -108,6 +116,8 @@ public class Bird : MonoBehaviour
     {
         //if hit and still above the ground
         if (val){
+            birdAnim.SetTrigger("HitAndFall");
+           
             tempPos.y = Mathf.Lerp(tempPos.y, tempPos.y - 0.3f, 1f);
         }
       

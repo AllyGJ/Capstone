@@ -630,7 +630,7 @@ public class GameManager : MonoBehaviour
 		musicVolume = 0.5f;
 
         currItemIndex = 0;
-	//	currItemIndex = 4;
+		//currItemIndex = 4;
 		setCurrItem (currItemIndex);
 
         currentHouseCam = initialCam;

@@ -75,7 +75,7 @@ public class Trajectory : MonoBehaviour
             GameManager.instance.playerAnim.SetTrigger("Throw");
             SoundManager.instance.playWhip();
             GameManager.instance.pitchfork.GetComponent<Pitchfork>().throwAtBird(val);
-			yield return new WaitForSeconds (2f);
+			yield return new WaitForSeconds (2.3f);
 			moveSlider = true;
             GameManager.instance.pitchfork.GetComponent<Pitchfork>().resetPos();
 			//once animation over, start slider again

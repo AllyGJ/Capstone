@@ -199,6 +199,7 @@ public class ButtonMash : MonoBehaviour
         curButton++;
         SoundManager.instance.playWrong();
 
+        GameManager.instance.bird.GetComponent<Bird>().birdAnim.SetTrigger("Attack");
         float r = UnityEngine.Random.Range(0f, 1f);
         if (r == 1f) GameManager.instance.playerAnim.SetTrigger("BigD");
         else GameManager.instance.playerAnim.SetTrigger("LittleD");
@@ -220,6 +221,7 @@ public class ButtonMash : MonoBehaviour
         SoundManager.instance.playWhip();
 
         //show animation of robot hitting bird
+        GameManager.instance.bird.GetComponent<Bird>().birdAnim.SetTrigger("HitAndFall");
         GameManager.instance.playerAnim.SetTrigger("Stab");
 
         yield return new WaitForSeconds(2f);
