@@ -587,6 +587,17 @@ public class GameManager : MonoBehaviour
     {
         txt.color = Color.white;
     }
+
+    public void toggleLineOn(GameObject line)
+    {
+        line.SetActive(true);
+    }
+
+    public void toggleLineOff(GameObject line)
+    {
+        line.SetActive(false);
+    }
+
 	public void setMusicVolume (Slider slide)
 	{
 		musicVolume = slide.value;

@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: bb0fe9077c75a4325abf294151ecb99c
+timeCreated: 1525303964
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Xolonium
+  fontNames:
+  - Xolonium
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 4bcbeb7285d074a48a064e3c3528136e, type: 3}
+  - {fileID: 12800000, guid: 97ad33097673f4cc98a0e81c98997271, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

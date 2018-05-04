@@ -9,6 +9,19 @@ public class Music : MonoBehaviour {
     public Sprite noSound;
     public GameObject volume;
 
+    void Update()
+    {
+        if (GameManager.instance.musicOn)
+        {
+            GetComponent<Image>().sprite = sound;
+            volume.SetActive(true);
+        }
+        else
+        {
+            GetComponent<Image>().sprite = noSound;
+            volume.SetActive(false);
+        }
+    }
 
     public void toggleMusic()
     {
