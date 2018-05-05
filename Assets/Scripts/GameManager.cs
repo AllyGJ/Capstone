@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
 	public GameObject pitchfork;
 	public GameObject arrow;
     public Animator rockingChairAnim;
+    public GameObject blanket;
 
 	public Transform pitchforkStart;
 	public Transform startPoint;
@@ -272,6 +273,7 @@ public class GameManager : MonoBehaviour
             currentHouseCam = afterGameCams[0].GetComponent<Camera>();
         }
         else if(game2){
+            blanket.SetActive(true);
             rockingChairAnim.SetBool("rock", false);
             SoundManager.instance.stopRockingChair();
             currentHouseCam = afterGameCams[1].GetComponent<Camera>();
@@ -637,6 +639,7 @@ public class GameManager : MonoBehaviour
 
 	public void reset ()
 	{
+        blanket.SetActive(false);
 		musicOn = true;
 		musicVolume = 0.5f;
 
