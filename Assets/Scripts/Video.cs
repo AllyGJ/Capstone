@@ -40,8 +40,8 @@ public class Video : MonoBehaviour
 		else
 			text.text = "";
 
-       // print(vc.time);
-        if (started && (vc.time >= vc.clip.length)) {
+        //print(vc.time);
+        if (started && ((int)vc.time >= (int)vc.clip.length)) {
            // SoundManager.instance.muteAll(false);
 
            // print("3");
