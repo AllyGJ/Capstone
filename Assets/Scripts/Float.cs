@@ -11,6 +11,7 @@ public class Float : MonoBehaviour
 	public bool floating = false;
     public float speed;
     public float amp;
+    public bool birdSounds = false;
 
     private int count = 0;
 
@@ -22,10 +23,17 @@ public class Float : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-        count++;
+        
         if (floating) {
-           if (count % 300 == 0)
-                SoundManager.instance.playBirdFlap();                                                                 
+
+            if (birdSounds)
+            {
+                if (count == 0 || count % 300 == 0)
+                    SoundManager.instance.playBirdFlap();
+
+                count++;
+            }
+
 			tempPos.y = Mathf.Sin (Time.fixedTime * Mathf.PI * speed) * amp;
             //print(tempPos);
             tempPos.y += 1f;
@@ -33,6 +41,7 @@ public class Float : MonoBehaviour
 		}
         else {
             SoundManager.instance.stopBirdFlap();
+            count = 0;
         }
 		
 	}

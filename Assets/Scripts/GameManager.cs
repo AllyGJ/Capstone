@@ -242,9 +242,11 @@ public class GameManager : MonoBehaviour
 			yield return new WaitForSeconds (0.1f);
 		}
 
+        bird.GetComponent<Float>().birdSounds = true;
         movePlayer(false);
 
 		player.GetComponent<Player> ().setPos (1);
+
         //pitchfork.transform.eulerAngles = new Vector3(0, 0, -100);
         //pitchfork.transform.rotation = new Quaternion(0, 0, -100, 0);
 
@@ -271,22 +273,27 @@ public class GameManager : MonoBehaviour
             rockingChairAnim.SetBool("rock",true);
             SoundManager.instance.playRockingChair();
             currentHouseCam = afterGameCams[0].GetComponent<Camera>();
+            bird.GetComponent<Float>().birdSounds = false;
+            bird.GetComponent<Float>().floating = false;
         }
         else if(game2){
-            blanket.SetActive(true);
+           
             rockingChairAnim.SetBool("rock", false);
             SoundManager.instance.stopRockingChair();
-            currentHouseCam = afterGameCams[1].GetComponent<Camera>();
+            //currentHouseCam = afterGameCams[1].GetComponent<Camera>();
+            //bird.GetComponent<Float>().birdSounds = false;
+            //bird.GetComponent<Float>().floating = false;
         }
 
         if(game3) playerAnim.SetTrigger("Game3PosDone");
+
+        if(bird.activeSelf) bird.SetActive(false);
 
         game1 = false;
 		game2 = false;
 		game3 = false;
 		startRunning = false;
-		bird.SetActive (false);
-        //pitchfork.transform.localRotation = new Quaternion(0, 0, 0, 0);
+
         gameItems.worldCamera = currentHouseCam;
 
 		if (!theEnd) {
@@ -309,7 +316,7 @@ public class GameManager : MonoBehaviour
             }
             else videoCanvas.GetComponent<Video>().setGoodEnding(false);
 
-			playVideo ("canvas");
+			playVideo ("movie");
 			StartCoroutine (waitToReset ());
 		}
 
@@ -328,6 +335,8 @@ public class GameManager : MonoBehaviour
 		while (videoCanvas.GetComponent<Video> ().started == true) {
 			yield return new WaitForSeconds (0.1f);
 		}
+
+        bird.GetComponent<Float>().birdSounds = true;
 
 		movePlayer (false);
 		player.GetComponent<Player> ().setPos (2);
@@ -386,8 +395,16 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator waitForGameScene()
     {
+        currentHouseCam = afterGameCams[1].GetComponent<Camera>();
+
+        bird.GetComponent<Float>().floating = false;
+        bird.GetComponent<Float>().birdSounds = false;
+        bird.SetActive(false);
+
+        blanket.SetActive(true);
+
         setNextVideo();
-        playVideo("miniGame2");
+        playVideo("lastCam");
 
         while (videoCanvas.GetComponent<Video>().started == true)
         {
@@ -422,6 +439,15 @@ public class GameManager : MonoBehaviour
 		while (videoCanvas.GetComponent<Video> ().started == true) {
 			yield return new WaitForSeconds (0.1f);
 		}
+
+        videoCanvas.GetComponent<Video>().setCredits();
+        playVideo("canvas");
+
+        while (videoCanvas.GetComponent<Video>().started == true)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+
 		yield return new WaitForSeconds (0.1f);
 		reset ();
 	}

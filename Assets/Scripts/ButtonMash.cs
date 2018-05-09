@@ -78,18 +78,10 @@ public class ButtonMash : MonoBehaviour
                     StartCoroutine(pressedWrongButton());
                 }
 
-                //need to add case when user doesn't press anything
-
 
             } else {
-				//shown all buttons, check how many correct
-//				if (correct == numButtons) {
-//					print ("perfect score!");
-//				} else {
-//					float percent = ((float)correct / (float)numButtons) * 100;
-//					print ("percent correct = " + percent);
-//				}
-				print (correct);
+
+				//print (correct);
 				GameManager.instance.addToScore (correct - 1);
 				beginButtonMash = false;
 
