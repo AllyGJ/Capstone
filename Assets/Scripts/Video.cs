@@ -12,8 +12,6 @@ public class Video : MonoBehaviour
     public UnityEngine.Video.VideoClip goodEnding;
     public UnityEngine.Video.VideoClip badEnding;
 
-    public UnityEngine.Video.VideoClip credits;
-
 	public int curVideo = 0;
 
 	public Text text;
@@ -64,11 +62,6 @@ public class Video : MonoBehaviour
     {
         if (val) vc.clip = goodEnding;
         else vc.clip = badEnding;
-    }
-
-    public void setCredits()
-    {
-        vc.clip = credits;
     }
 
 	public void playVideo (string backCam)

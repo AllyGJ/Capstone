@@ -316,7 +316,7 @@ public class GameManager : MonoBehaviour
             }
             else videoCanvas.GetComponent<Video>().setGoodEnding(false);
 
-			playVideo ("movie");
+			playVideo ("canvas");
 			StartCoroutine (waitToReset ());
 		}
 
@@ -439,14 +439,6 @@ public class GameManager : MonoBehaviour
 		while (videoCanvas.GetComponent<Video> ().started == true) {
 			yield return new WaitForSeconds (0.1f);
 		}
-
-        videoCanvas.GetComponent<Video>().setCredits();
-        playVideo("canvas");
-
-        while (videoCanvas.GetComponent<Video>().started == true)
-        {
-            yield return new WaitForSeconds(0.1f);
-        }
 
 		yield return new WaitForSeconds (0.1f);
 		reset ();
